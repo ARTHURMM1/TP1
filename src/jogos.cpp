@@ -251,3 +251,81 @@ bool JogoDaVelha::testar_condicao_de_vitoria() const {
     
     return !tem_espaco_vazio;  // Retorna true se o tabuleiro estiver cheio (empate)
 }
+bool Lig4::testar_condicao_de_vitoria() const {
+    int linhas = this->getLinhas();
+    int colunas = this->getColunas();
+
+    for (int linha = 0; linha < linhas; ++linha) {
+        for (int coluna = 0; coluna < colunas; ++coluna) {
+            int jogador = this->get_casa(linha, coluna);
+
+            if (jogador == 0) continue;  
+
+            // Horizontal
+            if (coluna + 3 < colunas &&
+                this->get_casa(linha, coluna + 1) == jogador &&
+                this->get_casa(linha, coluna + 2) == jogador &&
+                this->get_casa(linha, coluna + 3) == jogador) {
+                return true;
+            }
+
+                // Vertical
+                if (linha + 3 < linhas &&
+                    this->get_casa(linha + 1, coluna) == jogador &&
+                    this->get_casa(linha + 2, coluna) == jogador &&
+                    this->get_casa(linha + 3, coluna) == jogador) {
+                    return true;
+                }
+
+                // Diagonal I
+                if (linha + 3 < linhas && coluna + 3 < colunas &&
+                    this->get_casa(linha + 1, coluna + 1) == jogador &&
+                    this->get_casa(linha + 2, coluna + 2) == jogador &&
+                    this->get_casa(linha + 3, coluna + 3) == jogador) {
+                    return true;
+                }
+
+                // Diagonal II
+                if (linha - 3 >= 0 && coluna + 3 < colunas &&
+                    this->get_casa(linha - 1, coluna + 1) == jogador &&
+                    this->get_casa(linha - 2, coluna + 2) == jogador &&
+                    this->get_casa(linha - 3, coluna + 3) == jogador) {
+                    return true;
+                }
+            }
+        }
+        return false;  
+    }
+bool Lig4::verificar_jogada(int coluna) const {
+        if (coluna < 0 || coluna >= getColunas()) {
+            return false;  
+        }
+
+        for (int linha = 0; linha < getLinhas(); ++linha) {
+            if (get_casa(linha, coluna) == 0) {
+                return true;  
+            }
+        }
+        return false;  
+    }
+int Lig4::ler_jogadas(int coluna, int jogador) {
+        if (!verificar_jogada(coluna)) {
+            return 0; 
+        }
+
+        for (int linha = getLinhas() - 1; linha >= 0; --linha) {
+            if (get_casa(linha, coluna) == 0) {
+                Tabuleiro_[linha][coluna] = jogador;  
+                return jogador;  
+            }
+        }
+        return 0;  
+}
+Lig4::Lig4(int linhas, int colunas) : JogosDeTabuleiro(linhas, colunas) {
+    // Inicializa o tabuleiro vazio
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            Tabuleiro_[i][j] = 0;
+        }
+    }
+};
