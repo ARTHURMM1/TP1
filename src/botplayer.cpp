@@ -91,3 +91,39 @@ std::pair<int, int> Lig4Bot::calcularProximaJogada(const JogosDeTabuleiro& jogoB
 
     return {melhorColuna, -1}; 
 }
+
+int Lig4Bot::_minimax(Lig4& jogo, bool maximizando, int jogadorAtual) {
+    if (jogo.testar_condicao_de_vitoria()) {
+        return maximizando ? -100 : 100;
+    }
+
+    // Verifica empate
+    bool movimentosPossiveis = false;
+    for (int coluna = 0; coluna < jogo.getColunas(); ++coluna) {
+        if (jogo.verificar_jogada(coluna)) {
+            movimentosPossiveis = true;
+            break;
+        }
+    }
+    if (!movimentosPossiveis) return 0; // Empate
+
+    int outroJogador = (jogadorAtual == 1) ? 2 : 1;
+    int melhorPontuacao = maximizando ? INT_MIN : INT_MAX;
+
+    for (int coluna = 0; coluna < jogo.getColunas(); ++coluna) {
+        if (jogo.verificar_jogada(coluna)) {
+            Lig4 copia = jogo;
+            copia.ler_jogadas(coluna, maximizando ? jogadorAtual : outroJogador);
+
+            int pontuacao = _minimax(copia, !maximizando, jogadorAtual);
+
+            if (maximizando) {
+                melhorPontuacao = std::max(melhorPontuacao, pontuacao);
+            } else {
+                melhorPontuacao = std::min(melhorPontuacao, pontuacao);
+            }
+        }
+    }
+
+    return melhorPontuacao;
+}
