@@ -67,3 +67,27 @@ int BotPlayer::_minimax(JogoDaVelha& jogo, int profundidade, bool maximizando, i
     }
     return melhorPontuacao;
 }
+
+//JOGO LIG 4
+std::pair<int, int> Lig4Bot::calcularProximaJogada(const JogosDeTabuleiro& jogoBase, int jogadorAtual) {
+    Lig4 jogo = static_cast<const Lig4&>(jogoBase); 
+    int melhorColuna = -1;
+    int melhorPontuacao = INT_MIN;
+
+    // Itera pelas colunas disponíveis
+    for (int coluna = 0; coluna < jogo.getColunas(); ++coluna) {
+        if (jogo.verificar_jogada(coluna)) {
+            Lig4 copia = jogo;
+            copia.ler_jogadas(coluna, jogadorAtual);
+            
+            int pontuacao = _minimax(copia, false, jogadorAtual);
+            
+            if (pontuacao > melhorPontuacao) {
+                melhorPontuacao = pontuacao;
+                melhorColuna = coluna;
+            }
+        }
+    }
+
+    return {melhorColuna, -1}; 
+}
