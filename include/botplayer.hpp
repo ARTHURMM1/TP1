@@ -1,9 +1,7 @@
 #ifndef BOTPLAYER_HPP
 #define BOTPLAYER_HPP
-
 #include <vector>
 #include <utility>
-#include "jogos.hpp" 
 
 // Classe base abstrata para representar bots em jogos de tabuleiro
 class BotPlayer {
@@ -15,6 +13,11 @@ public:
         const JogosDeTabuleiro& jogo, 
         int jogadorAtual
     ) = 0;
+protected:
+    // Proibindo cópia e atribuição acidental
+    BotPlayer() = default;
+    BotPlayer(const BotPlayer&) = delete;
+    BotPlayer& operator=(const BotPlayer&) = delete;
 };
 
 // Classe para implementar o bot do jogo Reversi
@@ -47,4 +50,4 @@ public:
     ) override;
 };
 
-#endif // BOTPLAYER_HPP
+#endif 
