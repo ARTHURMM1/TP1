@@ -85,7 +85,7 @@ int main () {
                 
                 // Procura jogadore
                 
-                for (const auto& j : jogadores.get_jogadores()) {
+                for (const auto& j : jogadores.getJogadores()) {
                     if (j->getNome() == nomeJogador1 || j->getApelido() == nomeJogador1) {
                         jogador1 = j.get();
                     }
