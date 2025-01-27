@@ -6,125 +6,165 @@
 #include "partida.hpp"
 #include <algorithm>
 
-int main () {
-    // Inicializa o vetor de cadastro, carregando as informações do .txt
+void mostrarMenu() {
+    std::cout << "\n=== Menu de Comandos ===" << std::endl;
+    std::cout << "CJ - Cadastrar novo jogador" << std::endl;
+    std::cout << "RJ - Remover jogador" << std::endl;
+    std::cout << "LJ - Listar jogadores" << std::endl;
+    std::cout << "PJ - Procurar jogador" << std::endl;
+    std::cout << "NP - Nova partida" << std::endl;
+    std::cout << "F  - Finalizar programa" << std::endl;
+    std::cout << "H  - Ajuda (mostra este menu)" << std::endl;
+    std::cout << "=====================" << std::endl;
+}
+
+void cadastrarJogador(Cadastro& jogadores) {
+    std::string nome, apelido;
+    std::cout << "Digite o nome do jogador: ";
+    std::cin.ignore();
+    std::getline(std::cin, nome);
+    std::cout << "Digite o apelido do jogador: ";
+    std::getline(std::cin, apelido);
+    
+    Jogador novoJogador(nome, apelido);
+    
+    if (!jogadores.check(novoJogador)) {
+        jogadores.adicionarJogador(novoJogador);
+        jogadores.save("cadastro.txt");
+    } else {
+        std::cout << "ERRO: Jogador já cadastrado!" << std::endl;
+    }
+}
+
+void removerJogador(Cadastro& jogadores) {
+    std::string apelido;
+    std::cout << "Digite o apelido do jogador a ser removido: ";
+    std::cin.ignore();
+    std::getline(std::cin, apelido);
+    
+    Jogador alvo("", apelido);
+    jogadores.removeJogador(alvo);
+    jogadores.save("cadastro.txt");
+}
+
+void procurarJogador(const Cadastro& jogadores) {
+    std::string apelido;
+    std::cout << "Digite o apelido do jogador: ";
+    std::cin.ignore();
+    std::getline(std::cin, apelido);
+    
+    Jogador alvo("", apelido);
+    if (jogadores.check(alvo)) {
+        std::cout << "Jogador encontrado!" << std::endl;
+    } else {
+        std::cout << "Jogador não encontrado." << std::endl;
+    }
+}
+
+void iniciarNovaPartida(Cadastro& jogadores) {
+    std::string apelido1, apelido2;
+    int tipoJogo;
+    bool vsBot = false;
+    
+    std::cout << "=== Tipos de Jogo ===" << std::endl;
+    std::cout << "1 - Jogo da Velha" << std::endl;
+    std::cout << "2 - Lig4" << std::endl;
+    std::cout << "3 - Reversi" << std::endl;
+    std::cout << "Escolha o tipo de jogo: ";
+    std::cin >> tipoJogo;
+    
+    if (tipoJogo < 1 || tipoJogo > 3) {
+        std::cout << "Tipo de jogo inválido!" << std::endl;
+        return;
+    }
+    
+    std::cout << "Jogar contra BOT? (1-Sim, 0-Não): ";
+    std::cin >> vsBot;
+    
+    std::cout << "Digite o apelido do Jogador 1: ";
+    std::cin.ignore();
+    std::getline(std::cin, apelido1);
+    
+    Jogador jogador1("", apelido1);
+    if (!jogadores.check(jogador1)) {
+        std::cout << "Jogador 1 não encontrado!" << std::endl;
+        return;
+    }
+    
+    if (!vsBot) {
+        std::cout << "Digite o apelido do Jogador 2: ";
+        std::getline(std::cin, apelido2);
+        
+        Jogador jogador2("", apelido2);
+        if (!jogadores.check(jogador2)) {
+            std::cout << "Jogador 2 não encontrado!" << std::endl;
+            return;
+        }
+        
+        Partida partida(tipoJogo, &jogador1, &jogador2);
+        partida.iniciarPartida();
+    } else {
+        Partida partida(tipoJogo, &jogador1);
+        partida.iniciarPartida();
+    }
+    
+    // Após a partida, salva as atualizações do cadastro
+    jogadores.save("cadastro.txt");
+}
+
+int main() {
     Cadastro jogadores;
     jogadores.import("cadastro.txt");
     
-    // Inicializa a partida
-    Partida partida;
-
-    // Vetor de comandos
-    std::vector<std::string> commands = {
-        "CJ",    // 0: Cadastrar Jogador
-        "RJ",    // 1: Remover Jogador
-        "LJ",    // 2: Listar Jogadores
-        "EP",    // 3: Executar Partida
-        "FS"     // 4: Finalizar Sistema
-    };
-
+    std::vector<std::string> commands = {"CJ", "RJ", "LJ", "PJ", "NP", "F", "H"};
+    std::string inputComando;
+    
+    std::cout << "Bem-vindo ao Sistema de Jogos!" << std::endl;
+    mostrarMenu();
+    
     while (true) {
-        std::string inputComando;
+        std::cout << "\nDigite um comando: ";
         std::cin >> inputComando;
-
-        // Procura o índice do comando
+        
+        // Converte o comando para maiúsculas
+        std::transform(inputComando.begin(), inputComando.end(), inputComando.begin(), ::toupper);
+        
         auto it = std::find(commands.begin(), commands.end(), inputComando);
         
         if (it == commands.end()) {
-            std::cout << "comando inválido" << std::endl;
+            std::cout << "Comando inválido! Digite 'H' para ver os comandos disponíveis." << std::endl;
             continue;
         }
-
+        
         int indexComando = std::distance(commands.begin(), it);
-
+        
         switch(indexComando) {
-            case 0: { // Cadastrar Jogador
-                std::string nome, apelido;
-                std::cin >> nome >> apelido;
-                
-                Jogador novoJogador(nome, apelido);
-                
-                if (jogadores.check(novoJogador)) {
-                    std::cout << "ERRO: jogador repetido" << std::endl;
-                } else {
-                    jogadores.adicionarJogador(novoJogador);
-                    jogadores.save("cadastro.txt");
-                }
+            case 0: // CJ
+                cadastrarJogador(jogadores);
                 break;
-            }
-            case 1: { // Remover Jogador
-                std::string apelido;
-                std::cin >> apelido;
-                
-                Jogador jogadorRemover("", apelido);
-                jogadores.removeJogador(jogadorRemover);
-                jogadores.save("cadastro.txt");
+            case 1: // RJ
+                removerJogador(jogadores);
                 break;
-            }
-            case 2: { // Listar Jogadores
-                std::string ordem;
-                std::cin >> ordem;
-                
-                // Implementar ordenação por Nome (N) ou Apelido (A)
+            case 2: // LJ
                 jogadores.mostrarJogadores();
                 break;
-            }
-            case 3: { // Executar Partida
-                int tipoJogo;
-                int num_jogadores;
-                std::string nomeJogador1, nomeJogador2;
-                std::cout << "Insira o número de jogadores (1 ou 2)" << std::endl;
-                if (num_jogadores == 1)
-                {
-                    
-                }
-                std::cin >> tipoJogo >> nomeJogador1 >> nomeJogador2;
-                
-                Jogador* jogador1 = nullptr;
-                Jogador* jogador2 = nullptr;
-                
-                // Procura jogadore
-                
-                for (const auto& j : jogadores.getJogadores()) {
-                    if (j->getNome() == nomeJogador1 || j->getApelido() == nomeJogador1) {
-                        jogador1 = j.get();
-                    }
-                    if (j->getNome() == nomeJogador2 || j->getApelido() == nomeJogador2) {
-                        jogador2 = j.get();
-                    }
-                }
-                
-                if (!jogador1 || !jogador2) {
-                    std::cout << "ERRO: jogador inexistente" << std::endl;
-                } else {
-                    if (partida.iniciarPartida(jogador1, jogador2, tipoJogo)) {
-                        // Loop de jogo
-                        int jogadorAtual = 1;
-                        while (!partida.verificarFimDeJogo()) {
-                            std::cout << "Turno do Jogador " << jogadorAtual << std::endl;
-                            partida.imprimirTabuleiro();
-                            
-                            int linha, coluna;
-                            std::cin >> linha >> coluna;
-                            
-                            if (!partida.realizarJogada(jogadorAtual, linha, coluna)) {
-                                continue;  // Jogada inválida, tenta novamente
-                            }
-                            
-                            jogadorAtual = (jogadorAtual == 1) ? 2 : 1;
-                        }
-                    }
-                }
+            case 3: // PJ
+                procurarJogador(jogadores);
                 break;
-            }
-            case 4: // Finalizar Sistema
-                jogadores.save("cadastro.txt");
+            case 4: // NP
+                iniciarNovaPartida(jogadores);
+                break;
+            case 5: // F
+                std::cout << "Programa finalizado." << std::endl;
                 return 0;
+            case 6: // H
+                mostrarMenu();
+                break;
             default:
-                std::cout << "erro inesperado" << std::endl;
+                std::cout << "Erro inesperado!" << std::endl;
                 return 1;
         }
     }
-
+    
     return 0;
 }
