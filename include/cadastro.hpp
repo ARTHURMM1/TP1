@@ -16,11 +16,11 @@ struct Winrate {
 
 class Jogador {
 private:
+    Winrate Velha;  // Primeiro membro
+    Winrate Lig4;   // Segundo membro
+    Winrate Reversi; // Terceiro membro
     std::string _nome;
     std::string _apelido;
-    Winrate Lig4;
-    Winrate Velha;
-    Winrate Reversi;
     //adicionar outros jogos
 
 public:
@@ -45,7 +45,7 @@ public:
     //possível adicionar outros jogos aqui.
     int getVitorias(const Winrate& jogo) const { return jogo._vitorias; }
     int getDerrotas(const Winrate& jogo) const { return jogo._derrotas; }
-
+    
     void setNome(const std::string& nome) { _nome = nome; }
     void setApelido(const std::string& apelido) { _apelido = apelido; }
     void setVitorias(Winrate& jogo, int vitorias) { jogo._vitorias = vitorias; }
@@ -65,7 +65,9 @@ private:
 
 public:
 
-    std::vector<std::unique_ptr<Jogador>> getJogadores () { return _jogadores; }
+    const std::vector<std::unique_ptr<Jogador>>& get_jogadores() const {
+    return _jogadores; }
+
     //adiciona um jogador ao vetor de cadastro
     void adicionarJogador(const Jogador& alvo);
 
@@ -83,6 +85,7 @@ public:
 
     //verifica se o jogador alvo está no vetor de cadastros, retorna 0 ou 1.
     bool check(const Jogador& alvo) const ;
+
 };
 
 #endif
