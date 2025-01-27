@@ -20,7 +20,7 @@ char JogosDeTabuleiro::get_casa(int linha, int coluna) const{
 
 void JogosDeTabuleiro::setLinhasColunas(int linha, int coluna) { linhas_ = linha; colunas_ = coluna; };
 
-int JogosDeTabuleiro::imprimir_tabuleiro() const {
+int JogosDeTabuleiro::imprimir_vetor() const {
     int casa;
     for (int i = 0; i < this->getLinhas(); i++)
     {
