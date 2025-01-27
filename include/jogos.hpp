@@ -55,8 +55,8 @@ public:
 
     Lig4(int linhas = 6, int colunas = 7);
 
-    int ler_jogada(int coluna, int jogador) override;
-    bool verificar_jogada(int coluna, int jogador) const override;
+    int ler_jogada(int linha, int coluna, int jogador) override;
+    bool verificar_jogada(int linha, int coluna, int jogador) const override;
     bool testar_condicao_de_vitoria() const override;
 };
 
