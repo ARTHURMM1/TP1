@@ -296,7 +296,7 @@ bool Lig4::testar_condicao_de_vitoria() const {
         }
         return false;  
     }
-bool Lig4::verificar_jogada(int coluna) const {
+bool Lig4::verificar_jogada(int linha, int coluna, int jogador) const {
         if (coluna < 0 || coluna >= getColunas()) {
             return false;  
         }
@@ -308,18 +308,18 @@ bool Lig4::verificar_jogada(int coluna) const {
         }
         return false;  
     }
-int Lig4::ler_jogadas(int coluna, int jogador) {
-        if (!verificar_jogada(coluna)) {
+int Lig4::ler_jogada (int linha, int coluna, int jogador) {
+        if (!verificar_jogada(linha, coluna, jogador)) {
             return 0; 
         }
 
-        for (int linha = getLinhas() - 1; linha >= 0; --linha) {
-            if (get_casa(linha, coluna) == 0) {
-                Tabuleiro_[linha][coluna] = jogador;  
+        for (int i = getLinhas() - 1; linha >= 0; --linha) {
+            if (get_casa(i, coluna) == 0) {
+                Tabuleiro_[i][coluna] = jogador;  
                 return jogador;  
             }
         }
-        return 0;  
+        return 0;
 }
 Lig4::Lig4(int linhas, int colunas) : JogosDeTabuleiro(linhas, colunas) {
     // Inicializa o tabuleiro vazio
