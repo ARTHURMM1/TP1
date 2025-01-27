@@ -8,20 +8,28 @@
 
 class Partida {
 public:
-    Partida();
+    // Constructors
+    Partida(int tipoJogo, Jogador* jogador1);  // For PvE
+    Partida(int tipoJogo, Jogador* jogador1, Jogador* jogador2);  // For PvP
+    
+    // Destructor to clean up bot pointers
+    ~Partida() {
+        delete bot1;
+        delete bot2;
+    }
 
-    // Inicializa a partida com dois jogadores e o tipo de jogo
-    bool iniciarPartida(Jogador* jogador1, Jogador* jogador2, int tipoJogo, 
-                        BotPlayer* bot1 = nullptr, BotPlayer* bot2 = nullptr);
-
-    // Imprime o estado atual do tabuleiro
+    // Game control methods
+    bool iniciarPartida();
+    bool iniciarPartida(int dificuldade);  // For future difficulty levels
     void imprimirTabuleiro() const;
-
-    // Realiza uma jogada para o jogador atual
     bool realizarJogada(int jogadorAtual, int linha = -1, int coluna = -1);
-
-    // Verifica se o jogo terminou
     bool verificarFimDeJogo() const;
+
+    // Utility methods
+    bool isPvP() const { return jogador2 != nullptr; }
+    Jogador* getJogadorAtual(int jogadorNumero) const {
+        return jogadorNumero == 1 ? jogador1 : jogador2;
+    }
 
 private:
     std::unique_ptr<JogosDeTabuleiro> jogoAtual;
@@ -30,7 +38,6 @@ private:
     BotPlayer* bot1;
     BotPlayer* bot2;
 
-    // Determina o vencedor ou se houve empate
     void finalizarPartida();
 };
 
