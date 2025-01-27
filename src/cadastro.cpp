@@ -37,7 +37,7 @@ Jogador Jogador::deserializar(const std::string& linha) {
 }
 //done
 void Cadastro::adicionarJogador(const Jogador& alvo) { 
-    _jogadores.push_back(std::make_unique<Jogador>(alvo));
+    _jogadores.push_back(std::unique_ptr<Jogador>(new Jogador(alvo)));
     std::cout << "Jogador " << alvo.getApelido() << " cadastrado com sucesso" << std::endl;
 }
 
@@ -77,7 +77,7 @@ void Cadastro::import(const std::string& caminho) {
     std::string linha;
     while (std::getline(arquivo, linha)) {
         if (!linha.empty()) {
-            _jogadores.push_back(std::make_unique<Jogador>(Jogador::deserializar(linha)));
+            _jogadores.push_back(std::unique_ptr<Jogador>(new Jogador(Jogador::deserializar(linha))));
         }
     }
     arquivo.close();
@@ -129,4 +129,6 @@ bool Cadastro::check(const Jogador& alvo) const {
         }
         return false;
     }
+
+    
 
