@@ -64,6 +64,8 @@ private:
     std::vector<std::unique_ptr<Jogador>> _jogadores;
 
 public:
+
+    std::vector<std::unique_ptr<Jogador>> getJogadores () { return _jogadores; }
     //adiciona um jogador ao vetor de cadastro
     void adicionarJogador(const Jogador& alvo);
 
