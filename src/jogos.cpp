@@ -22,16 +22,43 @@ void JogosDeTabuleiro::setLinhasColunas(int linha, int coluna) { linhas_ = linha
 // jogador 1 é X, jogador 2 é O
 int Reversi::imprimir_vetor(int jogador) const { 
     int casa;
-    auto jogadasvalidas = atualizar_jogadas_validas(jogador);
+    auto jogadas_validas = atualizar_jogadas_validas(jogador);
+
+    // Imprime jogadas validas
+    std::cout << "Jogadas validas: " << std::endl;
+    for (int i = 0; i < getLinhas(); i++)
+    {
+        for (int j = 0; j < getColunas(); j++)
+        {
+            if (jogadas_validas[i][j])
+            {
+                std::cout << FUNDO_AMARELO << "|" << i+1 << ':' << j+1 << "|" << RESETAR << ' ';
+            }
+        }
+    }
+    std::cout << std::endl << std::endl;
+
+    // Imprime tabuleiro
     for (int i = 0; i < this->getLinhas(); i++)
     {
-        
+        if (i == 0){
+        std::cout << FUNDO_BRANCO << "| |";
+        for (int k = 0; k < getColunas(); k++)
+            {
+                std::cout << "|" << k+1 << "|";
+            }
+        }
+        std::cout << RESETAR << std::endl;
         for (int j = 0; j < this->getColunas(); j++)
         {
+            if (j == 0)
+            {
+                std::cout << FUNDO_BRANCO << '|' << i+1 << '|' << RESETAR;
+            }
             casa = this->get_casa(i, j);
             if(casa == 0)
             {
-                if (jogadasvalidas[i][j])
+                if (jogadas_validas[i][j])
                 {
                     std::cout << FUNDO_VERDE << "| |" << RESETAR; 
                 }
@@ -49,7 +76,7 @@ int Reversi::imprimir_vetor(int jogador) const {
                 std::cout << FUNDO_BRANCO << "|O|" << RESETAR;
             }
         }
-        std::cout << std::endl;
+        
     }
     return 0;
 }
@@ -159,7 +186,8 @@ std::vector<std::vector<bool>> Reversi::atualizar_jogadas_validas(int jogador) c
             jogadas_validas[i][j] = verificar_jogada(i, j, jogador);
         }
     }
-    
+    std::cout << std::endl << std::endl;
+
     return jogadas_validas;
 }
 
@@ -182,7 +210,11 @@ bool Reversi::testar_condicao_de_vitoria() const {
         }
     }
 
-    return !ha_jogadas_1 && !ha_jogadas_2;
+    if (!ha_jogadas_1 && !ha_jogadas_2) {
+    std::cout << "\n--- Jogo finalizado por falta de jogadas válidas! ---\n";
+    return true;
+    }
+    return false;
 }
 
 JogoDaVelha::JogoDaVelha(int linhas, int colunas) : JogosDeTabuleiro(linhas, colunas) {
