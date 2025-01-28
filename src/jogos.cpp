@@ -10,37 +10,44 @@ JogosDeTabuleiro::JogosDeTabuleiro(int linhas, int colunas) : linhas_(linhas), c
 int JogosDeTabuleiro::getLinhas() const { return this->linhas_; };
 int JogosDeTabuleiro::getColunas() const { return colunas_; };
 std::vector<std::vector<int>> JogosDeTabuleiro::get_tabuleiro() const { return Tabuleiro_; };
-char JogosDeTabuleiro::get_casa(int linha, int coluna) const{
-    if ((linha <= linhas_) && (coluna <= colunas_))
-    {
+char JogosDeTabuleiro::get_casa(int linha, int coluna) const {
+    if (linha >= 0 && linha < linhas_ && coluna >= 0 && coluna < colunas_) {
         return Tabuleiro_[linha][coluna];
     }
-    return 'F';
+    return 'F'; // Or handle out-of-bounds appropriately
 }
 
 void JogosDeTabuleiro::setLinhasColunas(int linha, int coluna) { linhas_ = linha; colunas_ = coluna; };
 
-int JogosDeTabuleiro::imprimir_vetor() const {
+// jogador 1 é X, jogador 2 é O
+int Reversi::imprimir_vetor(int jogador) const { 
     int casa;
+    auto jogadasvalidas = atualizar_jogadas_validas(jogador);
     for (int i = 0; i < this->getLinhas(); i++)
     {
-        std::cout << FUNDO_VERDE << "|" << RESETAR; 
+        
         for (int j = 0; j < this->getColunas(); j++)
         {
             casa = this->get_casa(i, j);
             if(casa == 0)
             {
-                std::cout << FUNDO_VERDE << " " << RESETAR;
+                if (jogadasvalidas[i][j])
+                {
+                    std::cout << FUNDO_VERDE << "| |" << RESETAR; 
+                }
+                else
+                {
+                    std::cout << FUNDO_VERMELHO << "| |" << RESETAR; 
+                }
             }
             else if (casa == 1)
             {
-                std::cout << "X";
+                std::cout << "|X|";
             }
             else
             {
-                std::cout << FUNDO_BRANCO << "O" << RESETAR;
+                std::cout << FUNDO_BRANCO << "|O|" << RESETAR;
             }
-            std::cout << FUNDO_VERDE << "|" << RESETAR;
         }
         std::cout << std::endl;
     }
@@ -74,9 +81,10 @@ bool Reversi::verificar_direcao(int linha, int coluna, int dLinha, int dColuna, 
     int novaColuna = coluna + dColuna;
     bool encontrou_oponente = false;
     
-    if (get_casa(linha + dLinha, coluna + dColuna) != 0) return false; //se a primeira casa nessa direcao for zero, entao é invalida
+    // Corrected condition: Check if the first cell is the opponent's piece
+    if (get_casa(novaLinha, novaColuna) != oponente) return false;
     
-    while (novaLinha >= 0 && novaLinha < getLinhas() &&  //enquanto estiver no tabuleiro 
+    while (novaLinha >= 0 && novaLinha < getLinhas() && 
            novaColuna >= 0 && novaColuna < getColunas()) {
         
         int casa_atual = get_casa(novaLinha, novaColuna);
@@ -86,7 +94,7 @@ bool Reversi::verificar_direcao(int linha, int coluna, int dLinha, int dColuna, 
             encontrou_oponente = true;
         }
         if (casa_atual == jogador) {
-            return encontrou_oponente;  // se encontrar uma casa do oponente e dps (sem encotnrar zeros) encontrar uma casa propria do jogador, entao a direcao é valida!
+            return encontrou_oponente;
         }
         
         novaLinha += dLinha;
@@ -186,6 +194,33 @@ JogoDaVelha::JogoDaVelha(int linhas, int colunas) : JogosDeTabuleiro(linhas, col
     }
 }
 
+
+int JogoDaVelha::imprimir_vetor(int jogador) const {
+    int casa;
+    for (int i = 0; i < this->getLinhas(); i++)
+    {
+        for (int j = 0; j < this->getColunas(); j++)
+        {
+            casa = this->get_casa(i, j);
+            if(casa == 0)
+            {
+                std::cout << FUNDO_VERDE << " " << RESETAR;
+            }
+            else if (casa == 1)
+            {
+                std::cout << "X";
+            }
+            else
+            {
+                std::cout << FUNDO_BRANCO << "O" << RESETAR;
+            }
+            std::cout << FUNDO_VERDE << "|" << RESETAR;
+        }
+        std::cout << std::endl;
+    }
+    return 0;
+}
+
 bool JogoDaVelha::verificar_jogada(int linha, int coluna, int jogador) const {
     // Verifica se a posição está dentro dos limites do tabuleiro
     if (linha < 0 || linha >= getLinhas() || coluna < 0 || coluna >= getColunas()) {
@@ -251,6 +286,34 @@ bool JogoDaVelha::testar_condicao_de_vitoria() const {
     
     return !tem_espaco_vazio;  // Retorna true se o tabuleiro estiver cheio (empate)
 }
+
+int Lig4::imprimir_vetor(int jogador) const {
+    int casa;
+    for (int i = 0; i < this->getLinhas(); i++)
+    {
+        std::cout << FUNDO_VERDE << "|" << RESETAR; 
+        for (int j = 0; j < this->getColunas(); j++)
+        {
+            casa = this->get_casa(i, j);
+            if(casa == 0)
+            {
+                std::cout << FUNDO_VERDE << " " << RESETAR;
+            }
+            else if (casa == 1)
+            {
+                std::cout << "X";
+            }
+            else
+            {
+                std::cout << FUNDO_BRANCO << "O" << RESETAR;
+            }
+            std::cout << FUNDO_VERDE << "|" << RESETAR;
+        }
+        std::cout << std::endl;
+    }
+    return 0;
+}
+
 bool Lig4::testar_condicao_de_vitoria() const {
     int linhas = this->getLinhas();
     int colunas = this->getColunas();
@@ -308,18 +371,19 @@ bool Lig4::verificar_jogada(int linha, int coluna, int jogador) const {
         }
         return false;  
     }
-int Lig4::ler_jogada (int linha, int coluna, int jogador) {
-        if (!verificar_jogada(linha, coluna, jogador)) {
-            return 0; 
-        }
+int Lig4::ler_jogada(int linha, int coluna, int jogador) {
+    if (!verificar_jogada(0, coluna, jogador)) { // linha is unused
+        return 0; 
+    }
 
-        for (int i = getLinhas() - 1; linha >= 0; --linha) {
-            if (get_casa(i, coluna) == 0) {
-                Tabuleiro_[i][coluna] = jogador;  
-                return jogador;  
-            }
+    // Iterate from bottom to top to find the first empty row
+    for (int i = getLinhas() - 1; i >= 0; --i) { // Fixed loop
+        if (get_casa(i, coluna) == 0) {
+            Tabuleiro_[i][coluna] = jogador;
+            return jogador;
         }
-        return 0;
+    }
+    return 0;
 }
 Lig4::Lig4(int linhas, int colunas) : JogosDeTabuleiro(linhas, colunas) {
     // Inicializa o tabuleiro vazio
