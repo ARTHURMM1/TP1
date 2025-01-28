@@ -128,55 +128,78 @@ int Lig4Bot::_minimax(Lig4& jogo, bool maximizando, int jogadorAtual) {
     return melhorPontuacao;
 }
 
-// --- Implementação do Reversi Bot ---
+// --- Implementação Atualizada do Reversi Bot ---
 
 std::pair<int, int> ReversiBot::calcularProximaJogada(const JogosDeTabuleiro& jogoBase, int jogadorAtual) {
     const Reversi& jogo = static_cast<const Reversi&>(jogoBase);
-    int melhorPontuacao = INT_MIN;
-    int melhorLinha = -1, melhorColuna = -1;
-
+    std::vector<std::pair<int, int>> jogadasValidas;
+    
+    // Coletar todas as jogadas válidas primeiro
     for (int linha = 0; linha < jogo.getLinhas(); linha++) {
         for (int coluna = 0; coluna < jogo.getColunas(); coluna++) {
             if (jogo.verificar_jogada(linha, coluna, jogadorAtual)) {
-                Reversi copia = jogo;
-                copia.ler_jogada(linha, coluna, jogadorAtual);
-
-                int pontuacao = _minimax(copia, 0, false, jogadorAtual);
-
-                if (pontuacao > melhorPontuacao) {
-                    melhorPontuacao = pontuacao;
-                    melhorLinha = linha;
-                    melhorColuna = coluna;
-                }
+                jogadasValidas.emplace_back(linha, coluna);
             }
         }
     }
+    
+    // Se não houver jogadas válidas, retornar (-1, -1)
+    if (jogadasValidas.empty()) {
+        return {-1, -1};
+    }
 
-    return {melhorLinha, melhorColuna};
+    int melhorPontuacao = INT_MIN;
+    std::pair<int, int> melhorJogada = jogadasValidas[0];
+
+    // Avaliar apenas as jogadas válidas
+    for (const auto& jogada : jogadasValidas) {
+        Reversi copia = jogo;
+        copia.ler_jogada(jogada.first, jogada.second, jogadorAtual);
+        
+        int pontuacao = _minimax(copia, 0, false, jogadorAtual);
+        
+        if (pontuacao > melhorPontuacao) {
+            melhorPontuacao = pontuacao;
+            melhorJogada = jogada;
+        }
+    }
+
+    return melhorJogada;
 }
 
 int ReversiBot::_minimax(Reversi& jogo, int profundidade, bool maximizando, int jogadorAtual) {
-    if (jogo.testar_condicao_de_vitoria() || profundidade == 5) {
+    if (jogo.testar_condicao_de_vitoria() || profundidade >= 4) { // Profundidade ajustável
         return _avaliarTabuleiro(jogo, jogadorAtual);
     }
 
     int melhorPontuacao = maximizando ? INT_MIN : INT_MAX;
-    int outroJogador = (jogadorAtual == 1) ? 2 : 1;
+    int jogador = maximizando ? jogadorAtual : (jogadorAtual == 1 ? 2 : 1);
 
+    // Verificar jogadas válidas para o jogador atual
+    std::vector<std::pair<int, int>> jogadas;
     for (int linha = 0; linha < jogo.getLinhas(); linha++) {
         for (int coluna = 0; coluna < jogo.getColunas(); coluna++) {
-            if (jogo.verificar_jogada(linha, coluna, maximizando ? jogadorAtual : outroJogador)) {
-                Reversi copia = jogo;
-                copia.ler_jogada(linha, coluna, maximizando ? jogadorAtual : outroJogador);
-
-                int pontuacao = _minimax(copia, profundidade + 1, !maximizando, jogadorAtual);
-
-                if (maximizando) {
-                    melhorPontuacao = std::max(melhorPontuacao, pontuacao);
-                } else {
-                    melhorPontuacao = std::min(melhorPontuacao, pontuacao);
-                }
+            if (jogo.verificar_jogada(linha, coluna, jogador)) {
+                jogadas.emplace_back(linha, coluna);
             }
+        }
+    }
+
+    // Se não houver jogadas, propaga o estado atual
+    if (jogadas.empty()) {
+        return _avaliarTabuleiro(jogo, jogadorAtual);
+    }
+
+    for (const auto& jogada : jogadas) {
+        Reversi copia = jogo;
+        copia.ler_jogada(jogada.first, jogada.second, jogador);
+        
+        int pontuacao = _minimax(copia, profundidade + 1, !maximizando, jogadorAtual);
+        
+        if (maximizando) {
+            melhorPontuacao = std::max(melhorPontuacao, pontuacao);
+        } else {
+            melhorPontuacao = std::min(melhorPontuacao, pontuacao);
         }
     }
 
@@ -184,19 +207,34 @@ int ReversiBot::_minimax(Reversi& jogo, int profundidade, bool maximizando, int 
 }
 
 int ReversiBot::_avaliarTabuleiro(const Reversi& jogo, int jogadorAtual) {
+    // Adicione fatores estratégicos adicionais
     int oponente = (jogadorAtual == 1) ? 2 : 1;
     int pontuacao = 0;
-
+    
+    // Mobilidade (número de jogadas possíveis)
+    int mobilidadeJogador = 0;
+    int mobilidadeOponente = 0;
     for (int linha = 0; linha < jogo.getLinhas(); linha++) {
         for (int coluna = 0; coluna < jogo.getColunas(); coluna++) {
-            int casa = jogo.get_casa(linha, coluna);
-            if (casa == jogadorAtual) {
-                pontuacao += (linha == 0 || linha == jogo.getLinhas() - 1 || coluna == 0 || coluna == jogo.getColunas() - 1) ? 3 : 1;
-            } else if (casa == oponente) {
-                pontuacao -= (linha == 0 || linha == jogo.getLinhas() - 1 || coluna == 0 || coluna == jogo.getColunas() - 1) ? 3 : 1;
+            if (jogo.verificar_jogada(linha, coluna, jogadorAtual)) mobilidadeJogador++;
+            if (jogo.verificar_jogada(linha, coluna, oponente)) mobilidadeOponente++;
+        }
+    }
+    pontuacao += (mobilidadeJogador - mobilidadeOponente) * 2;
+
+    // Controle de cantos e bordas
+    const int tamanho = jogo.getLinhas();
+    for (int linha = 0; linha < tamanho; linha++) {
+        for (int coluna = 0; coluna < tamanho; coluna++) {
+            if (jogo.get_casa(linha, coluna) == jogadorAtual) {
+                if ((linha == 0 || linha == tamanho-1) && (coluna == 0 || coluna == tamanho-1)) {
+                    pontuacao += 20; // Cantos
+                } else if (linha == 0 || linha == tamanho-1 || coluna == 0 || coluna == tamanho-1) {
+                    pontuacao += 5;  // Bordas
+                }
             }
         }
     }
-
+    
     return pontuacao;
 }
