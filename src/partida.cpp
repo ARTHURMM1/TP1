@@ -51,15 +51,15 @@ bool Partida::iniciarPartida() {
     bool jogoEmAndamento = true;
 
     while (jogoEmAndamento) {
-        imprimirTabuleiro();
+        imprimirTabuleiro(jogadorAtual);
         
         if (!realizarJogada(jogadorAtual)) {
             std::cout << "Jogada inválida! Tente novamente." << std::endl;
             continue;
         }
-
+        
         if (verificarFimDeJogo()) {
-            imprimirTabuleiro();
+            imprimirTabuleiro(jogadorAtual);
             finalizarPartida();
             jogoEmAndamento = false;
         }
@@ -75,8 +75,8 @@ bool Partida::iniciarPartida(int dificuldade) {
     return iniciarPartida();
 }
 
-void Partida::imprimirTabuleiro() const {
-    jogoAtual->imprimir_vetor();
+void Partida::imprimirTabuleiro(int jogador_atual) const {
+    jogoAtual->imprimir_vetor(jogador_atual);
 }
 
 bool Partida::realizarJogada(int jogadorAtual, int linha, int coluna) {
