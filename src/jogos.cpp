@@ -186,8 +186,6 @@ std::vector<std::vector<bool>> Reversi::atualizar_jogadas_validas(int jogador) c
             jogadas_validas[i][j] = verificar_jogada(i, j, jogador);
         }
     }
-    std::cout << std::endl << std::endl;
-
     return jogadas_validas;
 }
 
@@ -211,7 +209,6 @@ bool Reversi::testar_condicao_de_vitoria() const {
     }
 
     if (!ha_jogadas_1 && !ha_jogadas_2) {
-    std::cout << "\n--- Jogo finalizado por falta de jogadas válidas! ---\n";
     return true;
     }
     return false;
@@ -343,6 +340,7 @@ int Lig4::imprimir_vetor(int jogador) const {
         }
         std::cout << std::endl;
     }
+    std::cout << std::endl;
     return 0;
 }
 

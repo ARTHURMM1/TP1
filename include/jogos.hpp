@@ -14,8 +14,8 @@ public:
     std::vector<std::vector<int>> get_tabuleiro() const;
     char get_casa(int linha, int coluna) const;
     void setLinhasColunas(int linha, int coluna);
-    int imprimir_vetor() const;
-    
+
+    virtual int imprimir_vetor(int jogador) const = 0;
     virtual int ler_jogada(int linha, int coluna, int jogador) = 0;
     virtual bool verificar_jogada(int linha, int coluna, int jogador) const = 0;
     virtual bool testar_condicao_de_vitoria() const = 0;
@@ -32,7 +32,7 @@ public:
     bool verificar_jogada(int linha, int coluna, int jogador) const override;
     bool testar_condicao_de_vitoria() const override;
     std::vector<std::vector<bool>> atualizar_jogadas_validas(int jogador) const;
-
+    int imprimir_vetor(int jogador) const override;
 private:
     static const std::vector<std::pair<int, int>> direcoes;
     std::vector<std::vector<bool>> JogadasValidas_;
@@ -48,6 +48,7 @@ public:
     int ler_jogada(int linha, int coluna, int jogador) override;
     bool verificar_jogada(int linha, int coluna, int jogador) const override;
     bool testar_condicao_de_vitoria() const override;
+    int imprimir_vetor(int jogador) const override;
 };
 
 class Lig4 : public JogosDeTabuleiro{
@@ -58,6 +59,7 @@ public:
     int ler_jogada(int linha, int coluna, int jogador) override;
     bool verificar_jogada(int linha, int coluna, int jogador) const override;
     bool testar_condicao_de_vitoria() const override;
+    int imprimir_vetor(int jogador) const override;
 };
 
 #endif
