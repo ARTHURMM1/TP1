@@ -21,7 +21,7 @@ public:
     // Game control methods
     bool iniciarPartida();
     bool iniciarPartida(int dificuldade);  // For future difficulty levels
-    void imprimirTabuleiro() const;
+    void imprimirTabuleiro(int jogadorAtual) const;
     bool realizarJogada(int jogadorAtual, int linha = -1, int coluna = -1);
     bool verificarFimDeJogo() const;
 
