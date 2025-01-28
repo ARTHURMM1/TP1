@@ -130,90 +130,45 @@ int Lig4Bot::_minimax(Lig4& jogo, bool maximizando, int jogadorAtual) {
 
 // --- Implementação Atualizada do Reversi Bot ---
 
-std::pair<int, int> ReversiBot::calcularProximaJogada(const JogosDeTabuleiro& jogoBase, int jogadorAtual) {
-    const Reversi& jogo = static_cast<const Reversi&>(jogoBase);
-    std::vector<std::pair<int, int>> jogadasValidas;
-    
-    // Coletar todas as jogadas válidas primeiro
-    for (int linha = 0; linha < jogo.getLinhas(); linha++) {
-        for (int coluna = 0; coluna < jogo.getColunas(); coluna++) {
-            if (jogo.verificar_jogada(linha, coluna, jogadorAtual)) {
-                jogadasValidas.emplace_back(linha, coluna);
-            }
-        }
-    }
-    
-    // Se não houver jogadas válidas, retornar (-1, -1)
-    if (jogadasValidas.empty()) {
-        return {-1, -1};
-    }
-
-    int melhorPontuacao = INT_MIN;
-    std::pair<int, int> melhorJogada = jogadasValidas[0];
-
-    // Avaliar apenas as jogadas válidas
-    for (const auto& jogada : jogadasValidas) {
-        Reversi copia = jogo;
-        copia.ler_jogada(jogada.first, jogada.second, jogadorAtual);
-        
-        int pontuacao = _minimax(copia, 0, false, jogadorAtual);
-        
-        if (pontuacao > melhorPontuacao) {
-            melhorPontuacao = pontuacao;
-            melhorJogada = jogada;
-        }
-    }
-
-    return melhorJogada;
-}
-
 int ReversiBot::_minimax(Reversi& jogo, int profundidade, bool maximizando, int jogadorAtual) {
-    if (jogo.testar_condicao_de_vitoria() || profundidade >= 4) { // Profundidade ajustável
+    if (jogo.testar_condicao_de_vitoria() || profundidade >= 4) { 
         return _avaliarTabuleiro(jogo, jogadorAtual);
     }
 
     int melhorPontuacao = maximizando ? INT_MIN : INT_MAX;
     int jogador = maximizando ? jogadorAtual : (jogadorAtual == 1 ? 2 : 1);
 
-    // Verificar jogadas válidas para o jogador atual
-    std::vector<std::pair<int, int>> jogadas;
+    // Iterar sobre todas as jogadas válidas
     for (int linha = 0; linha < jogo.getLinhas(); linha++) {
         for (int coluna = 0; coluna < jogo.getColunas(); coluna++) {
             if (jogo.verificar_jogada(linha, coluna, jogador)) {
-                jogadas.emplace_back(linha, coluna);
+                jogo.ler_jogada(linha, coluna, jogador);
+
+                // Chamada recursiva para Minimax
+                int pontuacao = _minimax(jogo, profundidade + 1, !maximizando, jogadorAtual);
+
+                jogo.desfazer_jogada(linha, coluna);
+
+                if (maximizando) {
+                    melhorPontuacao = std::max(melhorPontuacao, pontuacao);
+                } else {
+                    melhorPontuacao = std::min(melhorPontuacao, pontuacao);
+                }
             }
-        }
-    }
-
-    // Se não houver jogadas, propaga o estado atual
-    if (jogadas.empty()) {
-        return _avaliarTabuleiro(jogo, jogadorAtual);
-    }
-
-    for (const auto& jogada : jogadas) {
-        Reversi copia = jogo;
-        copia.ler_jogada(jogada.first, jogada.second, jogador);
-        
-        int pontuacao = _minimax(copia, profundidade + 1, !maximizando, jogadorAtual);
-        
-        if (maximizando) {
-            melhorPontuacao = std::max(melhorPontuacao, pontuacao);
-        } else {
-            melhorPontuacao = std::min(melhorPontuacao, pontuacao);
         }
     }
 
     return melhorPontuacao;
 }
 
+// Método para avaliar o tabuleiro
 int ReversiBot::_avaliarTabuleiro(const Reversi& jogo, int jogadorAtual) {
-    // Adicione fatores estratégicos adicionais
     int oponente = (jogadorAtual == 1) ? 2 : 1;
     int pontuacao = 0;
-    
-    // Mobilidade (número de jogadas possíveis)
+
     int mobilidadeJogador = 0;
     int mobilidadeOponente = 0;
+
     for (int linha = 0; linha < jogo.getLinhas(); linha++) {
         for (int coluna = 0; coluna < jogo.getColunas(); coluna++) {
             if (jogo.verificar_jogada(linha, coluna, jogadorAtual)) mobilidadeJogador++;
@@ -223,18 +178,32 @@ int ReversiBot::_avaliarTabuleiro(const Reversi& jogo, int jogadorAtual) {
     pontuacao += (mobilidadeJogador - mobilidadeOponente) * 2;
 
     // Controle de cantos e bordas
-    const int tamanho = jogo.getLinhas();
-    for (int linha = 0; linha < tamanho; linha++) {
-        for (int coluna = 0; coluna < tamanho; coluna++) {
-            if (jogo.get_casa(linha, coluna) == jogadorAtual) {
-                if ((linha == 0 || linha == tamanho-1) && (coluna == 0 || coluna == tamanho-1)) {
-                    pontuacao += 20; // Cantos
-                } else if (linha == 0 || linha == tamanho-1 || coluna == 0 || coluna == tamanho-1) {
-                    pontuacao += 5;  // Bordas
+    for (int linha = 0; linha < jogo.getLinhas(); linha++) {
+        for (int coluna = 0; coluna < jogo.getColunas(); coluna++) {
+            int casa = jogo.get_casa(linha, coluna);
+            if (casa == jogadorAtual) {
+                if ((linha == 0 || linha == jogo.getLinhas() - 1) &&
+                    (coluna == 0 || coluna == jogo.getColunas() - 1)) {
+                    pontuacao += 20; // Cantos valem mais
+                } else if (linha == 0 || linha == jogo.getLinhas() - 1 ||
+                           coluna == 0 || coluna == jogo.getColunas() - 1) {
+                    pontuacao += 5; // Bordas valem menos que cantos
+                } else {
+                    pontuacao += 1; // Centros têm valor padrão
+                }
+            } else if (casa == oponente) {
+                if ((linha == 0 || linha == jogo.getLinhas() - 1) &&
+                    (coluna == 0 || coluna == jogo.getColunas() - 1)) {
+                    pontuacao -= 20; // Penaliza cantos ocupados pelo oponente
+                } else if (linha == 0 || linha == jogo.getLinhas() - 1 ||
+                           coluna == 0 || coluna == jogo.getColunas() - 1) {
+                    pontuacao -= 5; // Penaliza bordas ocupadas pelo oponente
+                } else {
+                    pontuacao -= 1; // Penaliza centros ocupados pelo oponente
                 }
             }
         }
     }
-    
+
     return pontuacao;
 }
