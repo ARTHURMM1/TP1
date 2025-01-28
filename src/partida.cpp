@@ -1,6 +1,8 @@
 #include "partida.hpp"
 #include <iostream>
 #include <memory>
+#include <chrono>
+#include <thread>
 
 Partida::Partida(int tipoJogo, Jogador* jogador1) : jogador1(jogador1), jogador2(nullptr) {
     // Initialize the appropriate game type and bot
@@ -83,14 +85,23 @@ void Partida::imprimirTabuleiro(int jogador_atual) const {
 bool Partida::realizarJogada(int jogadorAtual, int linha, int coluna) {
 
     // Se é um bot jogando
-    if ((jogadorAtual == 2 && !jogador2 && bot1) || (jogadorAtual == 1 && !jogador1 && bot2)) {
+    //if ((jogadorAtual == 2 && !jogador2 && bot1) || (jogadorAtual == 1 && !jogador1 && bot2)) {
+    if ((jogadorAtual == 2 && !jogador2) || (jogadorAtual == 1 && !jogador1)) {
         BotPlayer* botAtual = (jogadorAtual == 2) ? bot1 : bot2;
-        std::pair<int, int> jogadaBot = botAtual->calcularProximaJogada(*jogoAtual, jogadorAtual);
-        int botLinha = jogadaBot.first;
-        int botColuna = jogadaBot.second;
-        
-        if (jogoAtual->verificar_jogada(botLinha-1, botColuna-1, jogadorAtual)) {
-            return jogoAtual->ler_jogada(botLinha-1, botColuna-1, jogadorAtual);
+        std::pair<int, int> jogadaBot;
+        int botLinha, botColuna;
+        bool jogada_achada = false;
+        while (!jogada_achada)
+        {
+            jogadaBot = botAtual->calcularProximaJogada(*jogoAtual, jogadorAtual);
+            int botLinha = jogadaBot.first;
+            int botColuna = jogadaBot.second;
+            jogada_achada = jogoAtual->verificar_jogada(botLinha, botColuna, jogadorAtual);
+            if (jogada_achada){
+                std::cout << std::endl << "A IA está pensando...\n";
+                std::this_thread::sleep_for(std::chrono::seconds(2));
+                return jogoAtual->ler_jogada(botLinha, botColuna, jogadorAtual);
+            }
         }
         return false;
     }
