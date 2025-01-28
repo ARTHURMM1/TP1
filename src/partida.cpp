@@ -53,18 +53,19 @@ bool Partida::iniciarPartida() {
     while (jogoEmAndamento) {
         imprimirTabuleiro(jogadorAtual);
         
-        if (!realizarJogada(jogadorAtual)) {
+        bool jogadaValida = realizarJogada(jogadorAtual);
+
+        if (!jogadaValida) {
             std::cout << "Jogada inválida! Tente novamente." << std::endl;
-            continue;
+            continue; // Não alterna o jogador se a jogada for inválida
         }
-        
         if (verificarFimDeJogo()) {
             imprimirTabuleiro(jogadorAtual);
             finalizarPartida();
             jogoEmAndamento = false;
+        } else {
+            jogadorAtual = (jogadorAtual == 1) ? 2 : 1;
         }
-
-        jogadorAtual = (jogadorAtual == 1) ? 2 : 1;
     }
 
     return true;
@@ -80,6 +81,7 @@ void Partida::imprimirTabuleiro(int jogador_atual) const {
 }
 
 bool Partida::realizarJogada(int jogadorAtual, int linha, int coluna) {
+
     // Se é um bot jogando
     if ((jogadorAtual == 2 && !jogador2 && bot1) || (jogadorAtual == 1 && !jogador1 && bot2)) {
         BotPlayer* botAtual = (jogadorAtual == 2) ? bot1 : bot2;
@@ -87,21 +89,22 @@ bool Partida::realizarJogada(int jogadorAtual, int linha, int coluna) {
         int botLinha = jogadaBot.first;
         int botColuna = jogadaBot.second;
         
-        if (jogoAtual->verificar_jogada(botLinha, botColuna, jogadorAtual)) {
-            return jogoAtual->ler_jogada(botLinha, botColuna, jogadorAtual);
+        if (jogoAtual->verificar_jogada(botLinha-1, botColuna-1, jogadorAtual)) {
+            return jogoAtual->ler_jogada(botLinha-1, botColuna-1, jogadorAtual);
         }
         return false;
     }
     
     // Se é um jogador humano
     if (linha == -1 || coluna == -1) {
-        std::cout << "Jogador " << jogadorAtual << ", faça sua jogada:" << std::endl;
+        std::cout << std::endl <<  "Jogador " << jogadorAtual << ", faça sua jogada:" << std::endl;
         std::cout << "Linha: ";
         std::cin >> linha;
         std::cout << "Coluna: ";
         std::cin >> coluna;
     }
-
+    linha = linha-1;
+    coluna = coluna-1;
     if (jogoAtual->verificar_jogada(linha, coluna, jogadorAtual)) {
         return jogoAtual->ler_jogada(linha, coluna, jogadorAtual);
     }
