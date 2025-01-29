@@ -67,8 +67,8 @@ Jogador Jogador::deserializar(const std::string& linha) {
 
         int velhaVitorias = convertAndValidate(campos[2], "vitórias do jogo da velha");
         int velhaDerrotas = convertAndValidate(campos[3], "derrotas do jogo da velha");
-        int lig4Vitorias = convertAndValidate(campos[4], "vitórias do Liga 4");
-        int lig4Derrotas = convertAndValidate(campos[5], "derrotas do Liga 4");
+        int lig4Vitorias = convertAndValidate(campos[4], "vitórias do Lig 4");
+        int lig4Derrotas = convertAndValidate(campos[5], "derrotas do Lig 4");
         int reversiVitorias = convertAndValidate(campos[6], "vitórias do Reversi");
         int reversiDerrotas = convertAndValidate(campos[7], "derrotas do Reversi");
 
@@ -118,11 +118,11 @@ void Cadastro::mostrarJogadores() const {
             }
 
             std::cout << jogador->getNome() << " " << jogador->getApelido() 
-                << " LIG4 - V: " << jogador->getVitorias(jogador->getLig4())
-                << " D: " << jogador->getDerrotas(jogador->getLig4())
-                << " VELHA - V:" << jogador->getVitorias(jogador->getVelha())
+                << "\nLIG4 - V: " << jogador->getVitorias(jogador->getLig4())
+                << "D: " << jogador->getDerrotas(jogador->getLig4())
+                << "\nVELHA - V:" << jogador->getVitorias(jogador->getVelha())
                 << " D: " << jogador->getDerrotas(jogador->getVelha())
-                << " REVERSI - V: " << jogador->getVitorias(jogador->getReversi())
+                << "\nREVERSI - V: " << jogador->getVitorias(jogador->getReversi())
                 << " D: " << jogador->getDerrotas(jogador->getReversi())
                 << std::endl;
         }

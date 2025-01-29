@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.1.28)  28 JAN 2025 21:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.1.28)  28 JAN 2025 23:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -868,6 +868,8 @@ LaTeX Font Info:    Trying to load font information for U+wasy on input line 20
 (/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 6.29996pt on input line 205.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 6.29996pt on input line 205.
  [1] [2
@@ -882,20 +884,12 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 18.66588pt on input line 210.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 22.39185pt on input line 210.
-(./annotated.tex
+(./files.tex
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.29996pt on input line 2.
 
 
-LaTeX Warning: Reference `classCadastro' on page 1 undefined on input line 3.
-
-
-LaTeX Warning: Reference `classJogador' on page 1 undefined on input line 4.
-
-
-LaTeX Warning: Reference `structWinrate' on page 1 undefined on input line 5.
+LaTeX Warning: Reference `main_8cpp' on page 1 undefined on input line 3.
 
 ) [1
 
@@ -903,120 +897,63 @@ LaTeX Warning: Reference `structWinrate' on page 1 undefined on input line 5.
 
 ]
 Cap\'{\i }tulo 2.
-(./files.tex
+(./main_8cpp.tex
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 8.
 
-LaTeX Warning: Reference `cadastro_8hpp_source' on page 3 undefined on input li
-ne 3.
-
-) [3] [4
-
-]
-Cap\'{\i }tulo 3.
-(./classCadastro.tex
-LaTeX Font Info:    Trying to load font information for TS1+phv on input line 6
-.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+) <./main_8cpp__incl.pdf>
+<main_8cpp__incl.pdf, id=130, 628.3475pt x 154.5775pt>
+File: main_8cpp__incl.pdf Graphic file (type pdf)
+<use main_8cpp__incl.pdf>
+Package pdftex.def Info: main_8cpp__incl.pdf  used on input line 20.
+(pdftex.def)             Requested size: 350.0pt x 86.1005pt.
+LaTeX Font Info:    Trying to load font information for TS1+phv on input line 2
+6.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2020/03/25 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
-(Font)              scaled to size 8.99994pt on input line 6.
+(Font)              scaled to size 8.99994pt on input line 26.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.09995pt on input line 10.
+(Font)              scaled to size 8.09995pt on input line 28.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 10.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 28.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 8.09995pt on input line 10.
+(Font)              scaled to size 8.09995pt on input line 28.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 23.
+(Font)              scaled to size 10.79993pt on input line 41.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 28.
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 28
-.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
+(Font)              scaled to size 7.19995pt on input line 51.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 28.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 51.
+
+[3]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 2.1 on input line 61.
 
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 3.1 on input line 38.
-
-[5]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3.2 on input line 45.
+(longtable)                in table 2.2 on input line 76.
 
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3.3 on input line 60.
-
-
-Underfull \hbox (badness 10000) detected at line 61
-[][][]
- []
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3.4 on input line 68.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3.5 on input line 83.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3.6 on input line 90.
-
-[6]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3.7 on input line 105.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3.8 on input line 120.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3.9 on input line 127.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3.10 on input line 142.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3.11 on input line 147.
-
-) (./classJogador.tex [7]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3.12 on input line 66.
-
-
-Underfull \hbox (badness 10000) detected at line 67
-[][][]
- []
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3.13 on input line 76.
-
-[8]
 Underfull \hbox (badness 10000) detected at line 87
 [][][]
  []
 
+[4]
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 3.14 on input line 94.
+(longtable)                in table 2.3 on input line 104.
 
-) (./structWinrate.tex) [9] [10
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 2.4 on input line 119.
+
+) [5] [6
 
 ]
-Cap\'{\i }tulo 4.
-(./cadastro_8hpp_source.tex [11]) [12]
 No file refman.ind.
 
 Package longtable Warning: Table widths have changed. Rerun LaTeX.
@@ -1039,28 +976,92 @@ Package rerunfilecheck Warning: File `refman.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `refman.out':
-(rerunfilecheck)             Before: 5CA63E1D3BBC7FB2A06451096B59ED4C;71
-(rerunfilecheck)             After:  D082B312F57D87CBBCD6E6D854626A32;3622.
+(rerunfilecheck)             Before: D082B312F57D87CBBCD6E6D854626A32;3622
+(rerunfilecheck)             After:  6618C9519089B23BC0362E54E5DCA27E;2003.
  ) 
 Here is how much of TeX's memory you used:
- 18866 strings out of 474222
- 302280 string characters out of 5748733
- 1938975 words of memory out of 5000000
- 40712 multiletter control sequences out of 15000+600000
- 606143 words of font info for 85 fonts, out of 8000000 for 9000
+ 18836 strings out of 474222
+ 301468 string characters out of 5748733
+ 1933975 words of memory out of 5000000
+ 40722 multiletter control sequences out of 15000+600000
+ 604666 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 101i,14n,117p,599b,753s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helve
-tic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.
-pfb>
-Output written on refman.pdf (16 pages, 94115 bytes).
+ 101i,12n,117p,440b,760s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{section.4.1} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{chapter.4} has been referenced but does not exist, 
+replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.3.3} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsubsection.3.2.1.2} has been referenced but does
+ not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsubsection.3.2.1.1} has been referenced but does
+ not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.3.2.1} has been referenced but does not 
+exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.3.2} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsubsection.3.1.1.6} has been referenced but does
+ not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsubsection.3.1.1.5} has been referenced but does
+ not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsubsection.3.1.1.4} has been referenced but does
+ not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsubsection.3.1.1.3} has been referenced but does
+ not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsubsection.3.1.1.2} has been referenced but does
+ not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsubsection.3.1.1.1} has been referenced but does
+ not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.3.1.1} has been referenced but does not 
+exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.3.1} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{chapter.3} has been referenced but does not exist, 
+replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+urw/helvetic/uhvb8ac.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helveti
+c/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pf
+b>
+Output written on refman.pdf (10 pages, 84516 bytes).
 PDF statistics:
- 264 PDF objects out of 1000 (max. 8388607)
- 223 compressed objects within 3 object streams
- 79 named destinations out of 1000 (max. 500000)
- 9 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 231 PDF objects out of 1000 (max. 8388607)
+ 199 compressed objects within 2 object streams
+ 48 named destinations out of 1000 (max. 500000)
+ 166 words of extra memory for PDF output out of 10000 (max. 10000000)
 
