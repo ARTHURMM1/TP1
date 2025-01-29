@@ -33,7 +33,6 @@ public:
     bool testar_condicao_de_vitoria() const override;
     std::vector<std::vector<bool>> atualizar_jogadas_validas(int jogador) const;
     int imprimir_vetor(int jogador) const override;
-    void desfazer_jogada(int linha, int coluna, const std::vector<std::pair<int, int>>& pecasRevertidas); //alteração para implementação no bot
 private:
     static const std::vector<std::pair<int, int>> direcoes;
     std::vector<std::vector<bool>> JogadasValidas_;
