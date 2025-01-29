@@ -77,12 +77,6 @@ int JogoDaVelhaBot::_minimax(JogoDaVelha& jogo, int profundidade, bool maximizan
     return melhorPontuacao;
 }
 
-/**
- * @brief Calcula a próxima jogada ideal para o Jogo da Velha.
- * @param jogoBase Referência para o estado do jogo.
- * @param jogadorAtual ID do jogador atual.
- * @return Par com a linha e coluna da melhor jogada.
- */
 std::pair<int, int> JogoDaVelhaBot::calcularProximaJogada(const JogosDeTabuleiro& jogoBase, int jogadorAtual) {
     const JogoDaVelha& jogo = static_cast<const JogoDaVelha&>(jogoBase); 
     int melhorLinha = -1, melhorColuna = -1;
