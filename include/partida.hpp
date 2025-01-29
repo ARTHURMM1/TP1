@@ -24,6 +24,7 @@ public:
     void imprimirTabuleiro(int jogadorAtual) const;
     bool realizarJogada(int jogadorAtual, int linha = -1, int coluna = -1);
     bool verificarFimDeJogo() const;
+    bool verificarJogadasDisponiveis(int jogadorAtual) const;
 
     // Utility methods
     bool isPvP() const { return jogador2 != nullptr; }

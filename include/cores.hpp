@@ -16,6 +16,7 @@
 #define FUNDO_AMARELO    "\033[43m"
 #define FUNDO_AZUL       "\033[44m"
 #define FUNDO_BRANCO     "\033[47m"
+#define FUNDO_PRETO    "\033[40m"
 
 // Define estilos
 #define NEGRITO          "\033[1m"
