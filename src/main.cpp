@@ -30,7 +30,7 @@ void cadastrarJogador(Cadastro& jogadores) {
     
     if (!jogadores.check(novoJogador)) {
         jogadores.adicionarJogador(novoJogador);
-        jogadores.save("cadastro.txt");
+        jogadores.save("./include/cadastro.txt");
     } else {
         std::cout << "ERRO: Jogador já cadastrado!" << std::endl;
     }
@@ -44,7 +44,7 @@ void removerJogador(Cadastro& jogadores) {
     
     Jogador alvo("", apelido);
     jogadores.removeJogador(alvo);
-    jogadores.save("cadastro.txt");
+    jogadores.save("./include/cadastro.txt");
 }
 
 void procurarJogador(const Cadastro& jogadores) {
@@ -109,12 +109,12 @@ void iniciarNovaPartida(Cadastro& jogadores) {
     }
     
     // Após a partida, salva as atualizações do cadastro
-    jogadores.save("cadastro.txt");
+    jogadores.save("./include/cadastro.txt");
 }
 
 int main() {
     Cadastro jogadores;
-    jogadores.import("cadastro.txt");
+    jogadores.import("./include/cadastro.txt");
     
     std::vector<std::string> commands = {"CJ", "RJ", "LJ", "PJ", "NP", "F", "H"};
     std::string inputComando;

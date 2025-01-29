@@ -1,29 +1,11 @@
-/**
- * @file botplayer.cpp
- * @brief Implementa os bots para jogos de tabuleiro (Jogo da Velha, Lig 4, Reversi) com algoritmo Minimax.
- */
-
 #include "botplayer.hpp"
 #include <climits>
 #include <algorithm>
-#include <stdexcept>
 
-/**
- * @brief Implementa a lógica Minimax para o Jogo da Velha.
- * @param jogo Estado atual do jogo.
- * @param melhorLinha Referência para armazenar a linha da melhor jogada.
- * @param melhorColuna Referência para armazenar a coluna da melhor jogada.
- * @param jogador ID do jogador atual.
- * @throw std::runtime_error Se o tabuleiro estiver vazio ou inválido.
- */
+// --- Implementação do Jogo da Velha Bot ---
+
 void JogoDaVelhaBot::minimax(const JogoDaVelha& jogo, int& melhorLinha, int& melhorColuna, int jogador) {
-    if (jogo.getLinhas() <= 0 || jogo.getColunas() <= 0) {
-        throw std::runtime_error("Tabuleiro vazio ou inválido.");
-    }
-
     int melhorPontuacao = INT_MIN;
-    melhorLinha = -1;
-    melhorColuna = -1;
 
     for (int i = 0; i < jogo.getLinhas(); i++) {
         for (int j = 0; j < jogo.getColunas(); j++) {
@@ -40,20 +22,8 @@ void JogoDaVelhaBot::minimax(const JogoDaVelha& jogo, int& melhorLinha, int& mel
             }
         }
     }
-
-    if (melhorLinha == -1 || melhorColuna == -1) {
-        throw std::runtime_error("Nenhuma jogada válida encontrada.");
-    }
 }
 
-/**
- * @brief Função recursiva do algoritmo Minimax para o Jogo da Velha.
- * @param jogo Estado atual do jogo.
- * @param profundidade Nível de profundidade da recursão.
- * @param maximizando Indica se é o turno do jogador maximizador.
- * @param jogador ID do jogador atual.
- * @return Pontuação associada ao estado do jogo.
- */
 int JogoDaVelhaBot::_minimax(JogoDaVelha& jogo, int profundidade, bool maximizando, int jogador) {
     if (jogo.testar_condicao_de_vitoria()) {
         return maximizando ? -1 : 1; // Vitória do oponente ou do bot
@@ -92,12 +62,6 @@ int JogoDaVelhaBot::_minimax(JogoDaVelha& jogo, int profundidade, bool maximizan
     return melhorPontuacao;
 }
 
-/**
- * @brief Calcula a próxima jogada ideal para o Jogo da Velha.
- * @param jogoBase Referência para o estado do jogo.
- * @param jogadorAtual ID do jogador atual.
- * @return Par com a linha e coluna da melhor jogada.
- */
 std::pair<int, int> JogoDaVelhaBot::calcularProximaJogada(const JogosDeTabuleiro& jogoBase, int jogadorAtual) {
     const JogoDaVelha& jogo = static_cast<const JogoDaVelha&>(jogoBase); 
     int melhorLinha = -1, melhorColuna = -1;
@@ -105,12 +69,134 @@ std::pair<int, int> JogoDaVelhaBot::calcularProximaJogada(const JogosDeTabuleiro
     return {melhorLinha, melhorColuna};
 }
 
-/**
- * @brief Função para avaliar o tabuleiro no Reversi.
- * @param jogo Estado atual do jogo.
- * @param jogadorAtual ID do jogador atual.
- * @return Pontuação do tabuleiro para o jogador atual.
- */
+// --- Implementação do Lig 4 Bot ---
+
+std::pair<int, int> Lig4Bot::calcularProximaJogada(const JogosDeTabuleiro& jogoBase, int jogadorAtual) {
+    const Lig4& jogo = static_cast<const Lig4&>(jogoBase); 
+    int melhorColuna = -1;
+    int melhorPontuacao = INT_MIN;
+
+    for (int coluna = 0; coluna < jogo.getColunas(); ++coluna) {
+        if (jogo.verificar_jogada(0, coluna, 0)) {
+            Lig4 copia = jogo;
+            copia.ler_jogada(0, coluna, jogadorAtual);
+
+            int pontuacao = _minimax(copia, false, jogadorAtual);
+
+            if (pontuacao > melhorPontuacao) {
+                melhorPontuacao = pontuacao;
+                melhorColuna = coluna;
+            }
+        }
+    }
+
+    return {melhorColuna, -1};
+}
+
+int Lig4Bot::_minimax(Lig4& jogo, bool maximizando, int jogadorAtual) {
+    if (jogo.testar_condicao_de_vitoria()) {
+        return maximizando ? -100 : 100;
+    }
+
+    bool movimentosPossiveis = false;
+    for (int coluna = 0; coluna < jogo.getColunas(); ++coluna) {
+        if (jogo.verificar_jogada(0, coluna, 0)) {
+            movimentosPossiveis = true;
+            break;
+        }
+    }
+    if (!movimentosPossiveis) return 0; // Empate
+
+    int outroJogador = (jogadorAtual == 1) ? 2 : 1;
+    int melhorPontuacao = maximizando ? INT_MIN : INT_MAX;
+
+    for (int coluna = 0; coluna < jogo.getColunas(); ++coluna) {
+        if (jogo.verificar_jogada(0, coluna, 0)) {
+            Lig4 copia = jogo;
+            copia.ler_jogada(0, coluna, maximizando ? jogadorAtual : outroJogador);
+
+            int pontuacao = _minimax(copia, !maximizando, jogadorAtual);
+
+            if (maximizando) {
+                melhorPontuacao = std::max(melhorPontuacao, pontuacao);
+            } else {
+                melhorPontuacao = std::min(melhorPontuacao, pontuacao);
+            }
+        }
+    }
+
+    return melhorPontuacao;
+}
+
+// --- Implementação Atualizada do Reversi Bot ---
+
+std::pair<int, int> ReversiBot::calcularProximaJogada(const JogosDeTabuleiro& jogoBase, int jogadorAtual) {
+    const Reversi& jogo = static_cast<const Reversi&>(jogoBase);
+    std::vector<std::pair<int, int>> jogadasValidas;
+    
+    // Coletar todas as jogadas válidas primeiro
+    for (int linha = 0; linha < jogo.getLinhas(); linha++) {
+        for (int coluna = 0; coluna < jogo.getColunas(); coluna++) {
+            if (jogo.verificar_jogada(linha, coluna, jogadorAtual)) {
+                jogadasValidas.emplace_back(linha, coluna);
+            }
+        }
+    }
+    
+    // Se não houver jogadas válidas, retornar (-1, -1)
+    if (jogadasValidas.empty()) {
+        return {-1, -1};
+    }
+
+    int melhorPontuacao = INT_MIN;
+    std::pair<int, int> melhorJogada = jogadasValidas[0];
+
+    // Avaliar apenas as jogadas válidas
+    for (const auto& jogada : jogadasValidas) {
+        Reversi copia = jogo;
+        copia.ler_jogada(jogada.first, jogada.second, jogadorAtual);
+        
+        int pontuacao = _minimax(copia, 0, false, jogadorAtual);
+        
+        if (pontuacao > melhorPontuacao) {
+            melhorPontuacao = pontuacao;
+            melhorJogada = jogada;
+        }
+    }
+
+    return melhorJogada;
+}
+
+int ReversiBot::_minimax(Reversi& jogo, int profundidade, bool maximizando, int jogadorAtual) {
+    if (jogo.testar_condicao_de_vitoria() || profundidade >= 4) { 
+        return _avaliarTabuleiro(jogo, jogadorAtual);
+    }
+
+    int melhorPontuacao = maximizando ? INT_MIN : INT_MAX;
+    int jogador = maximizando ? jogadorAtual : (jogadorAtual == 1 ? 2 : 1);
+
+    // Iterar sobre todas as jogadas válidas
+    for (int linha = 0; linha < jogo.getLinhas(); linha++) {
+        for (int coluna = 0; coluna < jogo.getColunas(); coluna++) {
+            if (jogo.verificar_jogada(linha, coluna, jogador)) {
+                jogo.ler_jogada(linha, coluna, jogador);
+
+                // Chamada recursiva para Minimax
+                int pontuacao = _minimax(jogo, profundidade + 1, !maximizando, jogadorAtual);
+                
+                if (maximizando) {
+                    melhorPontuacao = std::max(melhorPontuacao, pontuacao);
+                } else {
+                    melhorPontuacao = std::min(melhorPontuacao, pontuacao);
+                }
+            }
+        }
+    }
+
+    return melhorPontuacao;
+}
+
+// Método para avaliar o tabuleiro
 int ReversiBot::_avaliarTabuleiro(const Reversi& jogo, int jogadorAtual) {
     int oponente = (jogadorAtual == 1) ? 2 : 1;
     int pontuacao = 0;
