@@ -114,5 +114,11 @@ A documentação do código foi gerada utilizando o Doxygen. Para acessá-la, ba
 - Uso de cores e estilos no terminal para melhorar a interface visual.
 
 ### Autores
+- [Arthur Mariano Maioli](https://github.com/ARTHURMM1)
+- [Danielle Santana Neto](https://github.com/dani-neto)
+- [João Vitor Castilho Lisboa](https://github.com/joaovclisboa)
+- [João Pedro Coutinho Capelao](https://github.com/Joed-skec)
+- [Heitor Magalhaes Paes](https://github.com/Heitor1o)
+  
 Este projeto foi desenvolvido em grupo como parte do trabalho final da disciplina PDS II.
 Nota: Para mais informações sobre o desenvolvimento, consulte os comentários no código e a documentação gerada pelo Doxygen.
