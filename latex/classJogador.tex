@@ -1,0 +1,100 @@
+\doxysection{Referência da Classe Jogador}
+\hypertarget{classJogador}{}\label{classJogador}\index{Jogador@{Jogador}}
+\doxysubsubsection*{Membros Públicos}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJogador_aa025e60d568135ca9ca560ee5b4097ec}\label{classJogador_aa025e60d568135ca9ca560ee5b4097ec} 
+{\bfseries Jogador} (const std\+::string \&nome="{}"{}, const std\+::string \&apelido="{}"{}, int vitorias1=0, int derrotas1=0, int vitorias2=0, int derrotas2=0, int vitorias3=0, int derrotas3=0)
+\item 
+\Hypertarget{classJogador_a56f68b57e7fb229f932ef60d2116833c}\label{classJogador_a56f68b57e7fb229f932ef60d2116833c} 
+std\+::string {\bfseries get\+Nome} () const
+\item 
+\Hypertarget{classJogador_aab1dd73438da8f07e1b9b8b9df0a5eb4}\label{classJogador_aab1dd73438da8f07e1b9b8b9df0a5eb4} 
+std\+::string {\bfseries get\+Apelido} () const
+\item 
+\Hypertarget{classJogador_adf8c87609a9b0ee7b24b8a64ab2ee5a7}\label{classJogador_adf8c87609a9b0ee7b24b8a64ab2ee5a7} 
+const \mbox{\hyperlink{structWinrate}{Winrate}} \& {\bfseries get\+Lig4} () const
+\item 
+\Hypertarget{classJogador_a4a60a3cf61a6a912ae6473267568a5d6}\label{classJogador_a4a60a3cf61a6a912ae6473267568a5d6} 
+const \mbox{\hyperlink{structWinrate}{Winrate}} \& {\bfseries get\+Reversi} () const
+\item 
+\Hypertarget{classJogador_aa7a29af5104d28cb1524f279ba5cd21e}\label{classJogador_aa7a29af5104d28cb1524f279ba5cd21e} 
+const \mbox{\hyperlink{structWinrate}{Winrate}} \& {\bfseries get\+Velha} () const
+\item 
+\Hypertarget{classJogador_aaa4e1e19260c9adc185b6fc79d12e19a}\label{classJogador_aaa4e1e19260c9adc185b6fc79d12e19a} 
+int {\bfseries get\+Vitorias} (const \mbox{\hyperlink{structWinrate}{Winrate}} \&jogo) const
+\item 
+\Hypertarget{classJogador_a11f937df500db4c199547aeebe1a478e}\label{classJogador_a11f937df500db4c199547aeebe1a478e} 
+int {\bfseries get\+Derrotas} (const \mbox{\hyperlink{structWinrate}{Winrate}} \&jogo) const
+\item 
+\Hypertarget{classJogador_a6f07d9e465897c90200ff794cb5b791a}\label{classJogador_a6f07d9e465897c90200ff794cb5b791a} 
+void {\bfseries set\+Nome} (const std\+::string \&nome)
+\item 
+\Hypertarget{classJogador_af73a2b20a1be2e8c52b5e52c0c9c99b4}\label{classJogador_af73a2b20a1be2e8c52b5e52c0c9c99b4} 
+void {\bfseries set\+Apelido} (const std\+::string \&apelido)
+\item 
+\Hypertarget{classJogador_a1fa59006850bad3614dee5eca7c2bb8c}\label{classJogador_a1fa59006850bad3614dee5eca7c2bb8c} 
+void {\bfseries set\+Vitorias} (\mbox{\hyperlink{structWinrate}{Winrate}} \&jogo, int vitorias)
+\item 
+\Hypertarget{classJogador_abb31aa81effea82b25b7ce4fc859f1f1}\label{classJogador_abb31aa81effea82b25b7ce4fc859f1f1} 
+void {\bfseries set\+Derrotas} (\mbox{\hyperlink{structWinrate}{Winrate}} \&jogo, int derrotas)
+\item 
+std\+::string \mbox{\hyperlink{classJogador_af9571feb75211d55984115362456dd6d}{serializar}} () const
+\begin{DoxyCompactList}\small\item\em Serializa os dados do jogador em uma string formatada. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Membros públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classJogador}{Jogador}} \mbox{\hyperlink{classJogador_a985c607b83c0d48b33ad84eda1b29612}{deserializar}} (const std\+::string \&linha)
+\begin{DoxyCompactList}\small\item\em Cria um objeto \doxylink{classJogador}{Jogador} a partir de uma string serializada. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{classJogador_a985c607b83c0d48b33ad84eda1b29612}\label{classJogador_a985c607b83c0d48b33ad84eda1b29612} 
+\index{Jogador@{Jogador}!deserializar@{deserializar}}
+\index{deserializar@{deserializar}!Jogador@{Jogador}}
+\doxysubsubsection{\texorpdfstring{deserializar()}{deserializar()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJogador}{Jogador}} Jogador\+::deserializar (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{linha }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Cria um objeto \doxylink{classJogador}{Jogador} a partir de uma string serializada. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em linha} & String contendo os dados do jogador \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Objeto \doxylink{classJogador}{Jogador} construído com os dados da string 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceções}
+{\em std\+::invalid\+\_\+argument} & Se a string tiver formato inválido \\
+\hline
+{\em std\+::runtime\+\_\+error} & Se houver erro na conversão dos dados \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classJogador_af9571feb75211d55984115362456dd6d}\label{classJogador_af9571feb75211d55984115362456dd6d} 
+\index{Jogador@{Jogador}!serializar@{serializar}}
+\index{serializar@{serializar}!Jogador@{Jogador}}
+\doxysubsubsection{\texorpdfstring{serializar()}{serializar()}}
+{\footnotesize\ttfamily std\+::string Jogador\+::serializar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Serializa os dados do jogador em uma string formatada. 
+
+\begin{DoxyReturn}{Retorna}
+String contendo os dados do jogador separados por vírgula 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceções}
+{\em std\+::runtime\+\_\+error} & Se houver falha na serialização \\
+\hline
+\end{DoxyExceptions}
+
+
+A documentação para essa classe foi gerada a partir dos seguintes arquivos\+:\begin{DoxyCompactItemize}
+\item 
+include/cadastro.\+hpp\item 
+src/cadastro.\+cpp\end{DoxyCompactItemize}
