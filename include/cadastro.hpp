@@ -1,6 +1,11 @@
 #ifndef CADASTRO_HPP
 #define CADASTRO_HPP
 
+/**
+ * @file cadastro.hpp
+ * @brief Declaração das classes e métodos relacionados ao gerenciamento de jogadores e seus cadastros.
+ */
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -8,20 +13,29 @@
 #include <memory>
 #include <algorithm>
 
+/**
+ * @struct Winrate
+ * @brief Estrutura para armazenar vitórias e derrotas de um jogador em um jogo específico.
+ * @param _vitorias Número de vitórias.
+ * @param _derrotas Número de derrotas.
+ */
 struct Winrate {
-    int _vitorias;
-    int _derrotas;
-
+    int _vitorias; 
+    int _derrotas; 
 };
 
+/**
+ * @class Jogador
+ * @brief Representa um jogador com informações como nome, apelido e desempenho em diferentes jogos.
+ */
 class Jogador {
 private:
-    Winrate Velha;  // Primeiro membro
-    Winrate Lig4;   // Segundo membro
-    Winrate Reversi; // Terceiro membro
-    std::string _nome;
-    std::string _apelido;
-    //adicionar outros jogos
+    Winrate Velha;   
+    Winrate Lig4;    
+    Winrate Reversi;
+    //adicionar outros jogos aqui.
+    std::string _nome;   
+    std::string _apelido; 
 
 public:
     // construtor
@@ -51,41 +65,29 @@ public:
     void setVitorias(Winrate& jogo, int vitorias) { jogo._vitorias = vitorias; }
     void setDerrotas(Winrate& jogo, int derrotas) { jogo._derrotas = derrotas; }
 
-    // serializar o jogador como string para salvar em arquivo
     std::string serializar() const;
-
-    //deserializar uma string para criar um jogador
     static Jogador deserializar(const std::string& linha);
 };
 
-
+/**
+ * @class Cadastro
+ * @brief Gerencia o cadastro de jogadores, incluindo adição, remoção e persistência de dados.
+ */
 class Cadastro {
 private:
-    std::vector<std::unique_ptr<Jogador>> _jogadores;
+    std::vector<std::unique_ptr<Jogador>> _jogadores; ///< Vetor de ponteiros únicos para os jogadores cadastrados.
 
 public:
-
-    const std::vector<std::unique_ptr<Jogador>>& get_jogadores() const {
-    return _jogadores; }
-
-    //adiciona um jogador ao vetor de cadastro
+    /**
+     * 
+     */
+    const std::vector<std::unique_ptr<Jogador>>& get_jogadores() const { return _jogadores; }
     void adicionarJogador(const Jogador& alvo);
-
-    //mostra o vetor de cadastros
     void mostrarJogadores() const;
-
-    //importa de um arquivo .txt todos os cadastros
-    void import(const std::string& caminho) ;
-
-    //salva e atualiza os dados de cadastro em um .txt
-    void save(const std::string& caminho) ;
-
-    //remove o jogador alvo do vetor de cadastros
-    void removeJogador(const Jogador& alvo) ;
-
-    //verifica se o jogador alvo está no vetor de cadastros, retorna 0 ou 1.
-    bool check(const Jogador& alvo) const ;
-
+    void import(const std::string& caminho);
+    void save(const std::string& caminho);
+    void removeJogador(const Jogador& alvo);
+    bool check(const Jogador& alvo) const;
 };
 
 #endif
