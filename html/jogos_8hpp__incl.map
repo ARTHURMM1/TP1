@@ -1,9 +1,0 @@
-<map id="include/jogos.hpp" name="include/jogos.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="73,5,209,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,85,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,33,74,72,71,68,124,29"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="110,79,173,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,31,144,65,139,65,139,31"/>
-<area shape="rect" id="Node000004" href="$cores_8hpp.html" title="Define macros para cores de texto, fundo e estilos para uso em saídas no terminal." alt="" coords="197,79,283,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="159,29,214,68,211,73,156,33"/>
-</map>

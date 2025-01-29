@@ -78,9 +78,6 @@ private:
     std::vector<std::unique_ptr<Jogador>> _jogadores; ///< Vetor de ponteiros únicos para os jogadores cadastrados.
 
 public:
-    /**
-     * 
-     */
     const std::vector<std::unique_ptr<Jogador>>& get_jogadores() const { return _jogadores; }
     void adicionarJogador(const Jogador& alvo);
     void mostrarJogadores() const;

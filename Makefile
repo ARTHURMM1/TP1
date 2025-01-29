@@ -1,62 +1,41 @@
-# Compilador
+# Variáveis
 CXX = g++
-
-# Flags de compilação
-CXXFLAGS = -Wall -std=c++11 -Iinclude
-
-# Nome do executável principal
-TARGET = main
-
-# Nome do executável de testes
-TEST_TARGET = testes
-
-# Diretórios
+CXXFLAGS = -std=c++11 -Wall -Iinclude
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
-TESTS_DIR = tests
+TEST_SRC = $(SRC_DIR)/teste.cpp
+TEST_BIN = $(BIN_DIR)/teste
+EXEC = $(BIN_DIR)/main
 
-# Lista de arquivos fonte do programa principal
-SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+# Arquivos fonte e objetos
+SRCS = $(filter-out $(TEST_SRC), $(wildcard $(SRC_DIR)/*.cpp))
+OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-# Lista de arquivos objeto do programa principal
-OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
+# Regras
+all: $(EXEC)
 
-# Arquivo de teste
-TEST_SRC = $(TESTS_DIR)/testes.cpp
-TEST_OBJ = $(OBJ_DIR)/testes.o
+# Regra para compilar o programa principal
+$(EXEC): $(OBJS)
+	@mkdir -p $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
-# Regra padrão
-all: $(BIN_DIR)/$(TARGET)
-
-# Regra para criar o executável principal
-$(BIN_DIR)/$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
-
-# Regra para compilar os arquivos fonte em objetos
+# Regra para compilar os arquivos objeto
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Regra para compilar o arquivo de testes
-$(TEST_OBJ): $(TEST_SRC)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+# Regra para compilar o teste
+teste: $(TEST_SRC)
+	@mkdir -p $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $< -o $(TEST_BIN)
 
-# Regra para criar o executável de testes
-$(BIN_DIR)/$(TEST_TARGET): $(filter-out $(OBJ_DIR)/main.o, $(OBJS)) $(TEST_OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $^
-
-# Regra para limpar os arquivos gerados
+# Limpeza
 clean:
-	rm -f $(OBJ_DIR)/*.o $(BIN_DIR)/$(TARGET) $(BIN_DIR)/$(TEST_TARGET)
+	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
-# Garante que os diretórios existam
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+# Remoção completa
+distclean: clean
+	rm -rf html latex
 
-$(BIN_DIR):
-	mkdir -p $(BIN_DIR)
-
-# Dependências para garantir que os diretórios sejam criados antes da compilação
-$(OBJS): | $(OBJ_DIR)
-$(BIN_DIR)/$(TARGET): | $(BIN_DIR)
-$(BIN_DIR)/$(TEST_TARGET): | $(BIN_DIR)
+.PHONY: all clean distclean teste
