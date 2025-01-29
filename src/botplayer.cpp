@@ -1,5 +1,4 @@
 #include "botplayer.hpp"
-#include "jogos.hpp"
 #include <climits>
 #include <algorithm>
 
@@ -184,9 +183,7 @@ int ReversiBot::_minimax(Reversi& jogo, int profundidade, bool maximizando, int 
 
                 // Chamada recursiva para Minimax
                 int pontuacao = _minimax(jogo, profundidade + 1, !maximizando, jogadorAtual);
-
-                //jogo.desfazer_jogada(linha, coluna);
-
+                
                 if (maximizando) {
                     melhorPontuacao = std::max(melhorPontuacao, pontuacao);
                 } else {
