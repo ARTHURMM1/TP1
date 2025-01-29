@@ -130,6 +130,7 @@ void Cadastro::mostrarJogadores() const {
                 << " D: " << jogador->getDerrotas(jogador->getVelha())
                 << "\nREVERSI - V: " << jogador->getVitorias(jogador->getReversi())
                 << " D: " << jogador->getDerrotas(jogador->getReversi())
+                << "\n"
                 << std::endl;
         }
     } catch (const std::exception& e) {
