@@ -1,3 +1,8 @@
+/**
+ * @file main.cpp
+ * @brief Sistema de gerenciamento de jogadores e jogos com funcionalidade de cadastro, remoção, busca e partidas.
+ */
+
 #include <iostream>
 #include <stdlib.h>
 #include <string>
@@ -6,6 +11,9 @@
 #include "partida.hpp"
 #include <algorithm>
 
+/**
+ * @brief Exibe o menu de comandos do sistema.
+ */
 void mostrarMenu() {
     std::cout << "\n=== Menu de Comandos ===" << std::endl;
     std::cout << "CJ - Cadastrar novo jogador" << std::endl;
@@ -18,6 +26,10 @@ void mostrarMenu() {
     std::cout << "=====================" << std::endl;
 }
 
+/**
+ * @brief Cadastra um novo jogador no sistema.
+ * @param jogadores Referência ao objeto Cadastro para gerenciar jogadores.
+ */
 void cadastrarJogador(Cadastro& jogadores) {
     std::string nome, apelido;
     std::cout << "Digite o nome do jogador: ";
@@ -25,9 +37,9 @@ void cadastrarJogador(Cadastro& jogadores) {
     std::getline(std::cin, nome);
     std::cout << "Digite o apelido do jogador: ";
     std::getline(std::cin, apelido);
-    
+
     Jogador novoJogador(nome, apelido);
-    
+
     if (!jogadores.check(novoJogador)) {
         jogadores.adicionarJogador(novoJogador);
         jogadores.save("./include/cadastro.txt");
@@ -36,23 +48,31 @@ void cadastrarJogador(Cadastro& jogadores) {
     }
 }
 
+/**
+ * @brief Remove um jogador do sistema.
+ * @param jogadores Referência ao objeto Cadastro para gerenciar jogadores.
+ */
 void removerJogador(Cadastro& jogadores) {
     std::string apelido;
     std::cout << "Digite o apelido do jogador a ser removido: ";
     std::cin.ignore();
     std::getline(std::cin, apelido);
-    
+
     Jogador alvo("", apelido);
     jogadores.removeJogador(alvo);
     jogadores.save("./include/cadastro.txt");
 }
 
+/**
+ * @brief Procura por um jogador no sistema.
+ * @param jogadores Referência ao objeto Cadastro para gerenciar jogadores.
+ */
 void procurarJogador(const Cadastro& jogadores) {
     std::string apelido;
     std::cout << "Digite o apelido do jogador: ";
     std::cin.ignore();
     std::getline(std::cin, apelido);
-    
+
     Jogador alvo("", apelido);
     if (jogadores.check(alvo)) {
         std::cout << "Jogador encontrado!" << std::endl;
@@ -61,83 +81,91 @@ void procurarJogador(const Cadastro& jogadores) {
     }
 }
 
+/**
+ * @brief Inicia uma nova partida entre dois jogadores ou contra um bot.
+ * @param jogadores Referência ao objeto Cadastro para gerenciar jogadores.
+ */
 void iniciarNovaPartida(Cadastro& jogadores) {
     std::string apelido1, apelido2;
     int tipoJogo;
     bool vsBot = false;
-    
+
     std::cout << "=== Tipos de Jogo ===" << std::endl;
     std::cout << "1 - Jogo da Velha" << std::endl;
     std::cout << "2 - Lig4" << std::endl;
     std::cout << "3 - Reversi" << std::endl;
     std::cout << "Escolha o tipo de jogo: ";
     std::cin >> tipoJogo;
-    
+
     if (tipoJogo < 1 || tipoJogo > 3) {
         std::cout << "Tipo de jogo inválido!" << std::endl;
         return;
     }
-    
+
     std::cout << "Jogar contra BOT? (1-Sim, 0-Não): ";
     std::cin >> vsBot;
-    
+
     std::cout << "Digite o apelido do Jogador 1: ";
     std::cin.ignore();
     std::getline(std::cin, apelido1);
-    
+
     Jogador jogador1("", apelido1);
     if (!jogadores.check(jogador1)) {
         std::cout << "Jogador 1 não encontrado!" << std::endl;
         return;
     }
-    
+
     if (!vsBot) {
         std::cout << "Digite o apelido do Jogador 2: ";
         std::getline(std::cin, apelido2);
-        
+
         Jogador jogador2("", apelido2);
         if (!jogadores.check(jogador2)) {
             std::cout << "Jogador 2 não encontrado!" << std::endl;
             return;
         }
-        
+
         Partida partida(tipoJogo, &jogador1, &jogador2);
         partida.iniciarPartida();
     } else {
         Partida partida(tipoJogo, &jogador1);
         partida.iniciarPartida();
     }
-    
+
     // Após a partida, salva as atualizações do cadastro
     jogadores.save("./include/cadastro.txt");
 }
 
+/**
+ * @brief Função principal do programa.
+ * @return Retorna 0 em caso de execução bem-sucedida.
+ */
 int main() {
     Cadastro jogadores;
     jogadores.import("./include/cadastro.txt");
-    
+
     std::vector<std::string> commands = {"CJ", "RJ", "LJ", "PJ", "NP", "F", "H"};
     std::string inputComando;
-    
+
     std::cout << "Bem-vindo ao Sistema de Jogos!" << std::endl;
     mostrarMenu();
-    
+
     while (true) {
         std::cout << "\nDigite um comando: ";
         std::cin >> inputComando;
-        
+
         // Converte o comando para maiúsculas
         std::transform(inputComando.begin(), inputComando.end(), inputComando.begin(), ::toupper);
-        
+
         auto it = std::find(commands.begin(), commands.end(), inputComando);
-        
+
         if (it == commands.end()) {
             std::cout << "Comando inválido! Digite 'H' para ver os comandos disponíveis." << std::endl;
             continue;
         }
-        
+
         int indexComando = std::distance(commands.begin(), it);
-        
+
         switch(indexComando) {
             case 0: // CJ
                 cadastrarJogador(jogadores);
@@ -165,6 +193,6 @@ int main() {
                 return 1;
         }
     }
-    
+
     return 0;
 }
