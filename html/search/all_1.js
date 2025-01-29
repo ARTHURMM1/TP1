@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['cadastrarjogador_0',['cadastrarJogador',['../main_8cpp.html#a21c3b75de9c46e3c431ff428b5272694',1,'main.cpp']]],
-  ['cadastro_2ecpp_1',['cadastro.cpp',['../cadastro_8cpp.html',1,'']]]
+  ['adicionarjogador_0',['adicionarJogador',['../classCadastro.html#a3026bb36cdba2c9dfefa45bac0bd9522',1,'Cadastro']]],
+  ['amarelo_1',['AMARELO',['../cores_8hpp.html#abf22a4fcddc9121a35158f974493f881',1,'cores.hpp']]],
+  ['anunciar_5fvencedor_2',['anunciar_vencedor',['../classReversi.html#a209530372588db5ce54fb10439065eec',1,'Reversi::anunciar_vencedor()'],['../classJogoDaVelha.html#ac422373dc9182d87cb5ea3e1a69002e0',1,'JogoDaVelha::anunciar_vencedor()']]],
+  ['atualizar_5fjogadas_5fvalidas_3',['atualizar_jogadas_validas',['../classReversi.html#ac81136b2ff7375b10b4251cf1484e661',1,'Reversi']]],
+  ['azul_4',['AZUL',['../cores_8hpp.html#a417a0e2cb13684627c838b16cc69651a',1,'cores.hpp']]]
 ];

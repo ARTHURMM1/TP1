@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['procurarjogador_0',['procurarJogador',['../main_8cpp.html#a9dd1cb882be95669de9971cad5a2b8c2',1,'main.cpp']]]
+  ['deserializar_0',['deserializar',['../classJogador.html#a985c607b83c0d48b33ad84eda1b29612',1,'Jogador']]],
+  ['determinar_5fvencedor_1',['determinar_vencedor',['../classJogoDaVelha.html#a17118304facbd3b6e383c950e0aa46e4',1,'JogoDaVelha']]]
 ];

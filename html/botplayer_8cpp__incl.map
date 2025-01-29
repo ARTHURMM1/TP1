@@ -1,9 +1,20 @@
 <map id="src/botplayer.cpp" name="src/botplayer.cpp">
-<area shape="rect" id="Node000001" title="Declaração dos métodos da classe BotPlayer." alt="" coords="107,5,241,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,116,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,33,92,74,89,69,154,28"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="141,79,207,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="177,31,177,65,171,65,171,31"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="231,79,317,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="192,29,248,68,245,73,189,33"/>
+<area shape="rect" id="Node000001" title="Declaração dos métodos da classe BotPlayer." alt="" coords="117,5,250,31"/>
+<area shape="rect" id="Node000002" href="$botplayer_8hpp.html" title=" " alt="" coords="15,79,125,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,33,101,74,98,69,164,28"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="150,79,217,104"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="186,31,186,65,181,65,181,31"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="241,79,326,104"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="201,29,257,68,254,73,198,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,225,68,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="60,106,43,127,30,153,27,183,31,211,26,212,21,183,25,151,39,124,56,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="40,152,100,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="73,104,73,138,67,138,67,104"/>
+<area shape="rect" id="Node000005" href="$jogos_8hpp.html" title=" " alt="" coords="125,152,210,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="87,102,142,141,139,146,84,106"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="148,180,71,221,69,216,145,175"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="110,225,190,251"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="167,178,159,213,153,212,162,177"/>
+<area shape="rect" id="Node000007" href="$cores_8hpp.html" title="Define macros para cores de texto, fundo e estilos para uso em saídas no terminal." alt="" coords="214,225,299,251"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="183,175,233,214,230,219,180,179"/>
 </map>

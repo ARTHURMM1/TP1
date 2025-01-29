@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projeto Final: Código-Fonte de include/partida.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Projeto Final
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">partida.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="partida_8hpp.html">Ir para a documentação desse arquivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef PARTIDA_HPP</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define PARTIDA_HPP</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="jogos_8hpp.html">jogos.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="cadastro_8hpp.html">cadastro.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="botplayer_8hpp.html">botplayer.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classPartida.html">    9</a></span><span class="keyword">class </span><a class="code hl_class" href="classPartida.html">Partida</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="comment">// Constructors</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_class" href="classPartida.html">Partida</a>(<span class="keywordtype">int</span> tipoJogo, <a class="code hl_class" href="classJogador.html">Jogador</a>* jogador1);  <span class="comment">// For PvE</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <a class="code hl_class" href="classPartida.html">Partida</a>(<span class="keywordtype">int</span> tipoJogo, <a class="code hl_class" href="classJogador.html">Jogador</a>* jogador1, <a class="code hl_class" href="classJogador.html">Jogador</a>* jogador2);  <span class="comment">// For PvP</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="comment">// Destructor to clean up bot pointers</span></div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classPartida.html#aeb7153c737dcc7b06c0cc4c7f7cbb21a">   16</a></span>    <a class="code hl_function" href="classPartida.html#aeb7153c737dcc7b06c0cc4c7f7cbb21a">~Partida</a>() {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keyword">delete</span> bot1;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keyword">delete</span> bot2;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    }</div>
+</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// Game control methods</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classPartida.html#a808e69a991eaabe5ba8e133c305d1abe">iniciarPartida</a>();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classPartida.html#a808e69a991eaabe5ba8e133c305d1abe">iniciarPartida</a>(<span class="keywordtype">int</span> dificuldade);  <span class="comment">// For future difficulty levels</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPartida.html#a9f65df11cdff23cec3dc8e8b0e01798b">imprimirTabuleiro</a>(<span class="keywordtype">int</span> jogadorAtual) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classPartida.html#a112dbb44ff65b0bf8cc1f628084198e6">realizarJogada</a>(<span class="keywordtype">int</span> jogadorAtual, <span class="keywordtype">int</span> linha = -1, <span class="keywordtype">int</span> coluna = -1);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classPartida.html#a3be87bcf1b35aaf0c0ce9c9cf93e0abb">verificarFimDeJogo</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classPartida.html#a5dcacaf74d9ac959e3e9627a4f1ad310">verificarJogadasDisponiveis</a>(<span class="keywordtype">int</span> jogadorAtual) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// Utility methods</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classPartida.html#af8f44d01ed13fc351c2573dbb3266a3a">   30</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classPartida.html#af8f44d01ed13fc351c2573dbb3266a3a">isPvP</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> jogador2 != <span class="keyword">nullptr</span>; }</div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classPartida.html#ae4db9af3b5f5d56d402999ee8c343c9c">   31</a></span>    <a class="code hl_class" href="classJogador.html">Jogador</a>* <a class="code hl_function" href="classPartida.html#ae4db9af3b5f5d56d402999ee8c343c9c">getJogadorAtual</a>(<span class="keywordtype">int</span> jogadorNumero)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordflow">return</span> jogadorNumero == 1 ? jogador1 : jogador2;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    }</div>
+</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    std::unique_ptr&lt;JogosDeTabuleiro&gt; jogoAtual;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_class" href="classJogador.html">Jogador</a>* jogador1;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_class" href="classJogador.html">Jogador</a>* jogador2;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_class" href="classBotPlayer.html">BotPlayer</a>* bot1;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_class" href="classBotPlayer.html">BotPlayer</a>* bot2;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">void</span> finalizarPartida();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>};</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="abotplayer_8hpp_html"><div class="ttname"><a href="botplayer_8hpp.html">botplayer.hpp</a></div></div>
+<div class="ttc" id="acadastro_8hpp_html"><div class="ttname"><a href="cadastro_8hpp.html">cadastro.hpp</a></div><div class="ttdoc">Declaração das classes e métodos relacionados ao gerenciamento de jogadores e seus cadastros.</div></div>
+<div class="ttc" id="aclassBotPlayer_html"><div class="ttname"><a href="classBotPlayer.html">BotPlayer</a></div><div class="ttdef"><b>Definição</b> botplayer.hpp:8</div></div>
+<div class="ttc" id="aclassJogador_html"><div class="ttname"><a href="classJogador.html">Jogador</a></div><div class="ttdoc">Representa um jogador com informações como nome, apelido e desempenho em diferentes jogos.</div><div class="ttdef"><b>Definição</b> cadastro.hpp:31</div></div>
+<div class="ttc" id="aclassPartida_html"><div class="ttname"><a href="classPartida.html">Partida</a></div><div class="ttdef"><b>Definição</b> partida.hpp:9</div></div>
+<div class="ttc" id="aclassPartida_html_a112dbb44ff65b0bf8cc1f628084198e6"><div class="ttname"><a href="classPartida.html#a112dbb44ff65b0bf8cc1f628084198e6">Partida::realizarJogada</a></div><div class="ttdeci">bool realizarJogada(int jogadorAtual, int linha=-1, int coluna=-1)</div><div class="ttdoc">Realiza a jogada de um jogador ou bot.</div><div class="ttdef"><b>Definição</b> partida.cpp:155</div></div>
+<div class="ttc" id="aclassPartida_html_a3be87bcf1b35aaf0c0ce9c9cf93e0abb"><div class="ttname"><a href="classPartida.html#a3be87bcf1b35aaf0c0ce9c9cf93e0abb">Partida::verificarFimDeJogo</a></div><div class="ttdeci">bool verificarFimDeJogo() const</div><div class="ttdoc">Verifica se as condições de fim de jogo foram atingidas.</div><div class="ttdef"><b>Definição</b> partida.cpp:245</div></div>
+<div class="ttc" id="aclassPartida_html_a5dcacaf74d9ac959e3e9627a4f1ad310"><div class="ttname"><a href="classPartida.html#a5dcacaf74d9ac959e3e9627a4f1ad310">Partida::verificarJogadasDisponiveis</a></div><div class="ttdeci">bool verificarJogadasDisponiveis(int jogadorAtual) const</div><div class="ttdoc">Verifica se o jogador atual tem jogadas disponíveis.</div><div class="ttdef"><b>Definição</b> partida.cpp:202</div></div>
+<div class="ttc" id="aclassPartida_html_a808e69a991eaabe5ba8e133c305d1abe"><div class="ttname"><a href="classPartida.html#a808e69a991eaabe5ba8e133c305d1abe">Partida::iniciarPartida</a></div><div class="ttdeci">bool iniciarPartida()</div><div class="ttdoc">Inicia uma partida com as configurações atuais.</div><div class="ttdef"><b>Definição</b> partida.cpp:77</div></div>
+<div class="ttc" id="aclassPartida_html_a9f65df11cdff23cec3dc8e8b0e01798b"><div class="ttname"><a href="classPartida.html#a9f65df11cdff23cec3dc8e8b0e01798b">Partida::imprimirTabuleiro</a></div><div class="ttdeci">void imprimirTabuleiro(int jogadorAtual) const</div><div class="ttdoc">Imprime o tabuleiro atual no console.</div><div class="ttdef"><b>Definição</b> partida.cpp:144</div></div>
+<div class="ttc" id="aclassPartida_html_ae4db9af3b5f5d56d402999ee8c343c9c"><div class="ttname"><a href="classPartida.html#ae4db9af3b5f5d56d402999ee8c343c9c">Partida::getJogadorAtual</a></div><div class="ttdeci">Jogador * getJogadorAtual(int jogadorNumero) const</div><div class="ttdef"><b>Definição</b> partida.hpp:31</div></div>
+<div class="ttc" id="aclassPartida_html_aeb7153c737dcc7b06c0cc4c7f7cbb21a"><div class="ttname"><a href="classPartida.html#aeb7153c737dcc7b06c0cc4c7f7cbb21a">Partida::~Partida</a></div><div class="ttdeci">~Partida()</div><div class="ttdef"><b>Definição</b> partida.hpp:16</div></div>
+<div class="ttc" id="aclassPartida_html_af8f44d01ed13fc351c2573dbb3266a3a"><div class="ttname"><a href="classPartida.html#af8f44d01ed13fc351c2573dbb3266a3a">Partida::isPvP</a></div><div class="ttdeci">bool isPvP() const</div><div class="ttdef"><b>Definição</b> partida.hpp:30</div></div>
+<div class="ttc" id="ajogos_8hpp_html"><div class="ttname"><a href="jogos_8hpp.html">jogos.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TP1: Referência da Classe BotPlayer</title>
+<title>Projeto Final: Referência da Classe BotPlayer</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">TP1
+   <div id="projectname">Projeto Final
    </div>
   </td>
  </tr>
@@ -71,19 +71,188 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Membros Públicos</a> &#124;
+<a href="#pro-methods">Membros protegidos</a> &#124;
 <a href="classBotPlayer-members.html">Lista de todos os Membros</a>  </div>
-  <div class="headertitle"><div class="title">Referência da Classe BotPlayer</div></div>
+  <div class="headertitle"><div class="title">Referência da Classe BotPlayer<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="botplayer_8hpp_source.html">botplayer.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Diagrama de hierarquia da classe BotPlayer:</div>
+<div class="dyncontent">
+<div class="center"><img src="classBotPlayer__inherit__graph.png" border="0" usemap="#aBotPlayer_inherit__map" alt="Inheritance graph"/></div>
+<map name="aBotPlayer_inherit__map" id="aBotPlayer_inherit__map">
+<area shape="rect" title=" " alt="" coords="149,5,234,31"/>
+<area shape="rect" href="classJogoDaVelhaBot.html" title=" " alt="" coords="5,79,132,104"/>
+<area shape="poly" title=" " alt="" coords="161,40,90,81,87,76,159,35"/>
+<area shape="rect" href="classLig4Bot.html" title=" " alt="" coords="156,79,227,104"/>
+<area shape="poly" title=" " alt="" coords="194,44,194,79,189,79,189,44"/>
+<area shape="rect" href="classReversiBot.html" title=" " alt="" coords="251,79,345,104"/>
+<area shape="poly" title=" " alt="" coords="221,36,282,76,279,81,218,40"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legenda</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Membros Públicos</h2></td></tr>
-<tr class="memitem:a3c6f8625c33b43b520c2cad3cb44ab09" id="r_a3c6f8625c33b43b520c2cad3cb44ab09"><td class="memItemLeft" align="right" valign="top"><a id="a3c6f8625c33b43b520c2cad3cb44ab09" name="a3c6f8625c33b43b520c2cad3cb44ab09"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>minimax</b> (const JogoDaVelha &amp;jogo, int &amp;melhorLinha, int &amp;melhorColuna, int jogador)</td></tr>
-<tr class="separator:a3c6f8625c33b43b520c2cad3cb44ab09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74e0b0106151240120c6d168a5599edc" id="r_a74e0b0106151240120c6d168a5599edc"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBotPlayer.html#a74e0b0106151240120c6d168a5599edc">~BotPlayer</a> ()=default</td></tr>
+<tr class="separator:a74e0b0106151240120c6d168a5599edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aea705ab7d23b0b4423f6aa44e8f39a" id="r_a7aea705ab7d23b0b4423f6aa44e8f39a"><td class="memItemLeft" align="right" valign="top">virtual std::pair&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBotPlayer.html#a7aea705ab7d23b0b4423f6aa44e8f39a">calcularProximaJogada</a> (const <a class="el" href="classJogosDeTabuleiro.html">JogosDeTabuleiro</a> &amp;jogo, int jogadorAtual)=0</td></tr>
+<tr class="separator:a7aea705ab7d23b0b4423f6aa44e8f39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Membros protegidos</h2></td></tr>
+<tr class="memitem:a85a6e79af03d03109d9f413ef6d64ec0" id="r_a85a6e79af03d03109d9f413ef6d64ec0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBotPlayer.html#a85a6e79af03d03109d9f413ef6d64ec0">BotPlayer</a> ()=default</td></tr>
+<tr class="separator:a85a6e79af03d03109d9f413ef6d64ec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a34e5ce4ea1f1e0f98627c485238ee" id="r_ab1a34e5ce4ea1f1e0f98627c485238ee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBotPlayer.html#ab1a34e5ce4ea1f1e0f98627c485238ee">BotPlayer</a> (const <a class="el" href="classBotPlayer.html">BotPlayer</a> &amp;)=delete</td></tr>
+<tr class="separator:ab1a34e5ce4ea1f1e0f98627c485238ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5c75996a3a2ec747cf6a02dda317db9" id="r_ac5c75996a3a2ec747cf6a02dda317db9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBotPlayer.html">BotPlayer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBotPlayer.html#ac5c75996a3a2ec747cf6a02dda317db9">operator=</a> (const <a class="el" href="classBotPlayer.html">BotPlayer</a> &amp;)=delete</td></tr>
+<tr class="separator:ac5c75996a3a2ec747cf6a02dda317db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Construtores e Destrutores</h2>
+<a id="a74e0b0106151240120c6d168a5599edc" name="a74e0b0106151240120c6d168a5599edc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74e0b0106151240120c6d168a5599edc">&#9670;&#160;</a></span>~BotPlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual BotPlayer::~BotPlayer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a85a6e79af03d03109d9f413ef6d64ec0" name="a85a6e79af03d03109d9f413ef6d64ec0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85a6e79af03d03109d9f413ef6d64ec0">&#9670;&#160;</a></span>BotPlayer() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BotPlayer::BotPlayer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1a34e5ce4ea1f1e0f98627c485238ee" name="ab1a34e5ce4ea1f1e0f98627c485238ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1a34e5ce4ea1f1e0f98627c485238ee">&#9670;&#160;</a></span>BotPlayer() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BotPlayer::BotPlayer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBotPlayer.html">BotPlayer</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentação das funções</h2>
+<a id="a7aea705ab7d23b0b4423f6aa44e8f39a" name="a7aea705ab7d23b0b4423f6aa44e8f39a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aea705ab7d23b0b4423f6aa44e8f39a">&#9670;&#160;</a></span>calcularProximaJogada()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::pair&lt; int, int &gt; BotPlayer::calcularProximaJogada </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classJogosDeTabuleiro.html">JogosDeTabuleiro</a> &amp;&#160;</td>
+          <td class="paramname"><em>jogo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>jogadorAtual</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementado por <a class="el" href="classReversiBot.html#acaa3a4e3360317ba3c8be16923016e32">ReversiBot</a>, <a class="el" href="classLig4Bot.html#a34939d6efc6f7624038d4b699a54679f">Lig4Bot</a> e <a class="el" href="classJogoDaVelhaBot.html#aabaf85d217309130e56290061c403a24">JogoDaVelhaBot</a>.</p>
+
+</div>
+</div>
+<a id="ac5c75996a3a2ec747cf6a02dda317db9" name="ac5c75996a3a2ec747cf6a02dda317db9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5c75996a3a2ec747cf6a02dda317db9">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBotPlayer.html">BotPlayer</a> &amp; BotPlayer::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBotPlayer.html">BotPlayer</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>A documentação para essa classe foi gerada a partir do seguinte arquivo:<ul>
-<li>src/<b>botplayer.cpp</b></li>
+<li>include/<a class="el" href="botplayer_8hpp_source.html">botplayer.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
