@@ -27,39 +27,39 @@ A classe foi construída de forma reciclável e podem ser adicionados outros jog
    - Estatísticas dos jogadores são atualizadas ao término da partida.
 
 ### 🚀 Funcionalidades:
-Comandos Disponíveis
+#### Comandos Disponíveis
 Os comandos suportados pelo sistema são os seguintes:
 
 #### 1. Cadastrar Jogador
-   CJ <Apelido> <Nome>
+   `CJ <Apelido> <Nome>`
    Mensagens esperadas:
-   - Jogador cadastrado com sucesso.
-   - ERRO: dados incorretos.
-   - ERRO: jogador repetido.
+   `- Jogador cadastrado com sucesso.`
+   `- ERRO: dados incorretos.`
+   `- ERRO: jogador repetido.`
 
 #### 2. Remover Jogador
-   RJ <Apelido>
+   `RJ <Apelido>`
    Mensagens esperadas:
-   - Jogador removido com sucesso.
-   - ERRO: jogador inexistente.
+   `- Jogador removido com sucesso.`
+   `- ERRO: jogador inexistente.`
 
 #### 3. Listar Jogadores
-   LJ [A|N]
+   `LJ [A|N]
    Lista jogadores ordenados por Apelido (A) ou Nome (N).
    Exemplo de saída:
    <Apelido> <Nome>
    REVERSI - V: <#vitorias> D: <#derrotas>
    LIG4 - V: <#vitorias> D: <#derrotas>
-   VELHA - V: <#vitorias> D: <#derrotas>
+   VELHA - V: <#vitorias> D: <#derrotas>`
 
 #### 4. Executar Partida
-   EP <Jogo: (R|L|V)> <Apelido Jogador 1> <Apelido Jogador 2>
+   `EP <Jogo: (R|L|V)> <Apelido Jogador 1> <Apelido Jogador 2>`
    Mensagens esperadas:
-   - ERRO: dados incorretos.
-   - ERRO: jogador inexistente.
+   `- ERRO: dados incorretos.`
+   `- ERRO: jogador inexistente.`
 
 #### 5. Finalizar Sistema
-   F
+  Clique na tecla F
 
 ### 🚩 Entrada de Jogadas
 Durante uma partida, o sistema solicita jogadas no formato apropriado para cada jogo. Mensagens de erro são exibidas caso a jogada seja inválida ou esteja no formato incorreto.
@@ -68,13 +68,21 @@ Durante uma partida, o sistema solicita jogadas no formato apropriado para cada 
 A estrutura de diretórios do projeto segue a seguinte organização:
 
 ProjetoFinal/
+
 ├── bin/           # Arquivos executáveis gerados
+
 ├── include/       # Arquivos de cabeçalho (.hpp)
+
 ├── obj/           # Arquivos objeto (.o)
+
 ├── src/           # Código-fonte (.cpp)
+
 ├── tests/         # Arquivos de teste unitário
+
 ├── .gitignore     # Arquivos e pastas ignorados pelo Git
+
 ├── Makefile       # Automação da compilação
+
 ├── README.md      # Descrição do projeto
 
 ### 🏍 Como Executar: 
