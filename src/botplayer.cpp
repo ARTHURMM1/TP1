@@ -1,4 +1,5 @@
 #include "botplayer.hpp"
+#include "jogos.hpp"
 #include <climits>
 #include <algorithm>
 
