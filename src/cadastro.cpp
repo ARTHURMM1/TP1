@@ -29,7 +29,7 @@ std::string Jogador::serializar() const {
  */
 Jogador Jogador::deserializar(const std::string& linha) {
     if (linha.empty()) {
-        throw std::invalid_argument("String de entrada vazia para deserialização");
+        //throw std::invalid_argument("String de entrada vazia para deserialização");
     }
 
     std::vector<std::string> campos;
@@ -140,7 +140,7 @@ void Cadastro::mostrarJogadores() const {
 void Cadastro::import(const std::string& caminho) {
     std::ifstream arquivo(caminho);
     if (!arquivo.is_open()) {
-        throw std::runtime_error(std::string("Não foi possível abrir o arquivo: ") + caminho);
+        //throw std::runtime_error(std::string("Não foi possível abrir o arquivo: ") + caminho);
     }
 
     try {

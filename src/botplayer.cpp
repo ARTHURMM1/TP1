@@ -130,6 +130,43 @@ int Lig4Bot::_minimax(Lig4& jogo, bool maximizando, int jogadorAtual) {
 
 // --- Implementação Atualizada do Reversi Bot ---
 
+std::pair<int, int> ReversiBot::calcularProximaJogada(const JogosDeTabuleiro& jogoBase, int jogadorAtual) {
+    const Reversi& jogo = static_cast<const Reversi&>(jogoBase);
+    std::vector<std::pair<int, int>> jogadasValidas;
+    
+    // Coletar todas as jogadas válidas primeiro
+    for (int linha = 0; linha < jogo.getLinhas(); linha++) {
+        for (int coluna = 0; coluna < jogo.getColunas(); coluna++) {
+            if (jogo.verificar_jogada(linha, coluna, jogadorAtual)) {
+                jogadasValidas.emplace_back(linha, coluna);
+            }
+        }
+    }
+    
+    // Se não houver jogadas válidas, retornar (-1, -1)
+    if (jogadasValidas.empty()) {
+        return {-1, -1};
+    }
+
+    int melhorPontuacao = INT_MIN;
+    std::pair<int, int> melhorJogada = jogadasValidas[0];
+
+    // Avaliar apenas as jogadas válidas
+    for (const auto& jogada : jogadasValidas) {
+        Reversi copia = jogo;
+        copia.ler_jogada(jogada.first, jogada.second, jogadorAtual);
+        
+        int pontuacao = _minimax(copia, 0, false, jogadorAtual);
+        
+        if (pontuacao > melhorPontuacao) {
+            melhorPontuacao = pontuacao;
+            melhorJogada = jogada;
+        }
+    }
+
+    return melhorJogada;
+}
+
 int ReversiBot::_minimax(Reversi& jogo, int profundidade, bool maximizando, int jogadorAtual) {
     if (jogo.testar_condicao_de_vitoria() || profundidade >= 4) { 
         return _avaliarTabuleiro(jogo, jogadorAtual);
@@ -147,7 +184,7 @@ int ReversiBot::_minimax(Reversi& jogo, int profundidade, bool maximizando, int 
                 // Chamada recursiva para Minimax
                 int pontuacao = _minimax(jogo, profundidade + 1, !maximizando, jogadorAtual);
 
-                // jogo.desfazer_jogada(linha, coluna);
+                //jogo.desfazer_jogada(linha, coluna);
 
                 if (maximizando) {
                     melhorPontuacao = std::max(melhorPontuacao, pontuacao);

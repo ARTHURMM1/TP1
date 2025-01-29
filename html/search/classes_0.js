@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cadastro_0',['Cadastro',['../classCadastro.html',1,'']]]
+  ['botplayer_0',['BotPlayer',['../classBotPlayer.html',1,'']]]
 ];
