@@ -204,8 +204,6 @@ int main() {
             break;
         case 4: // NP
             iniciarNovaPartida(jogadores);
-            std::cout << "teste1";  // Verifique se esta mensagem é realmente necessária
-            std::cin.ignore();  // Limpa o buffer de entrada
             break;
         case 5: // F
             std::cout << "Programa finalizado." << std::endl;
