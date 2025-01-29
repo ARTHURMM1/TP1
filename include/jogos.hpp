@@ -33,6 +33,9 @@ public:
     bool testar_condicao_de_vitoria() const override;
     std::vector<std::vector<bool>> atualizar_jogadas_validas(int jogador) const;
     int imprimir_vetor(int jogador) const override;
+    std::pair<int, int> calcular_pontuacao() const;
+    void mostrar_pontuacao() const;
+    void anunciar_vencedor() const;
 private:
     static const std::vector<std::pair<int, int>> direcoes;
     std::vector<std::vector<bool>> JogadasValidas_;
@@ -49,6 +52,8 @@ public:
     bool verificar_jogada(int linha, int coluna, int jogador) const override;
     bool testar_condicao_de_vitoria() const override;
     int imprimir_vetor(int jogador) const override;
+    void anunciar_vencedor() const;
+    int determinar_vencedor() const; // Retorna 1 para X, 2 para O, 0 para empate
 };
 
 class Lig4 : public JogosDeTabuleiro{
