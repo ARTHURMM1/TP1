@@ -41,9 +41,9 @@ public:
         const JogosDeTabuleiro& jogoBase, 
         int jogadorAtual
     ) override;
-
 private:
-    int _minimax(Lig4& jogo, bool maximizando, int jogadorAtual);
+    int minimax(Lig4& jogo, int profundidade, bool maximizando, int jogadorAtual);
+    bool tabuleiroCheio(const Lig4& jogo);
 };
 
 // Classe para implementar o bot do jogo da velha

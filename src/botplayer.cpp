@@ -91,51 +91,72 @@ std::pair<int, int> JogoDaVelhaBot::calcularProximaJogada(const JogosDeTabuleiro
 
 
 std::pair<int, int> Lig4Bot::calcularProximaJogada(const JogosDeTabuleiro& jogoBase, int jogadorAtual) {
-    const Lig4& jogo = static_cast<const Lig4&>(jogoBase); 
+    const Lig4& jogo = static_cast<const Lig4&>(jogoBase);
+    std::vector<int> colunasValidas;
+
+    for (int coluna = 0; coluna < jogo.getColunas(); ++coluna) {
+        if (jogo.verificar_jogada(0, coluna, jogadorAtual)) {
+            colunasValidas.push_back(coluna);
+        }
+    }
+
+    if (colunasValidas.empty()) {
+        std::cerr << "Erro: Nenhuma jogada válida disponível para o bot.\n";
+        return {-1, -1};  // Retorna valores inválidos para indicar erro
+    }
+
     int melhorColuna = -1;
     int melhorPontuacao = INT_MIN;
 
-    for (int coluna = 0; coluna < jogo.getColunas(); ++coluna) {
-        if (jogo.verificar_jogada(0, coluna, 0)) {
-            Lig4 copia = jogo;
-            copia.ler_jogada(0, coluna, jogadorAtual);
+    for (int coluna : colunasValidas) {
+        Lig4 copia = jogo;
+        copia.ler_jogada(0, coluna, jogadorAtual);
+        int pontuacao = minimax(copia, 3, false, jogadorAtual);
 
-            int pontuacao = _minimax(copia, false, jogadorAtual);
-
-            if (pontuacao > melhorPontuacao) {
-                melhorPontuacao = pontuacao;
-                melhorColuna = coluna;
-            }
+        if (pontuacao > melhorPontuacao) {
+            melhorPontuacao = pontuacao;
+            melhorColuna = coluna;
         }
     }
 
-    return {melhorColuna, -1};
+    if (melhorColuna == -1) {
+        melhorColuna = colunasValidas[rand() % colunasValidas.size()];  // Escolhe uma aleatória
+    }
+
+    return {0, melhorColuna};  // Retorna a coluna escolhida
 }
 
 
-int Lig4Bot::_minimax(Lig4& jogo, bool maximizando, int jogadorAtual) {
-    if (jogo.testar_condicao_de_vitoria()) {
-        return maximizando ? -100 : 100;
-    }
 
-    bool movimentosPossiveis = false;
+bool Lig4Bot::tabuleiroCheio(const Lig4& jogo) {
+    // Check top row for empty spaces
     for (int coluna = 0; coluna < jogo.getColunas(); ++coluna) {
-        if (jogo.verificar_jogada(0, coluna, 0)) {
-            movimentosPossiveis = true;
-            break;
+        if (jogo.get_casa(0, coluna) == 0) {
+            return false;
         }
     }
-    if (!movimentosPossiveis) return 0; // Empate
+    return true;
+}
 
-    int outroJogador = (jogadorAtual == 1) ? 2 : 1;
+int Lig4Bot::minimax(Lig4& jogo, int profundidade, bool maximizando, int jogadorAtual) {
+    // Verifica se o jogo acabou
+    if (jogo.testar_condicao_de_vitoria()) {
+        return maximizando ? -100 : 100; // Se for nossa vez e encontramos um tabuleiro vencedor, o oponente venceu
+    }
+
+    if (tabuleiroCheio(jogo) || profundidade == 0) {
+        return 0; // Empate ou profundidade máxima atingida
+    }
+
     int melhorPontuacao = maximizando ? INT_MIN : INT_MAX;
+    int proximoJogador = maximizando ? jogadorAtual : (jogadorAtual == 1 ? 2 : 1);
 
     for (int coluna = 0; coluna < jogo.getColunas(); ++coluna) {
-        if (jogo.verificar_jogada(0, coluna, 0)) {
+        if (jogo.verificar_jogada(0, coluna, proximoJogador)) {
             Lig4 copia = jogo;
-            copia.ler_jogada(0, coluna, maximizando ? jogadorAtual : outroJogador);
+            copia.ler_jogada(0, coluna, proximoJogador);
 
-            int pontuacao = _minimax(copia, !maximizando, jogadorAtual);
+            int pontuacao = minimax(copia, profundidade - 1, !maximizando, jogadorAtual);
 
             if (maximizando) {
                 melhorPontuacao = std::max(melhorPontuacao, pontuacao);

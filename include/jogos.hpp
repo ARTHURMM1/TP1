@@ -19,6 +19,9 @@ public:
     virtual int ler_jogada(int linha, int coluna, int jogador) = 0;
     virtual bool verificar_jogada(int linha, int coluna, int jogador) const = 0;
     virtual bool testar_condicao_de_vitoria() const = 0;
+    virtual int determinar_vencedor() const = 0; 
+    virtual int anunciar_vencedor() const = 0;
+
 
 protected:  
     int linhas_, colunas_;
@@ -35,7 +38,8 @@ public:
     int imprimir_vetor(int jogador) const override;
     std::pair<int, int> calcular_pontuacao() const;
     void mostrar_pontuacao() const;
-    void anunciar_vencedor() const;
+    int determinar_vencedor() const override; 
+    int anunciar_vencedor() const override;
 private:
     static const std::vector<std::pair<int, int>> direcoes;
     std::vector<std::vector<bool>> JogadasValidas_;
@@ -52,8 +56,8 @@ public:
     bool verificar_jogada(int linha, int coluna, int jogador) const override;
     bool testar_condicao_de_vitoria() const override;
     int imprimir_vetor(int jogador) const override;
-    void anunciar_vencedor() const;
-    int determinar_vencedor() const; // Retorna 1 para X, 2 para O, 0 para empate
+    int anunciar_vencedor() const override;
+    int determinar_vencedor() const override; // Retorna 1 para X, 2 para O, 0 para empate
 };
 
 class Lig4 : public JogosDeTabuleiro{
@@ -65,6 +69,8 @@ public:
     bool verificar_jogada(int linha, int coluna, int jogador) const override;
     bool testar_condicao_de_vitoria() const override;
     int imprimir_vetor(int jogador) const override;
+    int anunciar_vencedor() const override;
+    int determinar_vencedor() const override;
 };
 
 #endif

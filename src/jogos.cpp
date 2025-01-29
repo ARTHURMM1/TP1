@@ -139,7 +139,6 @@ bool Reversi::verificar_direcao(int linha, int coluna, int dLinha, int dColuna, 
 }
 
 bool Reversi::verificar_jogada(int linha, int coluna, int jogador) const {
-    int oponente = (jogador == 1) ? 2 : 1;
     if (linha < 0 || linha >= getLinhas() || coluna < 0 || coluna >= getColunas()) {
         return false;
     }
@@ -242,19 +241,37 @@ void Reversi::mostrar_pontuacao() const {
     std::cout << "Jogador 2 (O): " << pontos.second << " peças" << std::endl;
 }
 
-void Reversi::anunciar_vencedor() const {
+int Reversi::determinar_vencedor() const {
     std::pair<int, int> pontos = calcular_pontuacao();
     std::cout << "\nPlacar final:" << std::endl;
     std::cout << "Jogador 1 (X): " << pontos.first << " peças" << std::endl;
     std::cout << "Jogador 2 (O): " << pontos.second << " peças" << std::endl;
     
     if (pontos.first > pontos.second) {
-        std::cout << "\nJogador 1 (X) venceu!" << std::endl;
+        return 1;
     } else if (pontos.second > pontos.first) {
-        std::cout << "\nJogador 2 (O) venceu!" << std::endl;
+        return 2;
     } else {
-        std::cout << "\nEmpate!" << std::endl;
+        return 3;
     }
+    return 0;
+}
+
+int Reversi::anunciar_vencedor() const {
+    int vencedor = determinar_vencedor();
+    switch (vencedor)
+    {
+    case 1:
+        std::cout << "\nJogador 1 (X) venceu!" << std::endl;
+        break;
+    case 2:
+        std::cout << "\nJogador 2 (O) venceu!" << std::endl;
+        break;
+    case 3:
+        std::cout << "\nEmpate!" << std::endl;
+        break;
+    }
+    return vencedor;
 }
 
 
@@ -268,7 +285,7 @@ JogoDaVelha::JogoDaVelha(int linhas, int colunas) : JogosDeTabuleiro(linhas, col
 }
 
 
-void JogoDaVelha::anunciar_vencedor() const {
+int JogoDaVelha::anunciar_vencedor() const {
     int vencedor = determinar_vencedor();
     if (vencedor == 1) {
         std::cout << "\nJogador 1 (X) venceu!" << std::endl;
@@ -277,6 +294,7 @@ void JogoDaVelha::anunciar_vencedor() const {
     } else {
         std::cout << "\nEmpate!" << std::endl;
     }
+    return vencedor;
 }
 
 int JogoDaVelha::determinar_vencedor() const {
@@ -444,51 +462,90 @@ int Lig4::imprimir_vetor(int jogador) const {
     return 0;
 }
 
-bool Lig4::testar_condicao_de_vitoria() const {
-    int linhas = this->getLinhas();
-    int colunas = this->getColunas();
+
+int Lig4::determinar_vencedor() const {
+    int linhas = getLinhas();
+    int colunas = getColunas();
 
     for (int linha = 0; linha < linhas; ++linha) {
         for (int coluna = 0; coluna < colunas; ++coluna) {
-            int jogador = this->get_casa(linha, coluna);
+            int jogador = get_casa(linha, coluna);
+            if (jogador == 0) continue;
 
-            if (jogador == 0) continue;  
-
-            // Horizontal
+            // Verificar horizontal
             if (coluna + 3 < colunas &&
-                this->get_casa(linha, coluna + 1) == jogador &&
-                this->get_casa(linha, coluna + 2) == jogador &&
-                this->get_casa(linha, coluna + 3) == jogador) {
-                return true;
+                get_casa(linha, coluna + 1) == jogador &&
+                get_casa(linha, coluna + 2) == jogador &&
+                get_casa(linha, coluna + 3) == jogador) {
+                return jogador;
             }
 
-                // Vertical
-                if (linha + 3 < linhas &&
-                    this->get_casa(linha + 1, coluna) == jogador &&
-                    this->get_casa(linha + 2, coluna) == jogador &&
-                    this->get_casa(linha + 3, coluna) == jogador) {
-                    return true;
-                }
+            // Verificar vertical
+            if (linha + 3 < linhas &&
+                get_casa(linha + 1, coluna) == jogador &&
+                get_casa(linha + 2, coluna) == jogador &&
+                get_casa(linha + 3, coluna) == jogador) {
+                return jogador;
+            }
 
-                // Diagonal I
-                if (linha + 3 < linhas && coluna + 3 < colunas &&
-                    this->get_casa(linha + 1, coluna + 1) == jogador &&
-                    this->get_casa(linha + 2, coluna + 2) == jogador &&
-                    this->get_casa(linha + 3, coluna + 3) == jogador) {
-                    return true;
-                }
+            // Verificar diagonal para baixo-direita
+            if (linha + 3 < linhas && coluna + 3 < colunas &&
+                get_casa(linha + 1, coluna + 1) == jogador &&
+                get_casa(linha + 2, coluna + 2) == jogador &&
+                get_casa(linha + 3, coluna + 3) == jogador) {
+                return jogador;
+            }
 
-                // Diagonal II
-                if (linha - 3 >= 0 && coluna + 3 < colunas &&
-                    this->get_casa(linha - 1, coluna + 1) == jogador &&
-                    this->get_casa(linha - 2, coluna + 2) == jogador &&
-                    this->get_casa(linha - 3, coluna + 3) == jogador) {
-                    return true;
-                }
+            // Verificar diagonal para cima-direita
+            if (linha - 3 >= 0 && coluna + 3 < colunas &&
+                get_casa(linha - 1, coluna + 1) == jogador &&
+                get_casa(linha - 2, coluna + 2) == jogador &&
+                get_casa(linha - 3, coluna + 3) == jogador) {
+                return jogador;
             }
         }
-        return false;  
     }
+
+    return 0; // Nenhum vencedor encontrado
+}
+
+int Lig4::anunciar_vencedor() const {
+    int vencedor = determinar_vencedor();
+    bool empate = true;
+
+    // Verifica se todas as colunas estão cheias (primeira linha)
+    for (int col = 0; col < getColunas(); ++col) {
+        if (get_casa(0, col) == 0) {
+            empate = false;
+            break;
+        }
+    }
+
+    if (vencedor != 0) {
+        std::cout << "\nJogador " << vencedor << " venceu!" << std::endl;
+    } else if (empate) {
+        std::cout << "\nEmpate! Todas as posições estão preenchidas." << std::endl;
+    } else {
+        std::cout << "\nO jogo ainda não terminou." << std::endl;
+    }
+    return vencedor;
+}
+bool Lig4::testar_condicao_de_vitoria() const {
+    if (determinar_vencedor() != 0) {
+        return true;
+    }
+
+    // Verifica se todas as colunas estão cheias (empate)
+    for (int col = 0; col < getColunas(); ++col) {
+        if (get_casa(0, col) == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+
 bool Lig4::verificar_jogada(int linha, int coluna, int jogador) const {
         if (coluna < 0 || coluna >= getColunas()) {
             return false;  
@@ -502,19 +559,19 @@ bool Lig4::verificar_jogada(int linha, int coluna, int jogador) const {
         return false;  
     }
 int Lig4::ler_jogada(int linha, int coluna, int jogador) {
-    if (!verificar_jogada(0, coluna, jogador)) { // linha is unused
-        return 0; 
+    if (!verificar_jogada(0, coluna, jogador)) { 
+        return -1; // Indica jogada inválida
     }
 
-    // Iterate from bottom to top to find the first empty row
-    for (int i = getLinhas() - 1; i >= 0; --i) { // Fixed loop
+    for (int i = getLinhas() - 1; i >= 0; --i) { 
         if (get_casa(i, coluna) == 0) {
             Tabuleiro_[i][coluna] = jogador;
-            return jogador;
+            return i; // Retorna a linha onde a peça foi colocada
         }
     }
-    return 0;
+    return -1; // Não deve ocorrer se a jogada foi validada
 }
+
 Lig4::Lig4(int linhas, int colunas) : JogosDeTabuleiro(linhas, colunas) {
     // Inicializa o tabuleiro vazio
     for (int i = 0; i < linhas; i++) {

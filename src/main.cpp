@@ -114,26 +114,39 @@ void iniciarNovaPartida(Cadastro& jogadores) {
         std::cout << "Jogador 1 não encontrado!" << std::endl;
         return;
     }
-
-    if (!vsBot) {
-        std::cout << "Digite o apelido do Jogador 2: ";
-        std::getline(std::cin, apelido2);
-
-        Jogador jogador2("", apelido2);
-        if (!jogadores.check(jogador2)) {
-            std::cout << "Jogador 2 não encontrado!" << std::endl;
-            return;
+    for (const auto& jogador : jogadores.get_jogadores()) {
+        if (jogador->getApelido() == apelido1)
+            {
+                    if (!vsBot) 
+                    {
+                        std::cout << "Digite o apelido do Jogador 2: ";
+                        std::getline(std::cin, apelido2);
+                        Jogador jogador_teste("", apelido2);
+                        if (!jogadores.check(jogador_teste)) {
+                            std::cout << "Jogador 2 não encontrado!" << std::endl;
+                            return;
+                        }
+                        for(const auto& jogador2 : jogadores.get_jogadores())
+                        {
+                            if (jogador2->getApelido() == apelido2)
+                            {
+                                Partida partida(tipoJogo, jogador.get(), jogador2.get());
+                                partida.iniciarPartida();
+                            }
+                        }
+                    }
+                    else 
+                    {
+                        if (jogador->getApelido() == apelido1)
+                        {
+                            Partida partida(tipoJogo, jogador.get());
+                            partida.iniciarPartida();
+                        }
+            }
         }
-
-        Partida partida(tipoJogo, &jogador1, &jogador2);
-        partida.iniciarPartida();
-    } else {
-        Partida partida(tipoJogo, &jogador1);
-        partida.iniciarPartida();
-    }
-
     // Após a partida, salva as atualizações do cadastro
     jogadores.save("cadastro.txt");
+}
 }
 
 /**

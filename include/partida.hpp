@@ -39,7 +39,7 @@ private:
     BotPlayer* bot1;
     BotPlayer* bot2;
 
-    void finalizarPartida();
+    std::pair<int, int> finalizarPartida();
 };
 
 #endif

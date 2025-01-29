@@ -113,9 +113,73 @@ bool Partida::iniciarPartida() {
 
             if (verificarFimDeJogo()) {
                 imprimirTabuleiro(jogadorAtual);
-                finalizarPartida();
+                std::pair<int, int> vencedor_e_jogo = finalizarPartida(); //primeiro é o jogador vencedor e o segundo o jogo
+                std::cout << vencedor_e_jogo.first << ' ' << vencedor_e_jogo.second;
+                switch (vencedor_e_jogo.second)
+                {
+                case 1:
+                    if (vencedor_e_jogo.first == 1)
+                    {
+                        jogador1->setVitorias(jogador1->getReversi(),jogador1->getReversi()._vitorias + 1);
+                        if (jogador2)
+                        {
+                            jogador2->setDerrotas(jogador2->getReversi(),jogador2->getReversi()._derrotas + 1);
+                        }
+                    }
+                    if (vencedor_e_jogo.first == 2)
+                    {
+                        jogador1->setDerrotas(jogador1->getReversi(),jogador1->getReversi()._derrotas + 1);
+                        if (jogador2)
+                        {
+                            jogador2->setVitorias(jogador2->getReversi(),jogador2->getReversi()._vitorias + 1);
+                        }
+
+                    }
+                case 2: // Jogo: Velha
+                    if (vencedor_e_jogo.first == 1)
+                    {
+                        jogador1->setVitorias(jogador1->getVelha(), jogador1->getVelha()._vitorias + 1);
+                        if (jogador2)
+                        {
+                            jogador2->setDerrotas(jogador2->getVelha(), jogador2->getVelha()._derrotas + 1);
+                        }
+                    }
+                    if (vencedor_e_jogo.first == 2)
+                    {
+                        jogador1->setDerrotas(jogador1->getVelha(), jogador1->getVelha()._derrotas + 1);
+                        if (jogador2)
+                        {
+                            jogador2->setVitorias(jogador2->getVelha(), jogador2->getVelha()._vitorias + 1);
+                        }
+                    }
+                    break;
+
+                case 3: // Jogo: Lig4
+                    if (vencedor_e_jogo.first == 1)
+                    {
+                        jogador1->setVitorias(jogador1->getLig4(), jogador1->getLig4()._vitorias + 1);
+                        if (jogador2)
+                        {
+                            jogador2->setDerrotas(jogador2->getLig4(), jogador2->getLig4()._derrotas + 1);
+                        }
+                    }
+                    if (vencedor_e_jogo.first == 2)
+                    {
+                        jogador1->setDerrotas(jogador1->getLig4(), jogador1->getLig4()._derrotas + 1);
+                        if (jogador2)
+                        {
+                            jogador2->setVitorias(jogador2->getLig4(), jogador2->getLig4()._vitorias + 1);
+                        }
+                    }
+                    break;
+                
+                default:
+                    std::cout << "Jogo inválido ou não reconhecido!" << std::endl;
+                    break;
+                }
                 jogoEmAndamento = false;
-            } else {
+            }else 
+            {
                 jogadorAtual = (jogadorAtual == 1) ? 2 : 1;
             }
         }
@@ -123,7 +187,6 @@ bool Partida::iniciarPartida() {
         std::cerr << "Erro durante a partida: " << e.what() << std::endl;
         return false;
     }
-
     return true;
 }
 
@@ -152,40 +215,66 @@ void Partida::imprimirTabuleiro(int jogador_atual) const {
  * @param coluna Coluna escolhida para a jogada (opcional para bots).
  * @return true se a jogada foi válida, false caso contrário.
  */
-bool Partida::realizarJogada(int jogadorAtual, int linha, int coluna) {
+bool Partida::realizarJogada(int jogadorAtual, int linha, int coluna) { 
     try {
+        // Verifica se o jogador atual é um bot
         if ((jogadorAtual == 2 && !jogador2) || (jogadorAtual == 1 && !jogador1)) {
             BotPlayer* botAtual = (jogadorAtual == 2) ? bot1 : bot2;
             std::pair<int, int> jogadaBot;
             bool jogada_achada = false;
+            int tentativas = 0;
+            const int maxTentativas = 100; // Limite para evitar loop infinito
 
-            while (!jogada_achada) {
+            while (!jogada_achada && tentativas < maxTentativas) {
                 jogadaBot = botAtual->calcularProximaJogada(*jogoAtual, jogadorAtual);
                 int botLinha = jogadaBot.first;
                 int botColuna = jogadaBot.second;
                 jogada_achada = jogoAtual->verificar_jogada(botLinha, botColuna, jogadorAtual);
+                tentativas++;
+                
                 if (jogada_achada) {
                     std::cout << "\nA IA está pensando...\n";
                     std::this_thread::sleep_for(std::chrono::seconds(2));
                     return jogoAtual->ler_jogada(botLinha, botColuna, jogadorAtual);
                 }
             }
+
+            if (!jogada_achada) {
+                std::cerr << "Erro: O bot não encontrou uma jogada válida após " << maxTentativas << " tentativas.\n";
+            }
             return false;
         }
 
-        if (linha == -1 || coluna == -1) {
-            std::cout << "\nJogador " << jogadorAtual << ", faça sua jogada:\nLinha: ";
-            std::cin >> linha;
-            std::cout << "Coluna: ";
-            std::cin >> coluna;
+        // Entrada do jogador humano
+        bool jogada_valida = false;
+        while (!jogada_valida) {
+            if (linha == -1 || coluna == -1) {
+                std::cout << "\nJogador " << jogadorAtual << ", faça sua jogada:";
+
+                if (auto* lig4 = dynamic_cast<Lig4*>(jogoAtual.get())) {
+                    std::cout << "Coluna: ";
+                    std::cin >> coluna;
+                    linha = -1; // Para Lig4, a linha é determinada automaticamente
+                } else {
+                    std::cout << "Linha: ";
+                    std::cin >> linha;
+                    std::cout << "\nColuna: ";
+                    std::cin >> coluna;
+                }
+            }
+
+            linha -= 1;
+            coluna -= 1;
+
+            jogada_valida = jogoAtual->verificar_jogada(linha, coluna, jogadorAtual);
+            if (!jogada_valida) {
+                std::cout << "Jogada inválida! Tente novamente.\n";
+                linha = -1; // Reseta para forçar nova entrada
+                coluna = -1;
+            }
         }
 
-        linha -= 1;
-        coluna -= 1;
-
-        if (jogoAtual->verificar_jogada(linha, coluna, jogadorAtual)) {
-            return jogoAtual->ler_jogada(linha, coluna, jogadorAtual);
-        }
+        return jogoAtual->ler_jogada(linha, coluna, jogadorAtual);
 
     } catch (const std::exception& e) {
         std::cerr << "Erro ao realizar jogada: " << e.what() << std::endl;
@@ -193,6 +282,7 @@ bool Partida::realizarJogada(int jogadorAtual, int linha, int coluna) {
 
     return false;
 }
+
 
 /**
  * @brief Verifica se o jogador atual tem jogadas disponíveis.
@@ -249,10 +339,22 @@ bool Partida::verificarFimDeJogo() const {
 /**
  * @brief Finaliza a partida e exibe o resultado.
  */
-void Partida::finalizarPartida() {
+std::pair<int, int> Partida::finalizarPartida() {
     std::cout << "Jogo finalizado!" << std::endl;
-
+    std::pair<int, int> vencedor_e_jogo;
     if (auto* reversi = dynamic_cast<Reversi*>(jogoAtual.get())) {
-        reversi->anunciar_vencedor();
+        vencedor_e_jogo.first = reversi->anunciar_vencedor();
+        vencedor_e_jogo.second = 1;
     }
+    else if (auto* velha = dynamic_cast<JogoDaVelha*>(jogoAtual.get()))
+    {
+        vencedor_e_jogo.first = velha->anunciar_vencedor();
+        vencedor_e_jogo.second = 2;
+    }
+    else if (auto* lig4 = dynamic_cast<Lig4*>(jogoAtual.get()))
+    {
+        vencedor_e_jogo.first = lig4->anunciar_vencedor();
+        vencedor_e_jogo.second = 3;
+    }
+    return vencedor_e_jogo;
 }

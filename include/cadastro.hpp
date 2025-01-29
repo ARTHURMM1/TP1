@@ -53,9 +53,9 @@ public:
     // métodos de acesso
     std::string getNome() const { return _nome; }
     std::string getApelido() const { return _apelido; }
-    const Winrate& getLig4() const { return Lig4; }
-    const Winrate& getReversi() const { return Reversi; }
-    const Winrate& getVelha() const { return Velha; }
+    Winrate& getLig4() { return Lig4; }
+    Winrate& getReversi() { return Reversi; }
+    Winrate& getVelha() { return Velha; }
     //possível adicionar outros jogos aqui.
     int getVitorias(const Winrate& jogo) const { return jogo._vitorias; }
     int getDerrotas(const Winrate& jogo) const { return jogo._derrotas; }
@@ -81,7 +81,7 @@ public:
     /**
      * 
      */
-    const std::vector<std::unique_ptr<Jogador>>& get_jogadores() const { return _jogadores; }
+    const std::vector<std::unique_ptr<Jogador>>& get_jogadores() { return _jogadores; }
     void adicionarJogador(const Jogador& alvo);
     void mostrarJogadores() const;
     void import(const std::string& caminho);

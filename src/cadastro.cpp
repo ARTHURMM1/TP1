@@ -2,11 +2,14 @@
  * @file cadastro.cpp 
  * @brief Declaração dos métodos das classes Jogador e Cadastro.
  */
-
+#define DIVIDER "-------------------------------------------------------------------------------------------------------------\n"
 
 #include "cadastro.hpp"
+#include "cores.hpp"
 #include <stdexcept>
 #include <sstream>
+#include <iomanip>
+
 
 /**
  * @brief Serializa os dados do jogador em uma string formatada
@@ -117,26 +120,42 @@ void Cadastro::mostrarJogadores() const {
             std::cout << "Nenhum jogador cadastrado." << std::endl;
             return;
         }
-        
+
+        // Cabeçalho da tabela
+        std::cout << NEGRITO << DIVIDER
+                  << std::left 
+                  << std::setw(20) << "  Nome" 
+                  << std::setw(15) << "Apelido" 
+                  << std::setw(12) << "LIG4 (V/D)"
+                  << std::setw(12) << "VELHA (V/D)"
+                  << std::setw(12) << "REVERSI (V/D)"
+                  << "\n" << DIVIDER << RESETAR;
+
+        // Dados dos jogadores
         for (const auto& jogador : _jogadores) {
             if (!jogador) {
-                throw std::runtime_error("Ponteiro inválido encontrado na lista de jogadores");
+                throw std::runtime_error("Ponteiro inválido na lista de jogadores");
             }
 
-            std::cout << jogador->getNome() << " " << jogador->getApelido() 
-                << "\nLIG4 - V: " << jogador->getVitorias(jogador->getLig4())
-                << "D: " << jogador->getDerrotas(jogador->getLig4())
-                << "\nVELHA - V:" << jogador->getVitorias(jogador->getVelha())
-                << " D: " << jogador->getDerrotas(jogador->getVelha())
-                << "\nREVERSI - V: " << jogador->getVitorias(jogador->getReversi())
-                << " D: " << jogador->getDerrotas(jogador->getReversi())
-                << "\n"
-                << std::endl;
+            std::cout << std::left 
+                      << std::setw(20) << ("  " + jogador->getNome())
+                      << std::setw(15) << jogador->getApelido()
+                      << AMARELO << std::setw(12) 
+                      << (std::to_string(jogador->getVitorias(jogador->getLig4())) + "/" + std::to_string(jogador->getDerrotas(jogador->getLig4())))
+                      << VERDE << std::setw(12) 
+                      << (std::to_string(jogador->getVitorias(jogador->getVelha())) + "/" + std::to_string(jogador->getDerrotas(jogador->getVelha())))
+                      << AZUL << std::setw(12) 
+                      << (std::to_string(jogador->getVitorias(jogador->getReversi())) + "/" + std::to_string(jogador->getDerrotas(jogador->getReversi())))
+                      << RESETAR << "\n";
         }
+
+        std::cout << NEGRITO << DIVIDER << RESETAR;
+
     } catch (const std::exception& e) {
         throw std::runtime_error(std::string("Erro ao mostrar jogadores: ") + e.what());
     }
 }
+
 
 /**
  * @brief Importa dados de jogadores de um arquivo
@@ -188,6 +207,7 @@ void Cadastro::import(const std::string& caminho) {
 void Cadastro::save(const std::string& caminho) {
     std::ofstream arquivo(caminho);
     if (!arquivo.is_open()) {
+
         throw std::runtime_error(std::string("Não foi possível abrir o arquivo para escrita: ") + caminho);
     }
 
