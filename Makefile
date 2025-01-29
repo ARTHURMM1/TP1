@@ -1,39 +1,62 @@
+# Compilador
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall -Iinclude
-LDFLAGS = 
+
+# Flags de compilação
+CXXFLAGS = -Wall -std=c++11 -Iinclude
+
+# Nome do executável principal
+TARGET = main
+
+# Nome do executável de testes
+TEST_TARGET = testes
+
+# Diretórios
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
-INCLUDE_DIR = include
-TARGET = $(BIN_DIR)/main
+TESTS_DIR = tests
 
-# arquivos fonte
-SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
-OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES))
+# Lista de arquivos fonte do programa principal
+SRCS = $(wildcard $(SRC_DIR)/*.cpp)
 
-# regra default
-all: $(TARGET)
+# Lista de arquivos objeto do programa principal
+OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 
-# compilar .exe
-$(TARGET): $(OBJ_FILES)
-	@mkdir -p $(BIN_DIR)
-	$(CXX) $(CXXFLAGS) $(OBJ_FILES) -o $@ $(LDFLAGS)
+# Arquivo de teste
+TEST_SRC = $(TESTS_DIR)/testes.cpp
+TEST_OBJ = $(OBJ_DIR)/testes.o
 
-# compilar .o
+# Regra padrão
+all: $(BIN_DIR)/$(TARGET)
+
+# Regra para criar o executável principal
+$(BIN_DIR)/$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+# Regra para compilar os arquivos fonte em objetos
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# clean
+# Regra para compilar o arquivo de testes
+$(TEST_OBJ): $(TEST_SRC)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Regra para criar o executável de testes
+$(BIN_DIR)/$(TEST_TARGET): $(filter-out $(OBJ_DIR)/main.o, $(OBJS)) $(TEST_OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+# Regra para limpar os arquivos gerados
 clean:
-	rm -rf $(OBJ_DIR) $(BIN_DIR)
+	rm -f $(OBJ_DIR)/*.o $(BIN_DIR)/$(TARGET) $(BIN_DIR)/$(TEST_TARGET)
 
-# rodar
-run: all
-	$(TARGET)
-# debug
-debug: CXXFLAGS += -g
-debug: clean all
+# Garante que os diretórios existam
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
-# phony targets
-.PHONY: all clean run debug
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+# Dependências para garantir que os diretórios sejam criados antes da compilação
+$(OBJS): | $(OBJ_DIR)
+$(BIN_DIR)/$(TARGET): | $(BIN_DIR)
+$(BIN_DIR)/$(TEST_TARGET): | $(BIN_DIR)
