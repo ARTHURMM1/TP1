@@ -28,6 +28,7 @@ public:
         const JogosDeTabuleiro& jogo, 
         int jogadorAtual
     ) override;
+    void desfazer_jogada(int linha, int coluna, const std::vector<std::pair<int, int>>& pecasRevertidas);
 
 private:
     int _minimax(Reversi& jogo, int profundidade, bool maximizando, int jogadorAtual);
