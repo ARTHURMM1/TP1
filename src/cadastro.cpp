@@ -2,7 +2,6 @@
  * @file cadastro.cpp 
  * @brief Declaração dos métodos das classes Jogador e Cadastro.
  */
-#define DIVIDER "-------------------------------------------------------------------------------------------------------------\n"
 
 #include "cadastro.hpp"
 #include "cores.hpp"

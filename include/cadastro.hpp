@@ -5,6 +5,7 @@
  * @file cadastro.hpp
  * @brief Declaração das classes e métodos relacionados ao gerenciamento de jogadores e seus cadastros.
  */
+#define DIVIDER "-------------------------------------------------------------------------------------------------------------\n"
 
 #include <iostream>
 #include <vector>

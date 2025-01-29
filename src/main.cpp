@@ -15,7 +15,8 @@
  * @brief Exibe o menu de comandos do sistema.
  */
 void mostrarMenu() {
-    std::cout << "\n=== Menu de Comandos ===" << std::endl;
+    std::cout << NEGRITO << DIVIDER << RESETAR;
+    std::cout << AMARELO << "=== Menu de Comandos ===" << RESETAR << std::endl;
     std::cout << "CJ - Cadastrar novo jogador" << std::endl;
     std::cout << "RJ - Remover jogador" << std::endl;
     std::cout << "LJ - Listar jogadores" << std::endl;
@@ -23,8 +24,10 @@ void mostrarMenu() {
     std::cout << "NP - Nova partida" << std::endl;
     std::cout << "F  - Finalizar programa" << std::endl;
     std::cout << "H  - Ajuda (mostra este menu)" << std::endl;
-    std::cout << "=====================" << std::endl;
+    std::cout << DIVIDER << RESETAR << std::endl;
 }
+
+
 
 /**
  * @brief Cadastra um novo jogador no sistema.
@@ -90,64 +93,66 @@ void iniciarNovaPartida(Cadastro& jogadores) {
     int tipoJogo;
     bool vsBot = false;
 
-    std::cout << "=== Tipos de Jogo ===" << std::endl;
+    std::cout << NEGRITO << DIVIDER << RESETAR;
+    std::cout << AMARELO << "=== Tipos de Jogo ===" << RESETAR << std::endl;
     std::cout << "1 - Jogo da Velha" << std::endl;
     std::cout << "2 - Lig4" << std::endl;
     std::cout << "3 - Reversi" << std::endl;
+    std::cout << DIVIDER << std::endl;
+
     std::cout << "Escolha o tipo de jogo: ";
     std::cin >> tipoJogo;
 
     if (tipoJogo < 1 || tipoJogo > 3) {
-        std::cout << "Tipo de jogo inválido!" << std::endl;
+        std::cout << VERMELHO << "Tipo de jogo inválido!" << RESETAR << std::endl;
         return;
     }
 
     std::cout << "Jogar contra BOT? (1-Sim, 0-Não): ";
     std::cin >> vsBot;
 
+    std::cout << DIVIDER << std::endl;
     std::cout << "Digite o apelido do Jogador 1: ";
     std::cin.ignore();
     std::getline(std::cin, apelido1);
 
     Jogador jogador1("", apelido1);
     if (!jogadores.check(jogador1)) {
-        std::cout << "Jogador 1 não encontrado!" << std::endl;
+        std::cout << VERMELHO << "Jogador 1 não encontrado!" << RESETAR << std::endl;
         return;
     }
+
     for (const auto& jogador : jogadores.get_jogadores()) {
-        if (jogador->getApelido() == apelido1)
-            {
-                    if (!vsBot) 
-                    {
-                        std::cout << "Digite o apelido do Jogador 2: ";
-                        std::getline(std::cin, apelido2);
-                        Jogador jogador_teste("", apelido2);
-                        if (!jogadores.check(jogador_teste)) {
-                            std::cout << "Jogador 2 não encontrado!" << std::endl;
-                            return;
-                        }
-                        for(const auto& jogador2 : jogadores.get_jogadores())
-                        {
-                            if (jogador2->getApelido() == apelido2)
-                            {
-                                Partida partida(tipoJogo, jogador.get(), jogador2.get());
-                                partida.iniciarPartida();
-                            }
-                        }
+        if (jogador->getApelido() == apelido1) {
+            if (!vsBot) {
+                std::cout << "Digite o apelido do Jogador 2: ";
+                std::getline(std::cin, apelido2);
+                Jogador jogador_teste("", apelido2);
+                if (!jogadores.check(jogador_teste)) {
+                    std::cout << VERMELHO << "Jogador 2 não encontrado!" << RESETAR << std::endl;
+                    return;
+                }
+                for (const auto& jogador2 : jogadores.get_jogadores()) {
+                    if (jogador2->getApelido() == apelido2) {
+                        Partida partida(tipoJogo, jogador.get(), jogador2.get());
+                        partida.iniciarPartida();
+                        break;
                     }
-                    else 
-                    {
-                        if (jogador->getApelido() == apelido1)
-                        {
-                            Partida partida(tipoJogo, jogador.get());
-                            partida.iniciarPartida();
-                        }
+                }
+            } else {
+                if (jogador->getApelido() == apelido1) {
+                    Partida partida(tipoJogo, jogador.get());
+                    partida.iniciarPartida();
+                }
             }
         }
-    // Após a partida, salva as atualizações do cadastro
-    jogadores.save("cadastro.txt");
 }
+
+// Após a partida, salva as atualizações do cadastro
+jogadores.save("cadastro.txt");
+std::cout << NEGRITO << DIVIDER << RESETAR << std::endl;
 }
+
 
 /**
  * @brief Função principal do programa.
