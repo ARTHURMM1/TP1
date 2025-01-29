@@ -16,10 +16,12 @@
 /**
  * @struct Winrate
  * @brief Estrutura para armazenar vitórias e derrotas de um jogador em um jogo específico.
+ * @param _vitorias Número de vitórias.
+ * @param _derrotas Número de derrotas.
  */
 struct Winrate {
-    int _vitorias; ///< Número de vitórias.
-    int _derrotas; ///< Número de derrotas.
+    int _vitorias; 
+    int _derrotas; 
 };
 
 /**
@@ -28,20 +30,12 @@ struct Winrate {
  */
 class Jogador {
 private:
-    Winrate Velha;   ///< Estatísticas para o jogo da Velha.
-    Winrate Lig4;    ///< Estatísticas para o jogo Lig4.
-    Winrate Reversi; ///< Estatísticas para o jogo Reversi.
-    std::string _nome;   ///< Nome do jogador.
-    std::string _apelido; ///< Apelido do jogador.
-
-public:
-    private:
-    Winrate Velha;  
-    Winrate Lig4;   
-    Winrate Reversi; 
-    std::string _nome;
-    std::string _apelido;
-    //adicionar outros jogos
+    Winrate Velha;   
+    Winrate Lig4;    
+    Winrate Reversi;
+    //adicionar outros jogos aqui.
+    std::string _nome;   
+    std::string _apelido; 
 
 public:
     // construtor
@@ -84,8 +78,10 @@ private:
     std::vector<std::unique_ptr<Jogador>> _jogadores; ///< Vetor de ponteiros únicos para os jogadores cadastrados.
 
 public:
-
-    const std::vector<std::unique_ptr<Jogador>>& get_jogadores() const;
+    /**
+     * 
+     */
+    const std::vector<std::unique_ptr<Jogador>>& get_jogadores() const { return _jogadores; }
     void adicionarJogador(const Jogador& alvo);
     void mostrarJogadores() const;
     void import(const std::string& caminho);
