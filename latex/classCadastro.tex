@@ -1,10 +1,18 @@
 \doxysection{Referência da Classe Cadastro}
 \hypertarget{classCadastro}{}\label{classCadastro}\index{Cadastro@{Cadastro}}
+
+
+Gerencia o cadastro de jogadores, incluindo adição, remoção e persistência de dados.  
+
+
+
+
+{\ttfamily \#include $<$cadastro.\+hpp$>$}
+
 \doxysubsubsection*{Membros Públicos}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classCadastro_a04625ee08e777aba59d082dbc2acdf12}\label{classCadastro_a04625ee08e777aba59d082dbc2acdf12} 
-const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classJogador}{Jogador}} $>$ $>$ \& {\bfseries get\+\_\+jogadores} () const
+const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classJogador}{Jogador}} $>$ $>$ \& \mbox{\hyperlink{classCadastro_a04625ee08e777aba59d082dbc2acdf12}{get\+\_\+jogadores}} () const
 \item 
 void \mbox{\hyperlink{classCadastro_a3026bb36cdba2c9dfefa45bac0bd9522}{adicionar\+Jogador}} (const \mbox{\hyperlink{classJogador}{Jogador}} \&alvo)
 \begin{DoxyCompactList}\small\item\em Adiciona um novo jogador ao cadastro. \end{DoxyCompactList}\item 
@@ -19,6 +27,9 @@ void \mbox{\hyperlink{classCadastro_a2c0405a5f48e1cf57e41b8dc790523d4}{remove\+J
 bool \mbox{\hyperlink{classCadastro_aeef1a54e3a25397ba37e2d4acef3c10f}{check}} (const \mbox{\hyperlink{classJogador}{Jogador}} \&alvo) const
 \begin{DoxyCompactList}\small\item\em Verifica se um jogador está cadastrado. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Descrição detalhada}
+Gerencia o cadastro de jogadores, incluindo adição, remoção e persistência de dados. 
 
 \doxysubsection{Documentação das funções}
 \Hypertarget{classCadastro_a3026bb36cdba2c9dfefa45bac0bd9522}\label{classCadastro_a3026bb36cdba2c9dfefa45bac0bd9522} 
@@ -66,6 +77,12 @@ true se o jogador estiver cadastrado, false caso contrário
 {\em std\+::runtime\+\_\+error} & Se houver erro durante a verificação \\
 \hline
 \end{DoxyExceptions}
+\Hypertarget{classCadastro_a04625ee08e777aba59d082dbc2acdf12}\label{classCadastro_a04625ee08e777aba59d082dbc2acdf12} 
+\index{Cadastro@{Cadastro}!get\_jogadores@{get\_jogadores}}
+\index{get\_jogadores@{get\_jogadores}!Cadastro@{Cadastro}}
+\doxysubsubsection{\texorpdfstring{get\_jogadores()}{get\_jogadores()}}
+{\footnotesize\ttfamily const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classJogador}{Jogador}} $>$ $>$ \& Cadastro\+::get\+\_\+jogadores (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
 \Hypertarget{classCadastro_a336b008a179b98572c7604184ce8e67e}\label{classCadastro_a336b008a179b98572c7604184ce8e67e} 
 \index{Cadastro@{Cadastro}!import@{import}}
 \index{import@{import}!Cadastro@{Cadastro}}
@@ -149,5 +166,5 @@ Salva todos os jogadores em um arquivo.
 
 A documentação para essa classe foi gerada a partir dos seguintes arquivos\+:\begin{DoxyCompactItemize}
 \item 
-include/cadastro.\+hpp\item 
-src/cadastro.\+cpp\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{cadastro_8hpp}{cadastro.\+hpp}}\item 
+src/\mbox{\hyperlink{cadastro_8cpp}{cadastro.\+cpp}}\end{DoxyCompactItemize}

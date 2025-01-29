@@ -1,0 +1,76 @@
+\doxysection{jogos.\+hpp}
+\hypertarget{jogos_8hpp_source}{}\label{jogos_8hpp_source}\index{include/jogos.hpp@{include/jogos.hpp}}
+\mbox{\hyperlink{jogos_8hpp}{Ir para a documentação desse arquivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ JOGOS\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ JOGOS\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cores_8hpp}{cores.hpp}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJogosDeTabuleiro}{JogosDeTabuleiro}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{classJogosDeTabuleiro}{JogosDeTabuleiro}}(\textcolor{keywordtype}{int}\ linhas\ =\ 0,\ \textcolor{keywordtype}{int}\ colunas\ =\ 0);}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classJogosDeTabuleiro_a002a676b7efeaf147a62466847d2b6a2}{\string~JogosDeTabuleiro}}()\ =\ \textcolor{keywordflow}{default};\ \ \textcolor{comment}{//\ Added\ virtual\ destructor}}
+\DoxyCodeLine{00011\ \ \ \ \ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classJogosDeTabuleiro_a9fa8791ba2ffafb646704ef6be15dd22}{getLinhas}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classJogosDeTabuleiro_ae1f7d2104146a4c8eba518d79c310d37}{getColunas}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00014\ \ \ \ \ std::vector<std::vector<int>>\ \mbox{\hyperlink{classJogosDeTabuleiro_a9bbdb5498308ab6cefd58dca32341934}{get\_tabuleiro}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classJogosDeTabuleiro_a20769544cbb748db38cf769b73556aa5}{get\_casa}}(\textcolor{keywordtype}{int}\ linha,\ \textcolor{keywordtype}{int}\ coluna)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJogosDeTabuleiro_a9e21aa8366b6728878c0bc9666386c38}{setLinhasColunas}}(\textcolor{keywordtype}{int}\ linha,\ \textcolor{keywordtype}{int}\ coluna);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classJogosDeTabuleiro_a2514f0d4a161f6c9e4de9d08f7022788}{imprimir\_vetor}}(\textcolor{keywordtype}{int}\ jogador)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classJogosDeTabuleiro_ac8fcf047c77be95652ddfceaecd1895a}{ler\_jogada}}(\textcolor{keywordtype}{int}\ linha,\ \textcolor{keywordtype}{int}\ coluna,\ \textcolor{keywordtype}{int}\ jogador)\ =\ 0;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classJogosDeTabuleiro_a90ee6469426295d13f25a179463a2b1a}{verificar\_jogada}}(\textcolor{keywordtype}{int}\ linha,\ \textcolor{keywordtype}{int}\ coluna,\ \textcolor{keywordtype}{int}\ jogador)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classJogosDeTabuleiro_a551e5544d905b7b37bd90e09ae1e72aa}{testar\_condicao\_de\_vitoria}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{protected}:\ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classJogosDeTabuleiro_a2f631f28c17bcf9792e26d01c08b467a}{linhas\_}},\ \mbox{\hyperlink{classJogosDeTabuleiro_a8831471481b7f4fc792747635c44b8f1}{colunas\_}};}
+\DoxyCodeLine{00025\ \ \ \ \ std::vector<std::vector<int>>\ \mbox{\hyperlink{classJogosDeTabuleiro_a8d029fd3f6431e4c4c839210a5cc17a3}{Tabuleiro\_}};}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classReversi}{Reversi}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classJogosDeTabuleiro}{JogosDeTabuleiro}}\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classReversi}{Reversi}}(\textcolor{keywordtype}{int}\ linhas\ =\ 8,\ \textcolor{keywordtype}{int}\ colunas\ =\ 8);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classReversi_a79fc75bf2822d4f6ef717d3884d73a39}{ler\_jogada}}(\textcolor{keywordtype}{int}\ linha,\ \textcolor{keywordtype}{int}\ coluna,\ \textcolor{keywordtype}{int}\ jogador)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classReversi_a1a93802ce4ca9b2240a1673e144da307}{verificar\_jogada}}(\textcolor{keywordtype}{int}\ linha,\ \textcolor{keywordtype}{int}\ coluna,\ \textcolor{keywordtype}{int}\ jogador)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classReversi_a9469f628bea2ad94404bd79bd3228855}{testar\_condicao\_de\_vitoria}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00034\ \ \ \ \ std::vector<std::vector<bool>>\ \mbox{\hyperlink{classReversi_ac81136b2ff7375b10b4251cf1484e661}{atualizar\_jogadas\_validas}}(\textcolor{keywordtype}{int}\ jogador)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classReversi_a143238392498c87d97ff03fb34034b4a}{imprimir\_vetor}}(\textcolor{keywordtype}{int}\ jogador)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00036\ \ \ \ \ std::pair<int,\ int>\ \mbox{\hyperlink{classReversi_af150237fac277f11f655c5c94b46c82b}{calcular\_pontuacao}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classReversi_afc3eac0fc8f6aa781a6ca589d920eeaf}{mostrar\_pontuacao}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classReversi_a209530372588db5ce54fb10439065eec}{anunciar\_vencedor}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\ direcoes;}
+\DoxyCodeLine{00041\ \ \ \ \ std::vector<std::vector<bool>>\ JogadasValidas\_;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ verificar\_direcao(\textcolor{keywordtype}{int}\ linha,\ \textcolor{keywordtype}{int}\ coluna,\ \textcolor{keywordtype}{int}\ dLinha,\ \textcolor{keywordtype}{int}\ dColuna,\ \textcolor{keywordtype}{int}\ jogador)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJogoDaVelha}{JogoDaVelha}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classJogosDeTabuleiro}{JogosDeTabuleiro}}\ \{}
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Construtor\ padrão\ com\ tamanho\ 3x3}}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classJogoDaVelha}{JogoDaVelha}}(\textcolor{keywordtype}{int}\ linhas\ =\ 3,\ \textcolor{keywordtype}{int}\ colunas\ =\ 3);}
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ Métodos\ herdados\ e\ sobrescritos\ da\ classe\ base}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classJogoDaVelha_a35d77bb414fb4aae0ab80b72636d7dbf}{ler\_jogada}}(\textcolor{keywordtype}{int}\ linha,\ \textcolor{keywordtype}{int}\ coluna,\ \textcolor{keywordtype}{int}\ jogador)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classJogoDaVelha_af7b6ebee2783a2d42bcc57a0a76f724b}{verificar\_jogada}}(\textcolor{keywordtype}{int}\ linha,\ \textcolor{keywordtype}{int}\ coluna,\ \textcolor{keywordtype}{int}\ jogador)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classJogoDaVelha_a029eeb73c35af6f4fe567d32e0e21103}{testar\_condicao\_de\_vitoria}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classJogoDaVelha_a6e826f371701839dc177959dc1511648}{imprimir\_vetor}}(\textcolor{keywordtype}{int}\ jogador)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJogoDaVelha_ac422373dc9182d87cb5ea3e1a69002e0}{anunciar\_vencedor}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classJogoDaVelha_a17118304facbd3b6e383c950e0aa46e4}{determinar\_vencedor}}()\ \textcolor{keyword}{const};\ \textcolor{comment}{//\ Retorna\ 1\ para\ X,\ 2\ para\ O,\ 0\ para\ empate}}
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classLig4}{Lig4}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classJogosDeTabuleiro}{JogosDeTabuleiro}}\{}
+\DoxyCodeLine{00060\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classLig4}{Lig4}}(\textcolor{keywordtype}{int}\ linhas\ =\ 6,\ \textcolor{keywordtype}{int}\ colunas\ =\ 7);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classLig4_a3094970fd416d80484b3531d15688ce4}{ler\_jogada}}(\textcolor{keywordtype}{int}\ linha,\ \textcolor{keywordtype}{int}\ coluna,\ \textcolor{keywordtype}{int}\ jogador)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classLig4_ae32e2363ad3216d243cc3364844dc933}{verificar\_jogada}}(\textcolor{keywordtype}{int}\ linha,\ \textcolor{keywordtype}{int}\ coluna,\ \textcolor{keywordtype}{int}\ jogador)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classLig4_ac0c77ac5ca8a4e35d6d1290322da4c70}{testar\_condicao\_de\_vitoria}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classLig4_ac9fceb9dcabdb00b09001b1d8ccb7133}{imprimir\_vetor}}(\textcolor{keywordtype}{int}\ jogador)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

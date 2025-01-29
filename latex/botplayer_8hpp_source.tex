@@ -1,0 +1,68 @@
+\doxysection{botplayer.\+hpp}
+\hypertarget{botplayer_8hpp_source}{}\label{botplayer_8hpp_source}\index{include/botplayer.hpp@{include/botplayer.hpp}}
+\mbox{\hyperlink{botplayer_8hpp}{Ir para a documentação desse arquivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BOTPLAYER\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BOTPLAYER\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{jogos_8hpp}{jogos.hpp}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Classe\ base\ abstrata\ para\ representar\ bots\ em\ jogos\ de\ tabuleiro}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBotPlayer}{BotPlayer}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classBotPlayer_a74e0b0106151240120c6d168a5599edc}{\string~BotPlayer}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{comment}{//\ Método\ abstrato\ para\ calcular\ a\ próxima\ jogada\ do\ bot}}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{virtual}\ std::pair<int,\ int>\ \mbox{\hyperlink{classBotPlayer_a7aea705ab7d23b0b4423f6aa44e8f39a}{calcularProximaJogada}}(}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classJogosDeTabuleiro}{JogosDeTabuleiro}}\&\ jogo,\ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ jogadorAtual}
+\DoxyCodeLine{00016\ \ \ \ \ )\ =\ 0;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classBotPlayer_a85a6e79af03d03109d9f413ef6d64ec0}{BotPlayer}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classBotPlayer_ab1a34e5ce4ea1f1e0f98627c485238ee}{BotPlayer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBotPlayer}{BotPlayer}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classBotPlayer}{BotPlayer}}\&\ \mbox{\hyperlink{classBotPlayer_ac5c75996a3a2ec747cf6a02dda317db9}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBotPlayer}{BotPlayer}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00022\ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ Classe\ para\ implementar\ o\ bot\ do\ jogo\ Reversi}}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classReversiBot}{ReversiBot}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classBotPlayer}{BotPlayer}}\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ std::pair<int,\ int>\ \mbox{\hyperlink{classReversiBot_acaa3a4e3360317ba3c8be16923016e32}{calcularProximaJogada}}(}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classJogosDeTabuleiro}{JogosDeTabuleiro}}\&\ jogo,\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ jogadorAtual}
+\DoxyCodeLine{00030\ \ \ \ \ )\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{int}\ \_minimax(\mbox{\hyperlink{classReversi}{Reversi}}\&\ jogo,\ \textcolor{keywordtype}{int}\ profundidade,\ \textcolor{keywordtype}{bool}\ maximizando,\ \textcolor{keywordtype}{int}\ jogadorAtual);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ \_avaliarTabuleiro(\textcolor{keyword}{const}\ \mbox{\hyperlink{classReversi}{Reversi}}\&\ jogo,\ \textcolor{keywordtype}{int}\ jogadorAtual);}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ Classe\ para\ implementar\ o\ bot\ do\ jogo\ Lig\ 4}}
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classLig4Bot}{Lig4Bot}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classBotPlayer}{BotPlayer}}\ \{}
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ std::pair<int,\ int>\ \mbox{\hyperlink{classLig4Bot_a34939d6efc6f7624038d4b699a54679f}{calcularProximaJogada}}(}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classJogosDeTabuleiro}{JogosDeTabuleiro}}\&\ jogoBase,\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ jogadorAtual}
+\DoxyCodeLine{00043\ \ \ \ \ )\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ \_minimax(\mbox{\hyperlink{classLig4}{Lig4}}\&\ jogo,\ \textcolor{keywordtype}{bool}\ maximizando,\ \textcolor{keywordtype}{int}\ jogadorAtual);}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ Classe\ para\ implementar\ o\ bot\ do\ jogo\ da\ velha}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJogoDaVelhaBot}{JogoDaVelhaBot}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classBotPlayer}{BotPlayer}}\ \{}
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ std::pair<int,\ int>\ \mbox{\hyperlink{classJogoDaVelhaBot_aabaf85d217309130e56290061c403a24}{calcularProximaJogada}}(}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classJogosDeTabuleiro}{JogosDeTabuleiro}}\&\ jogoBase,\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ jogadorAtual}
+\DoxyCodeLine{00055\ \ \ \ \ )\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ minimax(\textcolor{keyword}{const}\ \mbox{\hyperlink{classJogoDaVelha}{JogoDaVelha}}\&\ jogo,\ \textcolor{keywordtype}{int}\&\ melhorLinha,\ \textcolor{keywordtype}{int}\&\ melhorColuna,\ \textcolor{keywordtype}{int}\ jogador);}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ \_minimax(\mbox{\hyperlink{classJogoDaVelha}{JogoDaVelha}}\&\ jogo,\ \textcolor{keywordtype}{int}\ profundidade,\ \textcolor{keywordtype}{bool}\ maximizando,\ \textcolor{keywordtype}{int}\ jogador);}
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

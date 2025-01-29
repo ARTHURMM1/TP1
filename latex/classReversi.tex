@@ -1,0 +1,156 @@
+\doxysection{Referência da Classe Reversi}
+\hypertarget{classReversi}{}\label{classReversi}\index{Reversi@{Reversi}}
+
+
+{\ttfamily \#include $<$jogos.\+hpp$>$}
+
+
+
+Diagrama de hierarquia da classe Reversi\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{classReversi__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Reversi\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{classReversi__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros Públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classReversi_ae51aabbddd10a63795b2aa2ada6ef105}{Reversi}} (int linhas=8, int colunas=8)
+\item 
+int \mbox{\hyperlink{classReversi_a79fc75bf2822d4f6ef717d3884d73a39}{ler\+\_\+jogada}} (int linha, int coluna, int jogador) override
+\item 
+bool \mbox{\hyperlink{classReversi_a1a93802ce4ca9b2240a1673e144da307}{verificar\+\_\+jogada}} (int linha, int coluna, int jogador) const override
+\item 
+bool \mbox{\hyperlink{classReversi_a9469f628bea2ad94404bd79bd3228855}{testar\+\_\+condicao\+\_\+de\+\_\+vitoria}} () const override
+\item 
+std\+::vector$<$ std\+::vector$<$ bool $>$ $>$ \mbox{\hyperlink{classReversi_ac81136b2ff7375b10b4251cf1484e661}{atualizar\+\_\+jogadas\+\_\+validas}} (int jogador) const
+\item 
+int \mbox{\hyperlink{classReversi_a143238392498c87d97ff03fb34034b4a}{imprimir\+\_\+vetor}} (int jogador) const override
+\item 
+std\+::pair$<$ int, int $>$ \mbox{\hyperlink{classReversi_af150237fac277f11f655c5c94b46c82b}{calcular\+\_\+pontuacao}} () const
+\item 
+void \mbox{\hyperlink{classReversi_afc3eac0fc8f6aa781a6ca589d920eeaf}{mostrar\+\_\+pontuacao}} () const
+\item 
+void \mbox{\hyperlink{classReversi_a209530372588db5ce54fb10439065eec}{anunciar\+\_\+vencedor}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Membros Públicos herdados de \mbox{\hyperlink{classJogosDeTabuleiro}{Jogos\+De\+Tabuleiro}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classJogosDeTabuleiro_a03e73790752acb8ee93b0f6e92bf6faa}{Jogos\+De\+Tabuleiro}} (int linhas=0, int colunas=0)
+\item 
+virtual \mbox{\hyperlink{classJogosDeTabuleiro_a002a676b7efeaf147a62466847d2b6a2}{\texorpdfstring{$\sim$}{\string~}\+Jogos\+De\+Tabuleiro}} ()=default
+\item 
+int \mbox{\hyperlink{classJogosDeTabuleiro_a9fa8791ba2ffafb646704ef6be15dd22}{get\+Linhas}} () const
+\item 
+int \mbox{\hyperlink{classJogosDeTabuleiro_ae1f7d2104146a4c8eba518d79c310d37}{get\+Colunas}} () const
+\item 
+std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \mbox{\hyperlink{classJogosDeTabuleiro_a9bbdb5498308ab6cefd58dca32341934}{get\+\_\+tabuleiro}} () const
+\item 
+char \mbox{\hyperlink{classJogosDeTabuleiro_a20769544cbb748db38cf769b73556aa5}{get\+\_\+casa}} (int linha, int coluna) const
+\item 
+void \mbox{\hyperlink{classJogosDeTabuleiro_a9e21aa8366b6728878c0bc9666386c38}{set\+Linhas\+Colunas}} (int linha, int coluna)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Outros membros herdados}
+\doxysubsection*{Atributos Protegidos herdados de \mbox{\hyperlink{classJogosDeTabuleiro}{Jogos\+De\+Tabuleiro}}}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classJogosDeTabuleiro_a2f631f28c17bcf9792e26d01c08b467a}{linhas\+\_\+}}
+\item 
+int \mbox{\hyperlink{classJogosDeTabuleiro_a8831471481b7f4fc792747635c44b8f1}{colunas\+\_\+}}
+\item 
+std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \mbox{\hyperlink{classJogosDeTabuleiro_a8d029fd3f6431e4c4c839210a5cc17a3}{Tabuleiro\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Construtores e Destrutores}
+\Hypertarget{classReversi_ae51aabbddd10a63795b2aa2ada6ef105}\label{classReversi_ae51aabbddd10a63795b2aa2ada6ef105} 
+\index{Reversi@{Reversi}!Reversi@{Reversi}}
+\index{Reversi@{Reversi}!Reversi@{Reversi}}
+\doxysubsubsection{\texorpdfstring{Reversi()}{Reversi()}}
+{\footnotesize\ttfamily Reversi\+::\+Reversi (\begin{DoxyParamCaption}\item[{int}]{linhas = {\ttfamily 8},  }\item[{int}]{colunas = {\ttfamily 8} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{classReversi_a209530372588db5ce54fb10439065eec}\label{classReversi_a209530372588db5ce54fb10439065eec} 
+\index{Reversi@{Reversi}!anunciar\_vencedor@{anunciar\_vencedor}}
+\index{anunciar\_vencedor@{anunciar\_vencedor}!Reversi@{Reversi}}
+\doxysubsubsection{\texorpdfstring{anunciar\_vencedor()}{anunciar\_vencedor()}}
+{\footnotesize\ttfamily void Reversi\+::anunciar\+\_\+vencedor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classReversi_ac81136b2ff7375b10b4251cf1484e661}\label{classReversi_ac81136b2ff7375b10b4251cf1484e661} 
+\index{Reversi@{Reversi}!atualizar\_jogadas\_validas@{atualizar\_jogadas\_validas}}
+\index{atualizar\_jogadas\_validas@{atualizar\_jogadas\_validas}!Reversi@{Reversi}}
+\doxysubsubsection{\texorpdfstring{atualizar\_jogadas\_validas()}{atualizar\_jogadas\_validas()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ bool $>$ $>$ Reversi\+::atualizar\+\_\+jogadas\+\_\+validas (\begin{DoxyParamCaption}\item[{int}]{jogador }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classReversi_af150237fac277f11f655c5c94b46c82b}\label{classReversi_af150237fac277f11f655c5c94b46c82b} 
+\index{Reversi@{Reversi}!calcular\_pontuacao@{calcular\_pontuacao}}
+\index{calcular\_pontuacao@{calcular\_pontuacao}!Reversi@{Reversi}}
+\doxysubsubsection{\texorpdfstring{calcular\_pontuacao()}{calcular\_pontuacao()}}
+{\footnotesize\ttfamily std\+::pair$<$ int, int $>$ Reversi\+::calcular\+\_\+pontuacao (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classReversi_a143238392498c87d97ff03fb34034b4a}\label{classReversi_a143238392498c87d97ff03fb34034b4a} 
+\index{Reversi@{Reversi}!imprimir\_vetor@{imprimir\_vetor}}
+\index{imprimir\_vetor@{imprimir\_vetor}!Reversi@{Reversi}}
+\doxysubsubsection{\texorpdfstring{imprimir\_vetor()}{imprimir\_vetor()}}
+{\footnotesize\ttfamily int Reversi\+::imprimir\+\_\+vetor (\begin{DoxyParamCaption}\item[{int}]{jogador }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implementa \mbox{\hyperlink{classJogosDeTabuleiro_a2514f0d4a161f6c9e4de9d08f7022788}{Jogos\+De\+Tabuleiro}}.
+
+\Hypertarget{classReversi_a79fc75bf2822d4f6ef717d3884d73a39}\label{classReversi_a79fc75bf2822d4f6ef717d3884d73a39} 
+\index{Reversi@{Reversi}!ler\_jogada@{ler\_jogada}}
+\index{ler\_jogada@{ler\_jogada}!Reversi@{Reversi}}
+\doxysubsubsection{\texorpdfstring{ler\_jogada()}{ler\_jogada()}}
+{\footnotesize\ttfamily int Reversi\+::ler\+\_\+jogada (\begin{DoxyParamCaption}\item[{int}]{linha,  }\item[{int}]{coluna,  }\item[{int}]{jogador }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implementa \mbox{\hyperlink{classJogosDeTabuleiro_ac8fcf047c77be95652ddfceaecd1895a}{Jogos\+De\+Tabuleiro}}.
+
+\Hypertarget{classReversi_afc3eac0fc8f6aa781a6ca589d920eeaf}\label{classReversi_afc3eac0fc8f6aa781a6ca589d920eeaf} 
+\index{Reversi@{Reversi}!mostrar\_pontuacao@{mostrar\_pontuacao}}
+\index{mostrar\_pontuacao@{mostrar\_pontuacao}!Reversi@{Reversi}}
+\doxysubsubsection{\texorpdfstring{mostrar\_pontuacao()}{mostrar\_pontuacao()}}
+{\footnotesize\ttfamily void Reversi\+::mostrar\+\_\+pontuacao (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classReversi_a9469f628bea2ad94404bd79bd3228855}\label{classReversi_a9469f628bea2ad94404bd79bd3228855} 
+\index{Reversi@{Reversi}!testar\_condicao\_de\_vitoria@{testar\_condicao\_de\_vitoria}}
+\index{testar\_condicao\_de\_vitoria@{testar\_condicao\_de\_vitoria}!Reversi@{Reversi}}
+\doxysubsubsection{\texorpdfstring{testar\_condicao\_de\_vitoria()}{testar\_condicao\_de\_vitoria()}}
+{\footnotesize\ttfamily bool Reversi\+::testar\+\_\+condicao\+\_\+de\+\_\+vitoria (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implementa \mbox{\hyperlink{classJogosDeTabuleiro_a551e5544d905b7b37bd90e09ae1e72aa}{Jogos\+De\+Tabuleiro}}.
+
+\Hypertarget{classReversi_a1a93802ce4ca9b2240a1673e144da307}\label{classReversi_a1a93802ce4ca9b2240a1673e144da307} 
+\index{Reversi@{Reversi}!verificar\_jogada@{verificar\_jogada}}
+\index{verificar\_jogada@{verificar\_jogada}!Reversi@{Reversi}}
+\doxysubsubsection{\texorpdfstring{verificar\_jogada()}{verificar\_jogada()}}
+{\footnotesize\ttfamily bool Reversi\+::verificar\+\_\+jogada (\begin{DoxyParamCaption}\item[{int}]{linha,  }\item[{int}]{coluna,  }\item[{int}]{jogador }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implementa \mbox{\hyperlink{classJogosDeTabuleiro_a90ee6469426295d13f25a179463a2b1a}{Jogos\+De\+Tabuleiro}}.
+
+
+
+A documentação para essa classe foi gerada a partir dos seguintes arquivos\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{jogos_8hpp}{jogos.\+hpp}}\item 
+src/\mbox{\hyperlink{jogos_8cpp}{jogos.\+cpp}}\end{DoxyCompactItemize}

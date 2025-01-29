@@ -12,7 +12,8 @@ Sistema de gerenciamento de jogadores e jogos com funcionalidade de cadastro, re
 {\ttfamily \#include "{}jogos.\+hpp"{}}\newline
 {\ttfamily \#include "{}partida.\+hpp"{}}\newline
 {\ttfamily \#include $<$algorithm$>$}\newline
-Gráfico de dependência de inclusões para main.\+cpp\+:\nopagebreak
+Gráfico de dependência de inclusões para main.\+cpp\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -22,16 +23,15 @@ Gráfico de dependência de inclusões para main.\+cpp\+:\nopagebreak
 \doxysubsubsection*{Funções}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{main_8cpp_ac0aca0f34a52fbe7527a03517bc3347e}\label{main_8cpp_ac0aca0f34a52fbe7527a03517bc3347e} 
-void {\bfseries mostrar\+Menu} ()
+void \mbox{\hyperlink{main_8cpp_ac0aca0f34a52fbe7527a03517bc3347e}{mostrar\+Menu}} ()
 \begin{DoxyCompactList}\small\item\em Exibe o menu de comandos do sistema. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{main_8cpp_a21c3b75de9c46e3c431ff428b5272694}{cadastrar\+Jogador}} (Cadastro \&jogadores)
+void \mbox{\hyperlink{main_8cpp_a21c3b75de9c46e3c431ff428b5272694}{cadastrar\+Jogador}} (\mbox{\hyperlink{classCadastro}{Cadastro}} \&jogadores)
 \begin{DoxyCompactList}\small\item\em Cadastra um novo jogador no sistema. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{main_8cpp_afb1fc5ab08fc44c5dd70becbd4889009}{remover\+Jogador}} (Cadastro \&jogadores)
+void \mbox{\hyperlink{main_8cpp_afb1fc5ab08fc44c5dd70becbd4889009}{remover\+Jogador}} (\mbox{\hyperlink{classCadastro}{Cadastro}} \&jogadores)
 \begin{DoxyCompactList}\small\item\em Remove um jogador do sistema. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{main_8cpp_a9dd1cb882be95669de9971cad5a2b8c2}{procurar\+Jogador}} (const Cadastro \&jogadores)
+void \mbox{\hyperlink{main_8cpp_a9dd1cb882be95669de9971cad5a2b8c2}{procurar\+Jogador}} (const \mbox{\hyperlink{classCadastro}{Cadastro}} \&jogadores)
 \begin{DoxyCompactList}\small\item\em Procura por um jogador no sistema. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{main_8cpp_a34d9c73f1228e72445324272e641a4d4}{iniciar\+Nova\+Partida}} (Cadastro \&jogadores)
+void \mbox{\hyperlink{main_8cpp_a34d9c73f1228e72445324272e641a4d4}{iniciar\+Nova\+Partida}} (\mbox{\hyperlink{classCadastro}{Cadastro}} \&jogadores)
 \begin{DoxyCompactList}\small\item\em Inicia uma nova partida entre dois jogadores ou contra um bot. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
 \begin{DoxyCompactList}\small\item\em Função principal do programa. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -47,7 +47,7 @@ Sistema de gerenciamento de jogadores e jogos com funcionalidade de cadastro, re
 \index{main.cpp@{main.cpp}!cadastrarJogador@{cadastrarJogador}}
 \index{cadastrarJogador@{cadastrarJogador}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{cadastrarJogador()}{cadastrarJogador()}}
-{\footnotesize\ttfamily void cadastrar\+Jogador (\begin{DoxyParamCaption}\item[{Cadastro \&}]{jogadores }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void cadastrar\+Jogador (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCadastro}{Cadastro}} \&}]{jogadores }\end{DoxyParamCaption})}
 
 
 
@@ -55,14 +55,14 @@ Cadastra um novo jogador no sistema.
 
 
 \begin{DoxyParams}{Parâmetros}
-{\em jogadores} & Referência ao objeto Cadastro para gerenciar jogadores. \\
+{\em jogadores} & Referência ao objeto \doxylink{classCadastro}{Cadastro} para gerenciar jogadores. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{main_8cpp_a34d9c73f1228e72445324272e641a4d4}\label{main_8cpp_a34d9c73f1228e72445324272e641a4d4} 
 \index{main.cpp@{main.cpp}!iniciarNovaPartida@{iniciarNovaPartida}}
 \index{iniciarNovaPartida@{iniciarNovaPartida}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{iniciarNovaPartida()}{iniciarNovaPartida()}}
-{\footnotesize\ttfamily void iniciar\+Nova\+Partida (\begin{DoxyParamCaption}\item[{Cadastro \&}]{jogadores }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void iniciar\+Nova\+Partida (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCadastro}{Cadastro}} \&}]{jogadores }\end{DoxyParamCaption})}
 
 
 
@@ -70,7 +70,7 @@ Inicia uma nova partida entre dois jogadores ou contra um bot.
 
 
 \begin{DoxyParams}{Parâmetros}
-{\em jogadores} & Referência ao objeto Cadastro para gerenciar jogadores. \\
+{\em jogadores} & Referência ao objeto \doxylink{classCadastro}{Cadastro} para gerenciar jogadores. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
@@ -86,11 +86,21 @@ Função principal do programa.
 \begin{DoxyReturn}{Retorna}
 Retorna 0 em caso de execução bem-\/sucedida. 
 \end{DoxyReturn}
+\Hypertarget{main_8cpp_ac0aca0f34a52fbe7527a03517bc3347e}\label{main_8cpp_ac0aca0f34a52fbe7527a03517bc3347e} 
+\index{main.cpp@{main.cpp}!mostrarMenu@{mostrarMenu}}
+\index{mostrarMenu@{mostrarMenu}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{mostrarMenu()}{mostrarMenu()}}
+{\footnotesize\ttfamily void mostrar\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Exibe o menu de comandos do sistema. 
+
 \Hypertarget{main_8cpp_a9dd1cb882be95669de9971cad5a2b8c2}\label{main_8cpp_a9dd1cb882be95669de9971cad5a2b8c2} 
 \index{main.cpp@{main.cpp}!procurarJogador@{procurarJogador}}
 \index{procurarJogador@{procurarJogador}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{procurarJogador()}{procurarJogador()}}
-{\footnotesize\ttfamily void procurar\+Jogador (\begin{DoxyParamCaption}\item[{const Cadastro \&}]{jogadores }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void procurar\+Jogador (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classCadastro}{Cadastro}} \&}]{jogadores }\end{DoxyParamCaption})}
 
 
 
@@ -98,14 +108,14 @@ Procura por um jogador no sistema.
 
 
 \begin{DoxyParams}{Parâmetros}
-{\em jogadores} & Referência ao objeto Cadastro para gerenciar jogadores. \\
+{\em jogadores} & Referência ao objeto \doxylink{classCadastro}{Cadastro} para gerenciar jogadores. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{main_8cpp_afb1fc5ab08fc44c5dd70becbd4889009}\label{main_8cpp_afb1fc5ab08fc44c5dd70becbd4889009} 
 \index{main.cpp@{main.cpp}!removerJogador@{removerJogador}}
 \index{removerJogador@{removerJogador}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{removerJogador()}{removerJogador()}}
-{\footnotesize\ttfamily void remover\+Jogador (\begin{DoxyParamCaption}\item[{Cadastro \&}]{jogadores }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void remover\+Jogador (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCadastro}{Cadastro}} \&}]{jogadores }\end{DoxyParamCaption})}
 
 
 
@@ -113,6 +123,6 @@ Remove um jogador do sistema.
 
 
 \begin{DoxyParams}{Parâmetros}
-{\em jogadores} & Referência ao objeto Cadastro para gerenciar jogadores. \\
+{\em jogadores} & Referência ao objeto \doxylink{classCadastro}{Cadastro} para gerenciar jogadores. \\
 \hline
 \end{DoxyParams}
