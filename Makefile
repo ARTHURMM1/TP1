@@ -1,39 +1,41 @@
+# Variáveis
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall -Iinclude
-LDFLAGS = 
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
-INCLUDE_DIR = include
-TARGET = $(BIN_DIR)/main
+TEST_SRC = $(SRC_DIR)/teste.cpp
+TEST_BIN = $(BIN_DIR)/teste
+EXEC = $(BIN_DIR)/main
 
-# arquivos fonte
-SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
-OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES))
+# Arquivos fonte e objetos
+SRCS = $(filter-out $(TEST_SRC), $(wildcard $(SRC_DIR)/*.cpp))
+OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-# regra default
-all: $(TARGET)
+# Regras
+all: $(EXEC)
 
-# compilar .exe
-$(TARGET): $(OBJ_FILES)
+# Regra para compilar o programa principal
+$(EXEC): $(OBJS)
 	@mkdir -p $(BIN_DIR)
-	$(CXX) $(CXXFLAGS) $(OBJ_FILES) -o $@ $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
-# compilar .o
+# Regra para compilar os arquivos objeto
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# clean
+# Regra para compilar o teste
+teste: $(TEST_SRC)
+	@mkdir -p $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $< -o $(TEST_BIN)
+
+# Limpeza
 clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
-# rodar
-run: all
-	$(TARGET)
-# debug
-debug: CXXFLAGS += -g
-debug: clean all
+# Remoção completa
+distclean: clean
+	rm -rf html latex
 
-# phony targets
-.PHONY: all clean run debug
+.PHONY: all clean distclean teste

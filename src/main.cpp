@@ -111,6 +111,11 @@ void iniciarNovaPartida(Cadastro& jogadores) {
     std::cout << "Jogar contra BOT? (1-Sim, 0-Não): ";
     std::cin >> vsBot;
 
+    // Verifica se a entrada não é 1 nem 0, e continua pedindo até que seja válida
+    if (vsBot != 1 && vsBot != 0) {
+        std::cout << VERMELHO << "Entrada inválida! " << RESETAR << std::endl;
+        return;
+    }
     std::cout << DIVIDER << std::endl;
     std::cout << "Digite o apelido do Jogador 1: ";
     std::cin.ignore();
@@ -168,49 +173,50 @@ int main() {
     std::cout << "Bem-vindo ao Sistema de Jogos!" << std::endl;
     mostrarMenu();
 
-    while (true) {
-        std::cout << "\nDigite um comando: ";
-        std::cin >> inputComando;
+ while (true) {
+    std::cout << "\nDigite um comando: ";
+    std::cin >> inputComando;
 
-        // Converte o comando para maiúsculas
-        std::transform(inputComando.begin(), inputComando.end(), inputComando.begin(), ::toupper);
+    // Converte o comando para maiúsculas
+    std::transform(inputComando.begin(), inputComando.end(), inputComando.begin(), ::toupper);
 
-        auto it = std::find(commands.begin(), commands.end(), inputComando);
+    auto it = std::find(commands.begin(), commands.end(), inputComando);
 
-        if (it == commands.end()) {
-            std::cout << "Comando inválido! Digite 'H' para ver os comandos disponíveis." << std::endl;
-            continue;
-        }
-
-        int indexComando = std::distance(commands.begin(), it);
-
-        switch(indexComando) {
-            case 0: // CJ
-                cadastrarJogador(jogadores);
-                break;
-            case 1: // RJ
-                removerJogador(jogadores);
-                break;
-            case 2: // LJ
-                jogadores.mostrarJogadores();
-                break;
-            case 3: // PJ
-                procurarJogador(jogadores);
-                break;
-            case 4: // NP
-                iniciarNovaPartida(jogadores);
-                break;
-            case 5: // F
-                std::cout << "Programa finalizado." << std::endl;
-                return 0;
-            case 6: // H
-                mostrarMenu();
-                break;
-            default:
-                std::cout << "Erro inesperado!" << std::endl;
-                return 1;
-        }
+    if (it == commands.end()) {
+        std::cout << "Comando inválido! Digite 'H' para ver os comandos disponíveis." << std::endl;
+        continue;
     }
 
-    return 0;
+    int indexComando = std::distance(commands.begin(), it);
+
+    switch(indexComando) {
+        case 0: // CJ
+            cadastrarJogador(jogadores);
+            break;
+        case 1: // RJ
+            removerJogador(jogadores);
+            break;
+        case 2: // LJ
+            jogadores.mostrarJogadores();
+            break;
+        case 3: // PJ
+            procurarJogador(jogadores);
+            break;
+        case 4: // NP
+            iniciarNovaPartida(jogadores);
+            std::cout << "teste1";  // Verifique se esta mensagem é realmente necessária
+            std::cin.ignore();  // Limpa o buffer de entrada
+            break;
+        case 5: // F
+            std::cout << "Programa finalizado." << std::endl;
+            return 0;
+        case 6: // H
+            mostrarMenu();
+            break;
+        default:
+            std::cout << "Erro inesperado!" << std::endl;
+            return 1;
+    }
+}
+
 }
