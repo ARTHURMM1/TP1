@@ -1,3 +1,8 @@
+/**
+ * @file partida.cpp
+ * @brief Declaração dos métodos da classe Partida.
+ */
+
 #include "partida.hpp"
 #include <iostream>
 #include <memory>

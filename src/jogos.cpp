@@ -1,3 +1,8 @@
+/**
+ * @file jogos.cpp
+ * @brief Declaração dos métodos da classe JogosDeTabuleiro.
+ */
+
 #include "jogos.hpp"
 
 
@@ -14,7 +19,7 @@ char JogosDeTabuleiro::get_casa(int linha, int coluna) const {
     if (linha >= 0 && linha < linhas_ && coluna >= 0 && coluna < colunas_) {
         return Tabuleiro_[linha][coluna];
     }
-    return 'F'; // Or handle out-of-bounds appropriately
+    return 'F';
 }
 
 void JogosDeTabuleiro::setLinhasColunas(int linha, int coluna) { linhas_ = linha; colunas_ = coluna; };

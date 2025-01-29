@@ -1,3 +1,8 @@
+/**
+ * @file botplayer.cpp
+ * @brief Declaração dos métodos da classe BotPlayer.
+*/
+
 #include "botplayer.hpp"
 #include <climits>
 #include <algorithm>

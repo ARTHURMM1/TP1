@@ -1,3 +1,9 @@
+/**
+ * @file cadastro.cpp 
+ * @brief Declaração dos métodos das classes Jogador e Cadastro.
+ */
+
+
 #include "cadastro.hpp"
 #include <stdexcept>
 #include <sstream>
