@@ -4,6 +4,13 @@
 
 // --- Implementação do Jogo da Velha Bot ---
 
+/**
+ * @brief Calcula a melhor jogada para o Jogo da Velha utilizando o algoritmo Minimax.
+ * @param jogo Estado atual do jogo.
+ * @param melhorLinha Referência para armazenar a linha da melhor jogada.
+ * @param melhorColuna Referência para armazenar a coluna da melhor jogada.
+ * @param jogador ID do jogador atual.
+ */
 void JogoDaVelhaBot::minimax(const JogoDaVelha& jogo, int& melhorLinha, int& melhorColuna, int jogador) {
     int melhorPontuacao = INT_MIN;
 
@@ -24,6 +31,14 @@ void JogoDaVelhaBot::minimax(const JogoDaVelha& jogo, int& melhorLinha, int& mel
     }
 }
 
+/**
+ * @brief Implementação recursiva do algoritmo Minimax para o Jogo da Velha.
+ * @param jogo Estado atual do jogo.
+ * @param profundidade Nível de profundidade da árvore de decisão.
+ * @param maximizando Indica se é a vez do jogador maximizar ou minimizar a pontuação.
+ * @param jogador ID do jogador atual.
+ * @return Valor da melhor jogada possível.
+ */
 int JogoDaVelhaBot::_minimax(JogoDaVelha& jogo, int profundidade, bool maximizando, int jogador) {
     if (jogo.testar_condicao_de_vitoria()) {
         return maximizando ? -1 : 1; // Vitória do oponente ou do bot
@@ -69,7 +84,6 @@ std::pair<int, int> JogoDaVelhaBot::calcularProximaJogada(const JogosDeTabuleiro
     return {melhorLinha, melhorColuna};
 }
 
-// --- Implementação do Lig 4 Bot ---
 
 std::pair<int, int> Lig4Bot::calcularProximaJogada(const JogosDeTabuleiro& jogoBase, int jogadorAtual) {
     const Lig4& jogo = static_cast<const Lig4&>(jogoBase); 
@@ -92,6 +106,7 @@ std::pair<int, int> Lig4Bot::calcularProximaJogada(const JogosDeTabuleiro& jogoB
 
     return {melhorColuna, -1};
 }
+
 
 int Lig4Bot::_minimax(Lig4& jogo, bool maximizando, int jogadorAtual) {
     if (jogo.testar_condicao_de_vitoria()) {
@@ -183,7 +198,9 @@ int ReversiBot::_minimax(Reversi& jogo, int profundidade, bool maximizando, int 
 
                 // Chamada recursiva para Minimax
                 int pontuacao = _minimax(jogo, profundidade + 1, !maximizando, jogadorAtual);
-                
+
+                //jogo.desfazer_jogada(linha, coluna);
+
                 if (maximizando) {
                     melhorPontuacao = std::max(melhorPontuacao, pontuacao);
                 } else {
